@@ -4,7 +4,14 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
+include "../app/vendor/autoload.php";
 
+use App\Controller\Controller;
+use App\Model\Model;
+$model = new Model();
+//$model->insertUser("QW30","miloš","blby",97857,"milos@gmail.com","milosko");
+//
+//$model->insertExam("QW30",1,"zapocet",true,25);
 
 //check if form with short questions was submitted
 if(isset($_POST['first-short-q'])){
@@ -37,7 +44,7 @@ if(isset($_POST['first-short-q'])){
 
 
     //create controller for inserting values
-    $controller = new \App\Controller\Controller();
+    $controller = new Controller();
 
     //tmp for answers
     //TODO: ak bude už naplnená tabulka nejakymi otázkami a exams, tak potom treba získať posledné id otázky, a od nej odvíjat
@@ -53,65 +60,65 @@ if(isset($_POST['first-short-q'])){
 
     //short questions
     $firstQuestion = $_POST['first-short-q'];
-    $controller->insertQuestion(1,$firstQuestion,$answerId++,"short",1);
+    $controller->insertQuestion(1,$firstQuestion,$answerId++,"Krátka odpoveď",1);
 
     $firstShortAnswer = $_POST['first-short-answer'];
-    $controller->insertAnswers($userID,$questionId++,"short",$firstShortAnswer);
+    $controller->insertAnswers($userID,$questionId++,"Krátka odpoveď",$firstShortAnswer);
 
     $secondQuestion = $_POST['second-short-q'];
-    $controller->insertQuestion(1,$secondQuestion,$answerId++,"short",1);
+    $controller->insertQuestion(1,$secondQuestion,$answerId++,"Krátka odpoveď",1);
 
     $secondShortAnswer = $_POST['second-short-answer'];
-    $controller->insertAnswers($userID,$questionId++,"short",$secondShortAnswer);
+    $controller->insertAnswers($userID,$questionId++,"Krátka odpoveď",$secondShortAnswer);
 
 
     //questions  with right answer
 
     $thirdQuestion = $_POST['first-more-q'];
-    $controller->insertQuestion(1,$thirdQuestion,$answerId++,"more",1);
+    $controller->insertQuestion(1,$thirdQuestion,$answerId++,"Výber správnej odpovede",1);
 
     $firstMoreAnswer = [];
     array_push($firstMoreAnswer,$_POST['first-more-answer']);
     array_push($firstMoreAnswer,$_POST['first-more-answer2']);
     array_push($firstMoreAnswer,$_POST['first-more-answer3']);
 
-    $controller->insertAnswers($userID,$questionId++,"more",implode(",",$firstMoreAnswer));
+    $controller->insertAnswers($userID,$questionId++,"Výber správnej odpovede",implode(",",$firstMoreAnswer));
 
     $fourQuestion = $_POST['second-more-q'];
-    $controller->insertQuestion(1,$fourQuestion,$answerId++,"more",1);
+    $controller->insertQuestion(1,$fourQuestion,$answerId++,"Výber správnej odpovede",1);
 
     $secondMoreAnswer = [];
     array_push($secondMoreAnswer,$_POST['second-more-answer']);
     array_push($secondMoreAnswer,$_POST['second-more-answer2']);
     array_push($secondMoreAnswer,$_POST['second-more-answer3']);
-    $controller->insertAnswers($userID,$questionId++,"more",implode(",",$secondMoreAnswer));
+    $controller->insertAnswers($userID,$questionId++,"Výber správnej odpovede",implode(",",$secondMoreAnswer));
 
 
     //pair questions
     $fifthQuestion = $_POST['first-pair-q'];
-    $controller->insertQuestion(1,$fifthQuestion,$answerId++,"pair",1);
+    $controller->insertQuestion(1,$fifthQuestion,$answerId++,"Párovanie odpovedí",1);
 
     $firstPairAnswer = $_POST['first-pair-answer'];
-    $controller->insertAnswers($userID,$questionId++,"pair",$firstPairAnswer);
+    $controller->insertAnswers($userID,$questionId++,"Párovanie odpovedí",$firstPairAnswer);
 
     $sixQuestion = $_POST['second-pair-q'];
-    $controller->insertQuestion(1,$sixQuestion,$answerId++,"pair",1);
+    $controller->insertQuestion(1,$sixQuestion,$answerId++,"Párovanie odpovedí",1);
 
     $secondPairAnswer = $_POST['second-pair-answer'];
-    $controller->insertAnswers($userID,$questionId++,"pair",$secondPairAnswer);
+    $controller->insertAnswers($userID,$questionId++,"Párovanie odpovedí",$secondPairAnswer);
 
 
     //draw questions and where answer from teacher is not present then put 0 into DB
     $drawQuestion = $_POST['draw-q'];
-    $controller->insertQuestion(1,$drawQuestion,0,"draw",1);
+    $controller->insertQuestion(1,$drawQuestion,0,"Nakreslenie obrázka",1);
 
 
     //math questions and where answer from teacher is not present then put 0 into DB
     $firstMathQuestion = $_POST['first-math-q'];
-    $controller->insertQuestion(1,$firstMathQuestion,0,"math",1);
+    $controller->insertQuestion(1,$firstMathQuestion,0,"Matematický výraz",1);
 
     $secondMathQuestion = $_POST['second-math-q'];
-    $controller->insertQuestion(1,$secondMathQuestion,0,"math",1);
+    $controller->insertQuestion(1,$secondMathQuestion,0,"Matematický výraz",1);
 
 
 

@@ -6,7 +6,8 @@ namespace App\Model;
 
 use App\Model\Database\Database;
 
-
+use PDO;
+use PDOException;
 
 class Model
 {
@@ -56,6 +57,64 @@ class Model
         }
     }
 
+
+
+
+    public function insertUser($token,$name,$surname,$ais_id,$email,$password)
+    {
+        try {
+            $conn = new Database();
+            $conn->getConnection()->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $stmt = $conn->getConnection()->prepare("insert into  test.Users (token,name, surname, ais_id, email, password) 
+                                            VALUE (:token,:name,:surname,:ais_id,:email,:password)");
+            $stmt->bindParam(':token', $token);
+            $stmt->bindParam(':name', $name);
+            $stmt->bindParam(':surname', $surname);
+            $stmt->bindParam(':ais_id', $ais_id);
+            $stmt->bindParam(':email', $email);
+            $stmt->bindParam(':password', $password);
+            return $stmt->execute();
+
+        } catch (PDOException $exception) {
+            return "Failed: " . $exception->getMessage();
+        }
+    }
+
+    public function insertExam($exam_code,$userId,$title,$isActive,$examPoints)
+    {
+        try {
+            $conn = new Database();
+            $conn->getConnection()->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $stmt = $conn->getConnection()->prepare("insert into  test.Exams (exam_code, user_id, title, is_active, exam_points) 
+                                            VALUE (:exam_code,:user_id,:title,:is_active,:exam_points)");
+            $stmt->bindParam(':exam_code', $exam_code);
+            $stmt->bindParam(':user_id', $userId);
+            $stmt->bindParam(':title', $title);
+//            $stmt->bindParam(':time_limit', $timeLimit);
+            $stmt->bindParam(':is_active', $isActive);
+            $stmt->bindParam(':exam_points', $examPoints);
+            return $stmt->execute();
+
+        } catch (PDOException $exception) {
+            return "Failed: " . $exception->getMessage();
+        }
+    }
+
+
+    public function getUserId()
+    {
+        try {
+            $conn = new Database();
+            $conn->getConnection()->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $stmt = $conn->getConnection()->prepare("select id from test.Users");
+
+            $stmt->execute();
+            return $stmt->fetch();
+
+        } catch (PDOException $exception) {
+            return "Failed: " . $exception->getMessage();
+        }
+    }
 
 
     public function getLastQuestionId()

@@ -22,4 +22,6 @@ class Controller
 
         $model->insertAnswers($user_id,$questionId,$type,$answer);
     }
+
+
 }
