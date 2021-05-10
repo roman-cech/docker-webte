@@ -13,6 +13,10 @@ $model = new Model();
 
 $url = $_GET['token'];
 
+function timeToMinutes($time){
+    return $time - strtotime("now") ;
+}
+
 
 //$model->insertUser("QW30","miloš","blby",97857,"milos@gmail.com","milosko");
 //
@@ -23,7 +27,7 @@ if(isset($_GET['token'])){
     $_SESSION['newToken'] =  $tokenString;
 }
 
-echo $_SESSION['newToken'];
+//echo $_SESSION['newToken'];
 
 if(isset($_POST['title-test'])){
 
@@ -33,10 +37,11 @@ if(isset($_POST['title-test'])){
 
     $titleTest = $_POST['title-test'];
     $timeLimit = $_POST['time-limit'];
+    $time = timeToMinutes(time()+(1*1*$timeLimit*1));
     $isActive = $_POST['is-active'];
     $examPoints = $_POST['points'];
 
-    $model->insertExam($examCode,1,$titleTest,$isActive,$examPoints);
+    $model->insertExam($examCode,1,$titleTest,$time,$isActive,$examPoints);
 
     echo "insert successfully";
 }
@@ -162,8 +167,6 @@ if(isset($_POST['first-short-q'])){
 
 }
 
-
-
 ?>
 
 
@@ -190,10 +193,11 @@ if(isset($_POST['first-short-q'])){
 
     <a href="?token=" class="btn btn-success">vygeneruj exam kod</a>
     <br>
+    <br>
 
     <!-- Trigger the modal with a button -->
     <button type="button" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#myModal2">Vytvor Test</button>
-
+    <br>
     <!-- Modal -->
     <div id="myModal2" class="modal fade" role="dialog">
         <div class="modal-dialog">

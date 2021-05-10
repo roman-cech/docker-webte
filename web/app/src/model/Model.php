@@ -79,17 +79,17 @@ class Model
         }
     }
 
-    public function insertExam($exam_code,$userId,$title,$isActive,$examPoints)
+    public function insertExam($exam_code,$userId,$title,$timeLimit,$isActive,$examPoints)
     {
         try {
             $conn = new Database();
             $conn->getConnection()->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $stmt = $conn->getConnection()->prepare("insert into  test.Exams (exam_code, user_id, title, is_active, exam_points) 
-                                            VALUE (:exam_code,:user_id,:title,:is_active,:exam_points)");
+            $stmt = $conn->getConnection()->prepare("insert into  test.Exams (exam_code, user_id, title,time_limit, is_active, exam_points) 
+                                            VALUE (:exam_code,:user_id,:title,:time_limit,:is_active,:exam_points)");
             $stmt->bindParam(':exam_code', $exam_code);
             $stmt->bindParam(':user_id', $userId);
             $stmt->bindParam(':title', $title);
-//            $stmt->bindParam(':time_limit', $timeLimit);
+            $stmt->bindParam(':time_limit', $timeLimit);
             $stmt->bindParam(':is_active', $isActive);
             $stmt->bindParam(':exam_points', $examPoints);
             return $stmt->execute();
