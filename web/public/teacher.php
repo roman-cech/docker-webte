@@ -247,7 +247,7 @@ if(isset($_POST['first-short-q'])){
 
     <br>
     <!-- Trigger the modal with a button -->
-    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Vytvor Otázky</button>
+    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Vytvor Otázky k testu</button>
 
     <!-- Modal -->
     <div id="myModal" class="modal fade" role="dialog">
