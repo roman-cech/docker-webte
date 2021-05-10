@@ -1,17 +1,47 @@
 <?php
 
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+//ini_set('display_errors', 1);
+//ini_set('display_startup_errors', 1);
+//error_reporting(E_ALL);
+session_start();
 
 include "../app/vendor/autoload.php";
 
 use App\Controller\Controller;
 use App\Model\Model;
 $model = new Model();
+
+$url = $_GET['token'];
+
+
 //$model->insertUser("QW30","miloš","blby",97857,"milos@gmail.com","milosko");
 //
 //$model->insertExam("QW30",1,"zapocet",true,25);
+
+if(isset($_GET['token'])){
+    $tokenString = bin2hex(random_bytes(3));
+    $_SESSION['newToken'] =  $tokenString;
+}
+
+echo $_SESSION['newToken'];
+
+if(isset($_POST['title-test'])){
+
+    $examCode = $_SESSION['newToken'];
+
+    //TODO $userId
+
+    $titleTest = $_POST['title-test'];
+    $timeLimit = $_POST['time-limit'];
+    $isActive = $_POST['is-active'];
+    $examPoints = $_POST['points'];
+
+    $model->insertExam($examCode,1,$titleTest,$isActive,$examPoints);
+
+    echo "insert successfully";
+}
+
+
 
 //check if form with short questions was submitted
 if(isset($_POST['first-short-q'])){
@@ -43,14 +73,19 @@ if(isset($_POST['first-short-q'])){
     echo $_POST['second-math-q'] . "<br>";
 
 
+    echo $_SESSION['newToken'];
+
     //create controller for inserting values
     $controller = new Controller();
 
     //tmp for answers
-    //TODO: ak bude už naplnená tabulka nejakymi otázkami a exams, tak potom treba získať posledné id otázky, a od nej odvíjat
-    //TODO: premenné answerId a questionId
-    $answerId = 1;
-    $questionId= 1;
+
+    $answerId = $model->getLastAnswerId();
+    $questionId= $model->getLastQuestionId();
+    $answerId++;
+    $questionId++;
+
+    $examId = $model->getExamId();
 
     //TODO: toto sa bude priradovat z loginu, treba do teacherModel spravit funkciu pre ziskanie userID
     $userID = 1;
@@ -60,13 +95,13 @@ if(isset($_POST['first-short-q'])){
 
     //short questions
     $firstQuestion = $_POST['first-short-q'];
-    $controller->insertQuestion(1,$firstQuestion,$answerId++,"Krátka odpoveď",1);
+    $controller->insertQuestion($examId,$firstQuestion,$answerId++,"Krátka odpoveď",1);
 
     $firstShortAnswer = $_POST['first-short-answer'];
     $controller->insertAnswers($userID,$questionId++,"Krátka odpoveď",$firstShortAnswer);
 
     $secondQuestion = $_POST['second-short-q'];
-    $controller->insertQuestion(1,$secondQuestion,$answerId++,"Krátka odpoveď",1);
+    $controller->insertQuestion($examId,$secondQuestion,$answerId++,"Krátka odpoveď",1);
 
     $secondShortAnswer = $_POST['second-short-answer'];
     $controller->insertAnswers($userID,$questionId++,"Krátka odpoveď",$secondShortAnswer);
@@ -75,7 +110,7 @@ if(isset($_POST['first-short-q'])){
     //questions  with right answer
 
     $thirdQuestion = $_POST['first-more-q'];
-    $controller->insertQuestion(1,$thirdQuestion,$answerId++,"Výber správnej odpovede",1);
+    $controller->insertQuestion($examId,$thirdQuestion,$answerId++,"Výber správnej odpovede",1);
 
     $firstMoreAnswer = [];
     array_push($firstMoreAnswer,$_POST['first-more-answer']);
@@ -85,7 +120,7 @@ if(isset($_POST['first-short-q'])){
     $controller->insertAnswers($userID,$questionId++,"Výber správnej odpovede",implode(",",$firstMoreAnswer));
 
     $fourQuestion = $_POST['second-more-q'];
-    $controller->insertQuestion(1,$fourQuestion,$answerId++,"Výber správnej odpovede",1);
+    $controller->insertQuestion($examId,$fourQuestion,$answerId++,"Výber správnej odpovede",1);
 
     $secondMoreAnswer = [];
     array_push($secondMoreAnswer,$_POST['second-more-answer']);
@@ -96,13 +131,13 @@ if(isset($_POST['first-short-q'])){
 
     //pair questions
     $fifthQuestion = $_POST['first-pair-q'];
-    $controller->insertQuestion(1,$fifthQuestion,$answerId++,"Párovanie odpovedí",1);
+    $controller->insertQuestion($examId,$fifthQuestion,$answerId++,"Párovanie odpovedí",1);
 
     $firstPairAnswer = $_POST['first-pair-answer'];
     $controller->insertAnswers($userID,$questionId++,"Párovanie odpovedí",$firstPairAnswer);
 
     $sixQuestion = $_POST['second-pair-q'];
-    $controller->insertQuestion(1,$sixQuestion,$answerId++,"Párovanie odpovedí",1);
+    $controller->insertQuestion($examId,$sixQuestion,$answerId++,"Párovanie odpovedí",1);
 
     $secondPairAnswer = $_POST['second-pair-answer'];
     $controller->insertAnswers($userID,$questionId++,"Párovanie odpovedí",$secondPairAnswer);
@@ -110,15 +145,15 @@ if(isset($_POST['first-short-q'])){
 
     //draw questions and where answer from teacher is not present then put 0 into DB
     $drawQuestion = $_POST['draw-q'];
-    $controller->insertQuestion(1,$drawQuestion,0,"Nakreslenie obrázka",1);
+    $controller->insertQuestion($examId,$drawQuestion,0,"Nakreslenie obrázka",1);
 
 
     //math questions and where answer from teacher is not present then put 0 into DB
     $firstMathQuestion = $_POST['first-math-q'];
-    $controller->insertQuestion(1,$firstMathQuestion,0,"Matematický výraz",1);
+    $controller->insertQuestion($examId,$firstMathQuestion,0,"Matematický výraz",1);
 
     $secondMathQuestion = $_POST['second-math-q'];
-    $controller->insertQuestion(1,$secondMathQuestion,0,"Matematický výraz",1);
+    $controller->insertQuestion($examId,$secondMathQuestion,0,"Matematický výraz",1);
 
 
 
@@ -153,9 +188,66 @@ if(isset($_POST['first-short-q'])){
 
 <div class="container">
 
+    <a href="?token=" class="btn btn-success">vygeneruj exam kod</a>
+    <br>
+
+    <!-- Trigger the modal with a button -->
+    <button type="button" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#myModal2">Vytvor Test</button>
+
+    <!-- Modal -->
+    <div id="myModal2" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Vytvorenie nového Testu</h4>
+                </div>
+                <div class="modal-body" style="width: auto">
+                    <div class="container">
+                        <form action="teacher.php" method="post">
+
+                            <h4>Vytvoriť nový Test</h4>
+
+                            <div class="mb-3">
+                                <label for="title-test"><strong>Názov testu</strong></label>
+                                <input type="text"  name="title-test" id="title-test">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="time-limit"><strong>Časový limit</strong></label>
+                                <input type="text"  name="time-limit" id="time-limit"">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="is-active"><strong>Zaradiť test medzi aktívne</strong></label>
+                                <input type="number"  name="is-active" id="is-active" min="0" max="1" placeholder="1">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="points"><strong>Počet bodov za test</strong></label>
+                                <input type="number"  name="points" id="points" min="1" max="100" placeholder="25">
+                            </div>
+
+                            <button type="submit" class="btn btn-success">vytvoriť</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+
     <br>
     <!-- Trigger the modal with a button -->
-    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Vytvor Test</button>
+    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Vytvor Otázky</button>
 
     <!-- Modal -->
     <div id="myModal" class="modal fade" role="dialog">

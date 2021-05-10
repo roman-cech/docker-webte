@@ -59,7 +59,6 @@ class Model
 
 
 
-
     public function insertUser($token,$name,$surname,$ais_id,$email,$password)
     {
         try {
@@ -106,10 +105,25 @@ class Model
         try {
             $conn = new Database();
             $conn->getConnection()->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $stmt = $conn->getConnection()->prepare("select id from test.Users");
+            $stmt = $conn->getConnection()->prepare("select id from test.Users where ais_id = null");
 
             $stmt->execute();
-            return $stmt->fetch();
+            return $stmt->rowCount();
+
+        } catch (PDOException $exception) {
+            return "Failed: " . $exception->getMessage();
+        }
+    }
+
+    public function getExamId()
+    {
+        try {
+            $conn = new Database();
+            $conn->getConnection()->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $stmt = $conn->getConnection()->prepare("select id from test.Exams");
+
+            $stmt->execute();
+            return $stmt->rowCount();
 
         } catch (PDOException $exception) {
             return "Failed: " . $exception->getMessage();
@@ -117,15 +131,16 @@ class Model
     }
 
 
+
     public function getLastQuestionId()
     {
         try {
             $conn = new Database();
             $conn->getConnection()->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $stmt = $conn->getConnection()->prepare("select max(id) from test.Questions");
+            $stmt = $conn->getConnection()->prepare("select id from test.Questions");
 
             $stmt->execute();
-            return $stmt->fetch();
+            return $stmt->rowCount();
 
         } catch (PDOException $exception) {
             return "Failed: " . $exception->getMessage();
@@ -137,10 +152,10 @@ class Model
         try {
             $conn = new Database();
             $conn->getConnection()->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $stmt = $conn->getConnection()->prepare("select max(id) from test.answers");
+            $stmt = $conn->getConnection()->prepare("select id from test.answers");
 
             $stmt->execute();
-            return $stmt->fetch();
+            return $stmt->rowCount();
 
         } catch (PDOException $exception) {
             return "Failed: " . $exception->getMessage();
