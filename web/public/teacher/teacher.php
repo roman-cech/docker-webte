@@ -17,8 +17,6 @@ function timeToMinutes($time){
     return $time - strtotime("now") ;
 }
 
-
-//$model->insertUser("QW30","miloš","blby",97857,"milos@gmail.com","milosko");
 //
 //$model->insertExam("QW30",1,"zapocet",true,25);
 
@@ -27,7 +25,7 @@ if(isset($_GET['token'])){
     $_SESSION['newToken'] =  $tokenString;
 }
 
-//echo $_SESSION['newToken'];
+echo $_SESSION['newToken'];
 
 if(isset($_POST['title-test'])){
 
