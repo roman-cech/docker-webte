@@ -2,21 +2,24 @@
 
 namespace App\Controller;
 
-use App\Model\Database\Database;
 
-use PDO;
+
+use App\Model\Model;
+
 
 class Controller
 {
-    private PDO $conn;
-
-    public function __construct()
-    {
-        $this->conn = (new Database())->getConnection();
+    public function insertQuestion($exam_id,$question,$answerId,$type,$questionPoints){
+        $model = new Model();
+        $model->insertQuestions($exam_id,$question,$answerId,$type,$questionPoints);
     }
 
-    public function initProject(): string
-    {
-        return "hello";
+
+    public function insertAnswers($user_id,$questionId,$type,$answer){
+        $model = new Model();
+
+        //get questionId
+
+        $model->insertAnswers($user_id,$questionId,$type,$answer);
     }
 }
