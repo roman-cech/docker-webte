@@ -43,79 +43,83 @@ function getJsonDecode($res){
 
         $model = new GetQuestionModel();
         $controller = new GetQuestionController();
-        //get count of short questions
-        $countShort = $model->countShortQuestion();
 
-        $result = $model->getShortQuestions();
-        $obj = getJsonDecode($result);
+        //TODO:
+        $exam_id = 1;
 
+        //get Short questions
+        $resShort = $model->getShortQuestions($exam_id);
+        $shortQ = getJsonDecode($resShort);
+
+        //tmp for num questions
         $tmp = 1;
-        echo "<h2>Otázky s krátkou odpovedou</h2>";
 
-        for($i=0;$i<2;$i++){
-            echo $controller->displayShortQuestions($tmp++,$obj[$i]->question) . "<br>";
-        }
+        //get choose right answer questions
+        $resChoose = $model->getChooseQuestions($exam_id);
+        $chooseQ = getJsonDecode($resChoose);
 
-        // questions with choose answer
-        $resultMore = $model->getChooseQuestions();
-        $objChoose = getJsonDecode($resultMore);
-
-        $resultChooseAnswers = $model->getChooseAnswers();
-        $objAnswers = getJsonDecode($resultChooseAnswers);
-
-        //add answers to array
-        $firstArrOfChooseAnswers = explode(",",$objAnswers[0]->answer);
-        $secondArrOfChooseAnswers = explode(",",$objAnswers[1]->answer);
-
-        echo "<h2>Otázky s výberom správnej odpovede</h2>";
-
-        echo $controller->displayQuestions($tmp++,$objChoose[0]->question);
-        for($i=0;$i<=2;$i++){
-            echo $controller->displayChooseAnswers($i,$firstArrOfChooseAnswers[$i]);
-        }
-
-        echo $controller->displayQuestions($tmp++,$objChoose[1]->question);
-        for($i=0;$i<=2;$i++){
-            echo $controller->displayChooseAnswers($i,$secondArrOfChooseAnswers[$i]);
-        }
-
-
-        //get Pair questions
-        $resultPair = $model->getPairQuestions();
-        $pairJson = getJsonDecode($resultPair);
-
-        $resultPairAnswer = $model->getPairAnswers();
-        $pairAnswers = getJsonDecode($resultPairAnswer);
-
-        echo "<h2>Párovacie otázky</h2>";
-        echo "<h3>$tmp Otázka</h3>";
-        $tmp++;
-        echo $controller->displayPairQuestion($pairJson[0]->question,$pairAnswers[1]->answer);
-        // echo $controller->displayAnswers($pairAnswers[1]->answer);
-        echo $controller->displayPairQuestion($pairJson[1]->question,$pairAnswers[0]->answer);
-        //   echo $controller->displayAnswers($pairAnswers[0]->answer);
-
-
-        echo "<h2>Nakresli</h2>";
-        $resultDraw = $model->getDrawThing();
-        $drawJson = getJsonDecode($resultDraw);
-
-        echo $controller->draw($tmp++,$drawJson[0]->question);
-
-
-        echo "<h2>Otázky s odpovedou matematického výrazu</h2>";
-        $resultMath = $model->getMathQuestions();
-        $mathJson = getJsonDecode($resultMath);
-
-        echo $controller->displayQuestions($tmp++,$mathJson[0]->question);
-        echo $controller->displayQuestions($tmp++,$mathJson[1]->question);
-
+        //get choose right answers for first
+        $firstChooseAnswers = $model->getChooseAnswers($chooseQ[0]->answer_id);
+        $objFirstAnswers = getJsonDecode($firstChooseAnswers);
+        $arrFirstAnswers = explode(",",$objFirstAnswers[0]->answer);
+        //get choose right answers for second
+        $secondChooseAnswers = $model->getChooseAnswers($chooseQ[1]->answer_id);
+        $objSecondAnswers = getJsonDecode($secondChooseAnswers);
+        $arrSecondAnswers = explode(",",$objSecondAnswers[0]->answer);
 
         //TODO: vytvorit funkcionality pre matematické vzorce, kontrolovanie správnosti odpovedi,
         //TODO: vytvorit funkcionalitu pre párovacie otázky
         //TODO: kreslenie pre kresliacu otázku
-        //TODO: vymyslieť ako odoslať veci, a zároveň skontrolovat odpovede a spraviť refaktirizáciu kodu
+
         ?>
+
+        <form action="student.php" method="post">
+
+                <div class="mb-3" >
+                    <label for="short-first"><?php echo "(". $tmp++ .". Uloha\t):\t". $shortQ[0]->question ?></label>
+                    <br>
+                   <strong>Odpoveď: </strong> <input type="number" name="short-first" id="short-first">
+                    <br>
+                </div>
+                <br>
+                <div class="mb-3" >
+                    <label for="short-second"><?php echo "(". $tmp++ .". Uloha\t):\t". $shortQ[1]->question ?></label>
+                    <br>
+                    <strong>Odpoveď: </strong> <input type="number" name="short-second" id="short-second">
+                    <br>
+                </div>
+            <div class="mb-3" >
+                <label for="choose-first"><?php echo "(". $tmp++ .". Uloha\t):\t". $chooseQ[0]->question ?></label>
+                <br>
+                <label for="first-choose-answer"><?php echo $arrFirstAnswers[0]?></label>
+                <input type="checkbox" name="first-choose-answer" id="first-choose-answer">
+                <br>
+                <label for="second-choose-answer"><?php echo $arrFirstAnswers[1]?></label>
+                <input type="checkbox" name="second-choose-answer" id="second-choose-answer">
+                <br>
+                <label for="third-choose-answer"><?php echo $arrFirstAnswers[2]?></label>
+                <input type="checkbox" name="third-choose-answer" id="third-choose-answer">
+                <br>
+            </div>
+            <div class="mb-3" >
+                <label for="choose-first"><?php echo "(". $tmp++ .". Uloha\t):\t". $chooseQ[1]->question ?></label>
+                <br>
+                <label for="first-choose-answer"><?php echo $arrSecondAnswers[0]?></label>
+                <input type="checkbox" name="first-choose-answer" id="first-choose-answer">
+                <br>
+                <label for="second-choose-answer"><?php echo $arrSecondAnswers[1]?></label>
+                <input type="checkbox" name="second-choose-answer" id="second-choose-answer">
+                <br>
+                <label for="third-choose-answer"><?php echo $arrSecondAnswers[2]?></label>
+                <input type="checkbox" name="third-choose-answer" id="third-choose-answer">
+                <br>
+            </div>
+
+            <button type="submit" class="btn btn-success m-3">Odoslať</button>
+
+        </form>
+
+
 
     </div>
 </div>
