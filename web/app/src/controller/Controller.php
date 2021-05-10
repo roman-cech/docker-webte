@@ -17,6 +17,6 @@ class Controller
 
     public function initProject(): string
     {
-        return "Webte2";
+        return "hello";
     }
 }
