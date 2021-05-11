@@ -76,7 +76,8 @@ if(isset($_POST['first-short-q'])){
     echo $_POST['second-math-q'] . "<br>";
 
 
-    echo $_SESSION['newToken'];
+  //  echo $_SESSION['newToken'];
+
 
     //create controller for inserting values
     $controller = new Controller();
@@ -91,7 +92,7 @@ if(isset($_POST['first-short-q'])){
     $examId = $model->getExamId();
 
     //TODO: toto sa bude priradovat z loginu, treba do teacherModel spravit funkciu pre ziskanie userID
-    $userID = 1;
+    $userID = $model->getUserId($_SESSION['email']);
 
     //create a variables for questions,answers && insert values
 

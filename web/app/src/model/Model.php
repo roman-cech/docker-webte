@@ -61,25 +61,7 @@ class Model
 
 
 
-    public function insertUser($token,$name,$surname,$ais_id,$email,$password)
-    {
-        try {
-            $conn = new Database();
-            $conn->getConnection()->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $stmt = $conn->getConnection()->prepare("insert into  test.Users (token,name, surname, ais_id, email, password) 
-                                            VALUE (:token,:name,:surname,:ais_id,:email,:password)");
-            $stmt->bindParam(':token', $token);
-            $stmt->bindParam(':name', $name);
-            $stmt->bindParam(':surname', $surname);
-            $stmt->bindParam(':ais_id', $ais_id);
-            $stmt->bindParam(':email', $email);
-            $stmt->bindParam(':password', $password);
-            return $stmt->execute();
 
-        } catch (PDOException $exception) {
-            return "Failed: " . $exception->getMessage();
-        }
-    }
 
     public function insertExam($exam_code,$userId,$title,$timeLimit,$isActive,$examPoints)
     {
@@ -102,12 +84,12 @@ class Model
     }
 
 
-    public function getUserId()
+    public function getUserId($email)
     {
         try {
             $conn = new Database();
             $conn->getConnection()->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $stmt = $conn->getConnection()->prepare("select id from test.Users where ais_id = null");
+            $stmt = $conn->getConnection()->prepare("select id from test.Users where $email = '$email'");
 
             $stmt->execute();
             return $stmt->rowCount();
