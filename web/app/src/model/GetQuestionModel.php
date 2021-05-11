@@ -86,7 +86,7 @@ class GetQuestionModel {
         try {
             $conn = new Database();
             $conn->getConnection()->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $stmt = $conn->getConnection()->prepare("select * from test.Answers where  question_id = $answer_id ");
+            $stmt = $conn->getConnection()->prepare("select * from test.Answers where  id = $answer_id ");
 
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_ASSOC);

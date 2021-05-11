@@ -60,10 +60,13 @@ function getJsonDecode($res){
         $resChoose = $model->getChooseQuestions($exam_id);
         $chooseQ = getJsonDecode($resChoose);
 
+
         //get choose right answers for first
         $firstChooseAnswers = $model->getChooseAnswers($chooseQ[0]->answer_id);
+
         $objFirstAnswers = getJsonDecode($firstChooseAnswers);
         $arrFirstAnswers = explode(",",$objFirstAnswers[0]->answer);
+
         //get choose right answers for second
         $secondChooseAnswers = $model->getChooseAnswers($chooseQ[1]->answer_id);
         $objSecondAnswers = getJsonDecode($secondChooseAnswers);
