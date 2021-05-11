@@ -1,5 +1,6 @@
 <?php
 
+session_start();
 
 include "../../app/vendor/autoload.php";
 
@@ -9,7 +10,6 @@ use App\Model\GetQuestionModel;
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-
 
 
 function getJsonDecode($res){
@@ -37,16 +37,18 @@ function getJsonDecode($res){
 <body>
 
 <div class="container">
-    <div class="exam-paper" style="width: 60em; border: 2px solid #444; box-shadow: 5px 5px 5px #555; margin: 2em auto; text-align: center">
-        <h2>Exam 1</h2>
+    <div class="exam-paper" style="width: 60em; border: 2px solid #444; box-shadow: 5px 5px 5px #555; margin: 2em auto; text-align: center;background-color: #fff">
         <?php
 
         $model = new GetQuestionModel();
         $controller = new GetQuestionController();
 
-        //TODO:
-        $exam_id = 1;
+        $resultExamID = $model->getExamId($_SESSION['examCode']);
+        $examID = getJsonDecode($resultExamID);
 
+        echo "<h2> Exam :  ".$examID[0]->title."</h2>";
+
+        $exam_id = $examID[0]->id;
         //get Short questions
         $resShort = $model->getShortQuestions($exam_id);
         $shortQ = getJsonDecode($resShort);
@@ -72,8 +74,6 @@ function getJsonDecode($res){
         //TODO: kreslenie pre kresliacu otázku
 
         ?>
-
-        <form action="student.php" method="post">
 
                 <div class="mb-3" >
                     <label for="short-first"><?php echo "(". $tmp++ .". Uloha\t):\t". $shortQ[0]->question ?></label>
@@ -115,9 +115,7 @@ function getJsonDecode($res){
                 <br>
             </div>
 
-            <button type="submit" class="btn btn-success m-3">Odoslať</button>
 
-        </form>
 
         <button name="logout"><a href="../logs/Logout.php">Logout</a></button>
 

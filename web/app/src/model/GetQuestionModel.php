@@ -17,6 +17,21 @@ class GetQuestionModel {
         $this->db = new Database();
     }
 
+    public function getExamId($exam_code)
+    {
+        try {
+            $conn = new Database();
+            $conn->getConnection()->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $stmt = $conn->getConnection()->prepare("select id,title from test.Exams where  exam_code = '$exam_code' ");
+
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        } catch (PDOException $exception) {
+            return "Failed: " . $exception->getMessage();
+        }
+    }
+
     public function getShortQuestions($exam_id)
     {
         try {

@@ -22,6 +22,7 @@ if (isset($_POST['code'] ) && isset($_POST['aisId']) && isset($_POST['name'] ) &
         $studentInfo= $contr->selectStudent($_POST['aisId']);
 
         $_SESSION["loggedin"] = true;
+        $_SESSION['examCode'] = $_POST['code'];
         $_SESSION['name'] = $studentInfo[0]['name'];
         header("Location: ../student/student.php");
 
@@ -31,13 +32,16 @@ if (isset($_POST['code'] ) && isset($_POST['aisId']) && isset($_POST['name'] ) &
 ?>
 
 <!doctype html>
-<html lang="en">
+<html lang="en" style="background-image: url('https://getwallpapers.com/wallpaper/full/c/e/f/61064.jpg'); background-size: cover;background-repeat: no-repeat;
+    background-attachment: fixed;
+    height: 100%;">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Login</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
 
     <!-- UIkit CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.6.21/dist/css/uikit.min.css" />
@@ -46,13 +50,10 @@ if (isset($_POST['code'] ) && isset($_POST['aisId']) && isset($_POST['name'] ) &
     <script src="https://cdn.jsdelivr.net/npm/uikit@3.6.21/dist/js/uikit.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/uikit@3.6.21/dist/js/uikit-icons.min.js"></script>
 
-<!--    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">-->
-<!--    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>-->
-<!--    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.min.js" integrity="sha384-lpyLfhYuitXl2zRZ5Bn2fqnhNAKOAaM/0Kr9laMspuaMiZfGmfwRNFh8HlMy49eQ" crossorigin="anonymous"></script>-->
 
-    <link rel="stylesheet" href="../assets/css/style.css">
+
 </head>
-<body>
+<body >
 
 
 <main >

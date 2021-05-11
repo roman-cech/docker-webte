@@ -136,6 +136,7 @@ if(isset($_POST['first-short-q'])){
     $fifthQuestion = $_POST['first-pair-q'];
     $controller->insertQuestion($examId,$fifthQuestion,$answerId++,"Párovanie odpovedí",1);
 
+
     $firstPairAnswer = $_POST['first-pair-answer'];
     $controller->insertAnswers($userID,$questionId++,"Párovanie odpovedí",$firstPairAnswer);
 
@@ -145,6 +146,18 @@ if(isset($_POST['first-short-q'])){
     $secondPairAnswer = $_POST['second-pair-answer'];
     $controller->insertAnswers($userID,$questionId++,"Párovanie odpovedí",$secondPairAnswer);
 
+
+    $sevenQuestion = $_POST['third-pair-q'];
+    $controller->insertQuestion($examId,$sevenQuestion,$answerId++,"Párovanie odpovedí",1);
+
+    $thirdPairAnswer = $_POST['third-pair-answer'];
+    $controller->insertAnswers($userID,$questionId++,"Párovanie odpovedí",$thirdPairAnswer);
+
+    $eightQuestion = $_POST['four-pair-q'];
+    $controller->insertQuestion($examId,$eightQuestion,$answerId++,"Párovanie odpovedí",1);
+
+    $fourPairAnswer = $_POST['four-pair-answer'];
+    $controller->insertAnswers($userID,$questionId++,"Párovanie odpovedí",$fourPairAnswer);
 
     //draw questions and where answer from teacher is not present then put 0 into DB
     $drawQuestion = $_POST['draw-q'];
@@ -326,7 +339,7 @@ if(isset($_POST['first-short-q'])){
                             </div>
 
                             <div class="mb-3">
-                                <label for="first-pair-answer"><strong>odpovede</strong></label>
+                                <label for="first-pair-answer"><strong>odpoveď</strong></label>
                                 <input type="text"  name="first-pair-answer" id="first-pair-answer">
                             </div>
 
@@ -336,8 +349,28 @@ if(isset($_POST['first-short-q'])){
                             </div>
 
                             <div class="mb-3">
-                                <label for="second-pair-answer"><strong>odpovede</strong></label>
+                                <label for="second-pair-answer"><strong>odpoveď</strong></label>
                                 <input type="text"  name="second-pair-answer" id="second-pair-answer">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="third-pair-q"><strong>7.otázka</strong></label>
+                                <input type="text"  name="third-pair-q" id="third-pair-q">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="third-pair-answer"><strong>odpoveď</strong></label>
+                                <input type="text"  name="third-pair-answer" id="third-pair-answer">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="four-pair-q"><strong>8.otázka</strong></label>
+                                <input type="text"  name="four-pair-q" id="four-pair-q">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="four-pair-answer"><strong>odpoveď</strong></label>
+                                <input type="text"  name="four-pair-answer" id="four-pair-answer">
                             </div>
 
                             <h4>odpoveď vyžaduje napísanie matematického výrazu</h4>
@@ -349,13 +382,13 @@ if(isset($_POST['first-short-q'])){
 
                             <h4>odpoveď vyžaduje napísanie matematického výrazu</h4>
                             <div class="mb-3">
-                                <label for="first-math-q"><strong>7.otázka</strong></label>
+                                <label for="first-math-q"><strong>9.otázka</strong></label>
                                 <input type="text"  name="first-math-q" id="first-math-q">
                             </div>
 
 
                             <div class="mb-3">
-                                <label for="second-math-q"><strong>8.otázka</strong></label>
+                                <label for="second-math-q"><strong>10.otázka</strong></label>
                                 <input type="text"  name="second-math-q" id="second-math-q">
                             </div>
 
