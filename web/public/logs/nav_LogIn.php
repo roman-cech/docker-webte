@@ -18,8 +18,8 @@ $opts = [
         <nav class="uk-navbar-center " >
             <div class="uk-navbar-center">
                 <ul class="uk-navbar-nav ">
-                    <li class="student_button"><a href="logIn_Student.php" <?php if ($page == "logIn_Student.php") echo 'class="current"' ?>><i class="fas fa-graduation-cap"></i>logIn_Student</a></li>
-                    <li class="teacher_button"><a href="logIn_Teacher.php" <?php if ($page == "logIn_Teacher.php") echo 'class="current"' ?>>logIn_Teacher</a></li>
+                    <li class="student_button"><a href="logIn_Student.php" <?php if ($page == "logIn_Student.php") echo 'class="current"' ?>>Student</a></li>
+                    <li class="teacher_button"><a href="logIn_Teacher.php" <?php if ($page == "logIn_Teacher.php") echo 'class="current"' ?>>Teacher</a></li>
                 </ul>
             </div>
         </nav>

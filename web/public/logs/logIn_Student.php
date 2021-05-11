@@ -22,7 +22,6 @@ if (isset($_POST['code'] ) && isset($_POST['aisId']) && isset($_POST['name'] ) &
         $studentInfo= $contr->selectStudent($_POST['aisId']);
 
         $_SESSION["loggedin"] = true;
-        $_SESSION['examCode'] = $_POST['code'];
         $_SESSION['name'] = $studentInfo[0]['name'];
         header("Location: ../student/student.php");
 
@@ -43,6 +42,7 @@ if (isset($_POST['code'] ) && isset($_POST['aisId']) && isset($_POST['name'] ) &
     <title>Login</title>
     <link rel="stylesheet" href="../assets/css/style.css">
 
+
     <!-- UIkit CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.6.21/dist/css/uikit.min.css" />
 
@@ -53,32 +53,47 @@ if (isset($_POST['code'] ) && isset($_POST['aisId']) && isset($_POST['name'] ) &
 
 
 </head>
-<body >
+<body>
 
 
 <main >
 
-    <div class="uk-child-width-1-3 uk-text-center " uk-grid>
+    <div  class="uk-child-width-1-3 uk-text-center " uk-grid>
         <div>
             <div class="uk-card uk-card-default">  </div>
         </div>
         <div>
-            <div class="uk-margin-xlarge-top uk-card uk-card-default uk-card-body ">
+            <div id="box" class="uk-margin-large-top uk-card uk-card-default uk-card-body ">
                 <div >
                     <?php include "nav_LogIn.php";?>
-                    <form action="logIn_Student.php" method="post">
+                    <form class="uk-margin-medium" action="logIn_Student.php" method="post">
 
-                        <div class="uk-margin">
-                            <div class="uk-inline">
-                                <span class="uk-form-icon" uk-icon="icon: user"></span>
-                                <input class="uk-input" type="text" name="name">
+                        <div  class="uk-margin">
+                            <div id="down_line" class="uk-inline">
+                                <span class="uk-form-icon" uk-icon="icon: hashtag"></span>
+                                <input class="uk-input" type="text" name="code">
                             </div>
                         </div>
-                        Code: <input type="text" name="code"><br>
-                        Ais_id: <input type="number" name="aisId"><br>
-                        Name: <input type="text" name="name"><br>
-                        Surname: <input type="text" name="surname"><br>
-                        <input type="submit">
+                        <div  class="uk-margin">
+                            <div id="down_line" class="uk-inline">
+                                <span class="uk-form-icon" uk-icon="icon: key">ID</span>
+                                <input  class="uk-input"  type="text" name="aisId">
+                            </div>
+                        </div>
+                        <div  class="uk-margin">
+                            <div id="down_line" class="uk-inline">
+                                <span class="uk-form-icon" uk-icon="icon: user"></span>
+                                <input class="uk-input" type="text" name="name" placeholder="Name">
+                            </div>
+                        </div>
+                        <div  class="uk-margin">
+                            <div id="down_line" class="uk-inline">
+                                <span class="uk-form-icon" uk-icon="icon: user"></span>
+                                <input class="uk-input" type="text" name="surname" placeholder="Surname">
+                            </div>
+                        </div>
+
+                        <input class="uk-button uk-button-default" type="submit" value="Sing In">
                     </form>
                 </div>
             </div>

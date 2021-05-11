@@ -47,18 +47,49 @@ if (isset($_POST['email'] )&& isset($_POST['password']))
     <!-- UIkit JS -->
     <script src="https://cdn.jsdelivr.net/npm/uikit@3.6.21/dist/js/uikit.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/uikit@3.6.21/dist/js/uikit-icons.min.js"></script>
-
+    <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body>
-<?php include "nav_LogIn.php";?>
 
-<form action="logIn_Teacher.php" method="post">
-    Email: <input type="text" name="email"><br>
-    Password: <input type="text" name="password"><br>
+<main >
 
-    <input type="submit">
-    <a href="register_Teacher.php"><input type="button" value="Register"></a>
-</form>
+    <div  class="uk-child-width-1-3 uk-text-center " uk-grid>
+        <div>
+            <div class="uk-card uk-card-default">  </div>
+        </div>
+        <div>
+            <div id="box" class="uk-margin-large-top uk-card uk-card-default uk-card-body ">
+                <div >
+                    <?php include "nav_LogIn.php";?>
+                    <form class="uk-margin-medium" action="logIn_Teacher.php" method="post">
+
+                        <div  class="uk-margin">
+                            <div id="down_line" class="uk-inline">
+                                <span class="uk-form-icon" uk-icon="icon: mail"></span>
+                                <input class="uk-input" type="email" name="email" placeholder="E-mail">
+                            </div>
+                        </div>
+                        <div  class="uk-margin">
+                            <div id="down_line" class="uk-inline">
+                                <span class="uk-form-icon" uk-icon="icon: unlock"></span>
+                                <input  class="uk-input"  type="password" name="password" placeholder="Password">
+                            </div>
+                        </div>
+
+                        <input class="uk-button uk-button-default" type="submit" value="Sing In">
+
+                        <a href="register_Teacher.php"><input class="uk-button uk-button-default" type="button" value="Register"></a>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="uk-card uk-card-default "></div>
+        </div>
+    </div>
+
+</main>
+
 
 </body>
 </html>
