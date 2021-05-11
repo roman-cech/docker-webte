@@ -56,31 +56,31 @@ if (isset($_POST['title-test'])) {
 //check if form with short questions was submitted
 if (isset($_POST['first-short-q'])) {
 
-    //  checking for values
-    echo "<h4>typ 1</h4>";
-
-    echo $_POST['first-short-q'] . "<br>";
-    echo $_POST['first-short-answer'] . "<br>";
-    echo $_POST['second-short-q'] . "<br>";
-    echo $_POST['second-short-answer'] . "<br>";
-    echo "<h4>typ 2</h4>";
-    echo $_POST['first-more-q'] . "<br>";
-    echo $_POST['first-more-answer'] . "<br>";
-    echo $_POST['second-more-q'] . "<br>";
-    echo $_POST['second-more-answer'] . "<br>";
-    echo "<h4>typ 3</h4>";
-
-    echo $_POST['first-pair-q'] . "<br>";
-    echo $_POST['first-pair-answer'] . "<br>";
-    echo $_POST['second-pair-q'] . "<br>";
-    echo $_POST['second-pair-answer'] . "<br>";
-    echo "<h4>typ 4</h4>";
-
-    echo $_POST['draw-q'] . "<br>";
-    echo "<h4>typ 5</h4>";
-
-    echo $_POST['first-math-q'] . "<br>";
-    echo $_POST['second-math-q'] . "<br>";
+//    //  checking for values
+//    echo "<h4>typ 1</h4>";
+//
+//    echo $_POST['first-short-q'] . "<br>";
+//    echo $_POST['first-short-answer'] . "<br>";
+//    echo $_POST['second-short-q'] . "<br>";
+//    echo $_POST['second-short-answer'] . "<br>";
+//    echo "<h4>typ 2</h4>";
+//    echo $_POST['first-more-q'] . "<br>";
+//    echo $_POST['first-more-answer'] . "<br>";
+//    echo $_POST['second-more-q'] . "<br>";
+//    echo $_POST['second-more-answer'] . "<br>";
+//    echo "<h4>typ 3</h4>";
+//
+//    echo $_POST['first-pair-q'] . "<br>";
+//    echo $_POST['first-pair-answer'] . "<br>";
+//    echo $_POST['second-pair-q'] . "<br>";
+//    echo $_POST['second-pair-answer'] . "<br>";
+//    echo "<h4>typ 4</h4>";
+//
+//    echo $_POST['draw-q'] . "<br>";
+//    echo "<h4>typ 5</h4>";
+//
+//    echo $_POST['first-math-q'] . "<br>";
+//    echo $_POST['second-math-q'] . "<br>";
 
 
   //  echo $_SESSION['newToken'];

@@ -22,6 +22,7 @@ if (isset($_POST['code'] ) && isset($_POST['aisId']) && isset($_POST['name'] ) &
         $studentInfo= $contr->selectStudent($_POST['aisId']);
 
         $_SESSION["loggedin"] = true;
+        $_SESSION['examCode'] = $_POST['code'];
         $_SESSION['name'] = $studentInfo[0]['name'];
         header("Location: ../student/student.php");
 
