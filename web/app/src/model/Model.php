@@ -89,10 +89,10 @@ class Model
         try {
             $conn = new Database();
             $conn->getConnection()->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $stmt = $conn->getConnection()->prepare("select id from test.Users where $email = '$email'");
+            $stmt = $conn->getConnection()->prepare("select id from test.Users where email = '$email'");
 
             $stmt->execute();
-            return $stmt->rowCount();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         } catch (PDOException $exception) {
             return "Failed: " . $exception->getMessage();

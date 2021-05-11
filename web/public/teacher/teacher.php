@@ -17,6 +17,12 @@ function timeToMinutes($time){
     return $time - strtotime("now") ;
 }
 
+
+function getJsonDecode($res){
+    $tmp = json_encode($res);
+    return json_decode($tmp);
+}
+
 //
 //$model->insertExam("QW30",1,"zapocet",true,25);
 
@@ -43,6 +49,7 @@ if(isset($_POST['title-test'])){
 
     echo "insert successfully";
 }
+
 
 
 
@@ -92,11 +99,11 @@ if(isset($_POST['first-short-q'])){
     $examId = $model->getExamId();
 
     //TODO: toto sa bude priradovat z loginu, treba do teacherModel spravit funkciu pre ziskanie userID
-    $userID = $model->getUserId($_SESSION['email']);
+    $resultUserId = $model->getUserId($_SESSION['email']);
+    $tmpUserId = getJsonDecode($resultUserId);
+    $userID = $tmpUserId[0]->id;
 
     //create a variables for questions,answers && insert values
-
-
     //short questions
     $firstQuestion = $_POST['first-short-q'];
     $controller->insertQuestion($examId,$firstQuestion,$answerId++,"Krátka odpoveď",1);
@@ -180,6 +187,7 @@ if(isset($_POST['first-short-q'])){
 }
 
 ?>
+
 
 
 
