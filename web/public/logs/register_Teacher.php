@@ -89,18 +89,5 @@ if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['password'
 
 </main>
 
-
-<form action="register_Teacher.php" method="post">
-
-
-    Name: <input type="text" name="name"><br>
-    Surname: <input type="text" name="surname"><br>
-    Password: <input type="password" name="password"><br>
-    Email : <input type="email" name="email"><br>
-
-    <input type="submit" value="Register">
-    <a href="logIn_Teacher.php"><input type="button" value="Back to Log In"></a>
-</form>
-
 </body>
 </html>
