@@ -201,41 +201,10 @@ if (isset($_POST['first-short-q'])) {
 
 <body>
 
-<div uk-sticky="animation: uk-animation-slide-top; sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky; cls-inactive: uk-navbar-transparent uk-light; top: 200">
-
-    <nav class="uk-navbar-container">
-        <div class="uk-container uk-container-expand">
-            <div uk-navbar>
-
-                <ul class="uk-navbar-nav">
-                    <li class="uk-active"><a href="#">Active</a></li>
-                    <li>
-                        <a href="#">Parent</a>
-                        <div class="uk-navbar-dropdown">
-                            <ul class="uk-nav uk-navbar-dropdown-nav">
-                                <li class="uk-active"><a href="#">Active</a></li>
-                                <li><a href="#">Item</a></li>
-                                <li><a href="#">Item</a></li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li><a href="#">Item</a></li>
-                </ul>
-
-            </div>
-        </div>
-    </nav>
-</div>
+<?php include "nav_Teacher.php"?>
 
 <div class="container">
 
-    <a href="?token=" class="btn btn-success">vygeneruj exam kod</a>
-    <br>
-    <br>
-
-    <!-- Trigger the modal with a button -->
-    <button type="button" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#myModal2">Vytvor Test</button>
-    <br>
     <!-- Modal -->
     <div id="myModal2" class="modal fade" role="dialog">
         <div class="modal-dialog">
@@ -282,12 +251,6 @@ if (isset($_POST['first-short-q'])) {
 
         </div>
     </div>
-
-
-    <br>
-    <!-- Trigger the modal with a button -->
-    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Vytvor Otázky k testu
-    </button>
 
     <!-- Modal -->
     <div id="myModal" class="modal fade" role="dialog">
@@ -429,9 +392,8 @@ if (isset($_POST['first-short-q'])) {
         </div>
     </div>
 
-    <button name="logout"><a href="../logs/Logout.php">Logout</a></button>
-</div>
 
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
