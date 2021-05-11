@@ -373,7 +373,7 @@ if(isset($_POST['first-short-q'])){
         </div>
     </div>
 
-
+    <button name="logout"><a href="../logs/Logout.php">Logout</a></button>
 </div>
 
 

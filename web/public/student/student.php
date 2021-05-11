@@ -119,7 +119,7 @@ function getJsonDecode($res){
 
         </form>
 
-
+        <button name="logout"><a href="../logs/Logout.php">Logout</a></button>
 
     </div>
 </div>

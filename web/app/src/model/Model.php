@@ -12,10 +12,12 @@ use PDOException;
 class Model
 {
     private $db;
+    private PDO $conn;
 
     public function __construct()
     {
         $this->db = new Database();
+
     }
 
     public function insertQuestions($exam, $question,$answerId, $type, $questionPoints)
@@ -161,6 +163,7 @@ class Model
             return "Failed: " . $exception->getMessage();
         }
     }
+
 
 
 }
