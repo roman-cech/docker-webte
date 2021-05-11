@@ -71,12 +71,11 @@ class LogsModel{
         $stmt->execute();
         $id = $this->conn->lastInsertId();
     }
-    public function insertStudent($token, $name, $surname, $ais_id)
+    public function insertStudent($name, $surname, $ais_id)
     {
 
-        $stmt = $this->conn->prepare("INSERT Into Users ( token, name, surname, ais_id) values(:token,:name,:surname,:ais_id)");
+        $stmt = $this->conn->prepare("INSERT Into Users ( name, surname, ais_id) values(:name,:surname,:ais_id)");
 
-        $stmt->bindParam(":token", $token);
         $stmt->bindParam(":name", $name);
         $stmt->bindParam(":surname", $surname);
         $stmt->bindParam(":ais_id", $ais_id);

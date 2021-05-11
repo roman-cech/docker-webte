@@ -39,6 +39,8 @@ if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['password'
 <body>
 
 <form action="register_Teacher.php" method="post">
+
+
     Name: <input type="text" name="name"><br>
     Surname: <input type="text" name="surname"><br>
     Password: <input type="password" name="password"><br>

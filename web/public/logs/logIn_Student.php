@@ -18,6 +18,7 @@ if (isset($_POST['code'] ) && isset($_POST['aisId']) && isset($_POST['name'] ) &
     $arr = $contr->getExamsCode($_POST['code']);
     if (!empty($contr->getExamsCode($_POST['code'])))
     {
+        $contr->insertStudent($_POST['name'],$_POST['surname'],$_POST['aisId']);
         $studentInfo= $contr->selectStudent($_POST['aisId']);
 
         $_SESSION["loggedin"] = true;
@@ -65,6 +66,13 @@ if (isset($_POST['code'] ) && isset($_POST['aisId']) && isset($_POST['name'] ) &
                 <div >
                     <?php include "nav_LogIn.php";?>
                     <form action="logIn_Student.php" method="post">
+
+                        <div class="uk-margin">
+                            <div class="uk-inline">
+                                <span class="uk-form-icon" uk-icon="icon: user"></span>
+                                <input class="uk-input" type="text" name="name">
+                            </div>
+                        </div>
                         Code: <input type="text" name="code"><br>
                         Ais_id: <input type="number" name="aisId"><br>
                         Name: <input type="text" name="name"><br>
