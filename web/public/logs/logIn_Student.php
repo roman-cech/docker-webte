@@ -39,17 +39,13 @@ if (isset($_POST['code'] ) && isset($_POST['aisId']) && isset($_POST['name'] ) &
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Login</title>
 
+
     <!-- UIkit CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.6.21/dist/css/uikit.min.css" />
 
     <!-- UIkit JS -->
     <script src="https://cdn.jsdelivr.net/npm/uikit@3.6.21/dist/js/uikit.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/uikit@3.6.21/dist/js/uikit-icons.min.js"></script>
-
-<!--    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">-->
-<!--    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>-->
-<!--    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.min.js" integrity="sha384-lpyLfhYuitXl2zRZ5Bn2fqnhNAKOAaM/0Kr9laMspuaMiZfGmfwRNFh8HlMy49eQ" crossorigin="anonymous"></script>-->
-
     <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body>
@@ -57,27 +53,42 @@ if (isset($_POST['code'] ) && isset($_POST['aisId']) && isset($_POST['name'] ) &
 
 <main >
 
-    <div class="uk-child-width-1-3 uk-text-center " uk-grid>
+    <div  class="uk-child-width-1-3 uk-text-center " uk-grid>
         <div>
             <div class="uk-card uk-card-default">  </div>
         </div>
         <div>
-            <div class="uk-margin-xlarge-top uk-card uk-card-default uk-card-body ">
+            <div id="box" class="uk-margin-large-top uk-card uk-card-default uk-card-body ">
                 <div >
                     <?php include "nav_LogIn.php";?>
-                    <form action="logIn_Student.php" method="post">
+                    <form class="uk-margin-medium" action="logIn_Student.php" method="post">
 
-                        <div class="uk-margin">
-                            <div class="uk-inline">
-                                <span class="uk-form-icon" uk-icon="icon: user"></span>
-                                <input class="uk-input" type="text" name="name">
+                        <div  class="uk-margin">
+                            <div id="down_line" class="uk-inline">
+                                <span class="uk-form-icon" uk-icon="icon: hashtag"></span>
+                                <input class="uk-input" type="text" name="code">
                             </div>
                         </div>
-                        Code: <input type="text" name="code"><br>
-                        Ais_id: <input type="number" name="aisId"><br>
-                        Name: <input type="text" name="name"><br>
-                        Surname: <input type="text" name="surname"><br>
-                        <input type="submit">
+                        <div  class="uk-margin">
+                            <div id="down_line" class="uk-inline">
+                                <span class="uk-form-icon" uk-icon="icon: key">ID</span>
+                                <input  class="uk-input"  type="text" name="aisId">
+                            </div>
+                        </div>
+                        <div  class="uk-margin">
+                            <div id="down_line" class="uk-inline">
+                                <span class="uk-form-icon" uk-icon="icon: user"></span>
+                                <input class="uk-input" type="text" name="name" placeholder="Name">
+                            </div>
+                        </div>
+                        <div  class="uk-margin">
+                            <div id="down_line" class="uk-inline">
+                                <span class="uk-form-icon" uk-icon="icon: user"></span>
+                                <input class="uk-input" type="text" name="surname" placeholder="Surname">
+                            </div>
+                        </div>
+
+                        <input class="uk-button uk-button-default" type="submit" value="Sing In">
                     </form>
                 </div>
             </div>
