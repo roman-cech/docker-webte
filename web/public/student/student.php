@@ -207,7 +207,7 @@ function getJsonDecode($res)
                         ">x=\frac{-b\pm \sqrt{b^2-4ac}}{2a}
         </div>
     </div>
-
+<!--akceptni to-->
 
     <div>
 
