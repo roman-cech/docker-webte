@@ -124,7 +124,10 @@ class ShowTest {
                 <td>$this->title</td>
                 <td>$this->time_limit</td>
                 <td>$this->exam_points</td>
-                <td><input type='checkbox' id='OnOff'  onclick='changeValueTest()'></td>
+                <td><div class='form-check form-switch'>
+                  <input class='form-check-input' type='checkbox' id='flexSwitchCheckChecked'  onclick='changeValueTest()'>
+                
+                </div></td>
             </tr>
         
         ";

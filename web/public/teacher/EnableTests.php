@@ -91,7 +91,7 @@ function getJsonDecode($res){
 
 <script>
     function changeValueTest(){
-        console.log($('#OnOff').prop("checked"))
+        console.log($('#flexSwitchCheckChecked').prop("checked"))
     }
 
 </script>
