@@ -188,7 +188,7 @@ if (isset($_POST['first-short-q'])) {
             <!-- Modal content-->
             <div class="modal-content" style="width: auto">
                 <div class="modal-header">
-                    <h4 class="modal-title">Vytvorenie nového Testu</h4>
+                    <h4 class="modal-title">Informácie o Testoch</h4>
                 </div>
                 <div class="modal-body" style="width: auto">
 
@@ -425,6 +425,7 @@ if (isset($_POST['first-short-q'])) {
 <script>
     function changeValueTest(){
         console.log($('#flexSwitchCheckChecked').prop("checked"))
+
     }
 
 </script>
