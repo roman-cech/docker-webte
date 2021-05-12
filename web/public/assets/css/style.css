@@ -1,8 +1,8 @@
-
-
-
-
-html,body {
+html {
+    margin: 0;
+    padding: 0;
+}
+body {
     background-image: url('https://getwallpapers.com/wallpaper/full/c/e/f/61064.jpg');
     background-size: cover;
     background-repeat: no-repeat;
@@ -43,12 +43,10 @@ html,body {
 }
 /*zwibbler board*/
 zwibbler {
+    background: white;
+    width: 60em;
     position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    display: flex;
+    display: grid;
     flex-flow: row nowrap;
 }
 
@@ -165,4 +163,11 @@ zwibbler {
     --keystroke: #fff;
     --on-keystroke: #555;
     --keystroke-border: #f7f7f7;
+}
+#test{
+    border: solid;
+    border-width: 4px 4px 4px 4px;
+    border-color: #0c8409;
+    box-shadow: 0px 0px 20px 5px black;
+    margin-bottom: 10em;
 }
