@@ -50,7 +50,7 @@ function getJsonDecode($res)
 
 <div class="container">
     <div class="exam-paper"
-         style="width: 60em; border: 2px solid #444; box-shadow: 5px 5px 5px #555; margin: 2em auto; text-align: center;background-color: #fff">
+         style="width: 60em; height: 120em;border: 2px solid #444; box-shadow: 5px 5px 5px #555; margin: 2em auto; text-align: center;background-color: #fff">
         <?php
 
         $model = new GetQuestionModel();
@@ -89,6 +89,23 @@ function getJsonDecode($res)
         //get math questions
         $tmpMathQuestion = $model->getMathQuestions($exam_id);
         $mathQuestion = getJsonDecode($tmpMathQuestion);
+
+        //get PairQuestion
+        $tmpPairQuestion = $model->getPairQuestions($exam_id);
+        $pairQuestion = getJsonDecode($tmpPairQuestion);
+
+
+        $tmpFirstPairAnswer = $model->getPairAnswers($pairQuestion[0]->answer_id);
+        $firstPairAnswer = getJsonDecode($tmpFirstPairAnswer);
+
+        $tmpSecondPairAnswer = $model->getPairAnswers($pairQuestion[1]->answer_id);
+        $secondPairAnswer = getJsonDecode($tmpSecondPairAnswer);
+
+        $tmpThirdPairAnswer = $model->getPairAnswers($pairQuestion[2]->answer_id);
+        $thirdPairAnswer = getJsonDecode($tmpThirdPairAnswer);
+
+        $tmpFourPairAnswer = $model->getPairAnswers($pairQuestion[3]->answer_id);
+        $fourPairAnswer = getJsonDecode($tmpFourPairAnswer);
 
         //TODO: vytvorit funkcionality pre matematické vzorce, kontrolovanie správnosti odpovedi,
         //TODO: vytvorit funkcionalitu pre párovacie otázky
@@ -242,10 +259,30 @@ function getJsonDecode($res)
 <!--            </zwibbler>-->
 <!--        </div>-->
 
+        <div class="mb-3">
+            <br>
+            <h4><strong style="font-size: 1.5em"><?php echo "(" . $tmp++ . ". Uloha\t): "?>  Párovacie otázky</strong></h4>
+            <div class="m-3" style="float: left">
+                <strong style="font-size: 1.5em;"><?php echo  $pairQuestion[1]->question ?></strong><br>
+                <strong style="font-size: 1.5em;"><?php echo  $pairQuestion[0]->question ?></strong><br>
+                <strong style="font-size: 1.5em;"><?php echo  $pairQuestion[3]->question ?></strong><br>
+                <strong style="font-size: 1.5em;"><?php echo  $pairQuestion[2]->question ?></strong><br>
+            </div>
 
-        <button name="logout"><a href="../logs/Logout.php">Logout</a></button>
+            <div class="m-3" style="float: right">
+                <strong style="font-size: 1.5em;"><?php echo  $firstPairAnswer[0]->answer ?></strong><br>
+                <strong style="font-size: 1.5em;"><?php echo  $secondPairAnswer[0]->answer ?></strong><br>
+                <strong style="font-size: 1.5em;"><?php echo  $thirdPairAnswer[0]->answer ?></strong><br>
+                <strong style="font-size: 1.5em;"><?php echo  $fourPairAnswer[0]->answer ?></strong><br>
+            </div>
+        </div>
+
+
 
     </div>
+
+    <button name="logout"><a href="../logs/Logout.php">Logout</a></button>
+
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"

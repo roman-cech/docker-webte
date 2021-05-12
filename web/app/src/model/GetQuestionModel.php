@@ -111,12 +111,12 @@ class GetQuestionModel {
         }
     }
 
-    public function getPairAnswers()
+    public function getPairAnswers($answer_id)
     {
         try {
             $conn = new Database();
             $conn->getConnection()->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $stmt = $conn->getConnection()->prepare("select * from test.answers where type = 'Párovanie odpovedí' ");
+            $stmt = $conn->getConnection()->prepare("select * from test.answers  where  id = $answer_id ");
 
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
