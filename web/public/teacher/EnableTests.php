@@ -10,6 +10,10 @@ include "../../app/vendor/autoload.php";
 
 use App\Controller\Controller;
 use App\Model\Model;
+use App\Classes\ShowTest;
+
+$class = new ShowTest();
+
 
 function getJsonDecode($res){
     $tmp = json_encode($res);
@@ -45,13 +49,90 @@ function getJsonDecode($res){
     <script src="https://cdn.jsdelivr.net/npm/uikit@3.6.21/dist/js/uikit-icons.min.js"></script>
     <link rel="stylesheet" href="../assets/css/style.css">
 
+
 </head>
+<style>
+
+    /*.switch #slide-input {*/
+    /*    opacity: 0;*/
+    /*    width: 0;*/
+    /*    height: 0;*/
+    /*}*/
+
+    /*.slider {*/
+    /*    position: relative;*/
+    /*    cursor: pointer;*/
+    /*    top: 0;*/
+    /*    left: 0;*/
+    /*    right: 0;*/
+    /*    bottom: 0;*/
+    /*    background-color: #ccc;*/
+    /*    -webkit-transition: .4s;*/
+    /*    transition: .4s;*/
+    /*}*/
+
+    /*.slider:before {*/
+    /*    position: absolute;*/
+    /*    content: "";*/
+    /*    height: 26px;*/
+    /*    width: 26px;*/
+    /*    left: 4px;*/
+    /*    !*bottom: 4px;*!*/
+    /*    background-color: white;*/
+    /*    -webkit-transition: .4s;*/
+    /*    transition: .4s;*/
+    /*}*/
+
+    /*#slide-input:checked + .slider {*/
+    /*    background-color: #2196F3;*/
+    /*}*/
+
+    /*#slide-input:focus + .slider {*/
+    /*    box-shadow: 0 0 1px #2196F3;*/
+    /*}*/
+
+    /*#slide-input:checked + .slider:before {*/
+    /*    -webkit-transform: translateX(26px);*/
+    /*    -ms-transform: translateX(26px);*/
+    /*    transform: translateX(26px);*/
+    /*}*/
+
+    /*!* Rounded sliders *!*/
+    /*.slider.round {*/
+    /*    border-radius: 34px;*/
+    /*}*/
+
+    /*.slider.round:before {*/
+    /*    border-radius: 50%;*/
+    /*}*/
+
+</style>
 
 <body>
-
+<?php include "nav_Teacher.php"?>
 <div class="container">
 
+    <table class="table table-striped table-light text-dark">
+        <thead>
+        <tr>
+            <th>Kod Testu</th>
+            <th>Test</th>
+            <th>Časový limit testu</th>
+            <th>Počet bodov za test</th>
+            <th>Aktivovať / Deaktivovať</th>
+        </tr>
+        </thead>
+        <tbody>
+            <?php
+                $model = new Model();
+                $result = $model->getAllExams();
 
+                foreach ($result as $value){
+                    echo $value->showTable();
+                }
+            ?>
+        </tbody>
+    </table>
 
 </div>
 
