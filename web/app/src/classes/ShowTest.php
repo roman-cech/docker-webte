@@ -124,7 +124,7 @@ class ShowTest {
                 <td>$this->title</td>
                 <td>$this->time_limit</td>
                 <td>$this->exam_points</td>
-                <td><button class='btn btn-dark'></button> <span id='info-activate'></span></td>
+                <td><input type='checkbox' id='OnOff'  onclick='changeValueTest()'></td>
             </tr>
         
         ";

@@ -44,8 +44,6 @@ body {
 /*zwibbler board*/
 zwibbler {
     background: white;
-    width: 60em;
-    position: absolute;
     display: grid;
     flex-flow: row nowrap;
 }

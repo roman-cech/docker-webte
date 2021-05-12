@@ -47,7 +47,7 @@ function getJsonDecode($res)
     <link href="../assets/css/style.css">
     <script src="https://zwibbler.com/zwibbler-demo.js"></script>
 
-    <link rel="stylesheet" href="../assets/css">
+    <link rel="stylesheet" href="../assets/css/style.css">
 
     <script src='https://unpkg.com/mathlive/dist/mathlive.min.js'></script>
 </head>
@@ -215,52 +215,54 @@ function getJsonDecode($res)
                     </div>
                 </div>
 
+                <div style="margin: 0 auto">
 
-                <button type="submit" class="btn btn-success m-3">Odoslať</button>
+                    <zwibbler z-controller="mycontroller">
+                        <button z-click="ctx.newDocument()">New</button>
+                        <button z-click="mySave()">Save</button>
+                        <button z-click="myOpen()">Open</button>
+                        <div z-canvas style="height:300px"></div>
+                    </zwibbler>
+
+                </div>
+
+
+
                 <div class="mb-3">
                     <br>
                     <h4><strong style="font-size: 1.5em"><?php echo "(" . $tmp++ . ". Uloha\t): " ?> Párovacie
                             otázky</strong>
                     </h4>
                     <div class="m-3" style="float: left">
-                        <strong style="font-size: 1.5em; display: block">A)
+                        <strong style="font-size: 1.5em; display: block">1)
                             - <?php echo $pairQuestion[1]->question ?></strong>
 
-                        <strong style="font-size: 1.5em; display: block ">B)
+                        <strong style="font-size: 1.5em; display: block ">2)
                             - <?php echo $pairQuestion[3]->question ?></strong>
 
-                        <strong style="font-size: 1.5em;display: block">C)
+                        <strong style="font-size: 1.5em;display: block">3)
                             - <?php echo $pairQuestion[0]->question ?></strong>
 
-                        <strong style="font-size: 1.5em;display: block">D)
+                        <strong style="font-size: 1.5em;display: block">4)
                             - <?php echo $pairQuestion[2]->question ?></strong>
 
                     </div>
 
                     <div class="m-3" style="float: right">
-                        <input type="text" id="first-pair-input" style="width:3em"> <strong
+                        <input type="number" id="first-pair-input" style="width:3em"> <strong
                                 style="font-size: 1.5em;"><?php echo $fourPairAnswer[0]->answer ?></strong><br>
-                        <input type="text" id="second-pair-input" style="width:3em"> <strong
+                        <input type="number" id="second-pair-input" style="width:3em"> <strong
                                 style="font-size: 1.5em;"><?php echo $secondPairAnswer[0]->answer ?></strong><br>
-                        <input type="text" id="third-pair-input" style="width:3em"> <strong
+                        <input type="number" id="third-pair-input" style="width:3em"> <strong
                                 style="font-size: 1.5em;"><?php echo $thirdPairAnswer[0]->answer ?></strong><br>
-                        <input type="text" id="four-pair-input" style="width:3em"><strong
+                        <input type="number" id="four-pair-input" style="width:3em"><strong
                                 style="font-size: 1.5em;"><?php echo $firstPairAnswer[0]->answer ?></strong><br>
                     </div>
                 </div>
 
 
             </div>
-            <div>
 
-                <zwibbler z-controller="mycontroller">
-                    <button z-click="ctx.newDocument()">New</button>
-                    <button z-click="mySave()">Save</button>
-                    <button z-click="myOpen()">Open</button>
-                    <div z-canvas style="height:300px"></div>
-                </zwibbler>
-
-            </div>
         </div>
         <div class="uk-width-auto@m">
             <div class="uk-card uk-card-default "></div>
