@@ -6,8 +6,13 @@ namespace App\Model;
 
 use App\Model\Database\Database;
 
+use App\Classes\ShowTest;
+
+
 use PDO;
 use PDOException;
+
+$class = new ShowTest();
 
 class Model
 {
@@ -145,6 +150,22 @@ class Model
             return "Failed: " . $exception->getMessage();
         }
     }
+
+    public function getAllExams()
+    {
+        try {
+            $conn = new Database();
+            $conn->getConnection()->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $stmt = $conn->getConnection()->prepare("select id,exam_code,title,time_limit,is_active,exam_points from test.Exams;");
+
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_CLASS,ShowTest::class);
+
+        } catch (PDOException $exception) {
+            return "Failed: " . $exception->getMessage();
+        }
+    }
+
 
 
 
