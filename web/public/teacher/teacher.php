@@ -425,8 +425,6 @@ if (isset($_POST['first-short-q'])) {
 <script>
     function changeValueTest(){
 
-        console.log($('#flexSwitchCheckChecked').prop("checked"))
-
     }
 
 </script>

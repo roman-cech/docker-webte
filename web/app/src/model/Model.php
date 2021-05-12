@@ -166,6 +166,22 @@ class Model
         }
     }
 
+    public function getExams()
+    {
+        try {
+            $conn = new Database();
+            $conn->getConnection()->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $stmt = $conn->getConnection()->prepare("select id from test.Exams;");
+
+            $stmt->execute();
+            return $stmt->rowCount();
+
+        } catch (PDOException $exception) {
+            return "Failed: " . $exception->getMessage();
+        }
+    }
+
+
 
 
 
