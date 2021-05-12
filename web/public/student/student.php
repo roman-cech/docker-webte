@@ -181,99 +181,27 @@ function getJsonDecode($res)
             </div>
         </div>
 
-<!--        <div class="mb-4">-->
-<!--            <zwibbler z-controller="mycontroller" defaultZoom="page" pageView="true">-->
-<!--                <button z-click="ctx.newDocument()">New</button>-->
-<!--                <button z-click="mySave()">Save</button>-->
-<!--                <button z-click="myOpen()">Open</button>-->
-<!--                <div class="zwibbler-builtin-toolbar">-->
-<!---->
-<!--                    <div>-->
-<!--                        <button tool z-on:click="usePickTool()" title="Select"-->
-<!--                                z-class="{selected:getCurrentTool()=='pick'}">-->
-<!--                            <i class="fas fa-mouse-pointer"></i>-->
-<!--                        </button>-->
-<!--                        <button tool z-on:click="useBrushTool()" title="Draw"-->
-<!--                                z-class="{selected:getCurrentTool()=='brush'}">-->
-<!--                            <i class="fas fa-pencil-alt"></i>-->
-<!--                        </button>-->
-<!---->
-<!---->
-<!--                        <button tool z-click="cut()" title="Cut">-->
-<!--                            <i class="fas fa-cut"></i>-->
-<!--                        </button>-->
-<!--                        <button tool z-click="undo()" z-disabled="!canUndo()">-->
-<!--                            <i class="fas fa-undo"></i>-->
-<!--                        </button>-->
-<!--                        <button tool z-click="redo()" z-disabled="!canRedo()">-->
-<!--                            <i class="fas fa-redo"></i>-->
-<!--                        </button>-->
-<!--                        <button tool z-click="zoomIn()">-->
-<!--                            <i class="fas fa-search-plus"></i>-->
-<!--                        </button>-->
-<!--                        <button tool z-click="setZoom('page')">-->
-<!--                            <i class="fas fa-compress-arrows-alt"></i>-->
-<!--                        </button>-->
-<!--                        <button tool z-click="zoomOut()">-->
-<!--                            <i class="fas fa-search-minus"></i>-->
-<!--                        </button>-->
-<!--                    </div>-->
-<!--                    <button z-click="Download" z-show-popup="my-menu">Download</button>-->
-<!--                    <div z-has="fillStyle">-->
-<!--                        <h3>Colours</h3>-->
-<!--                        <div class="colour-picker" z-has="fillStyle">-->
-<!--                            <div swatch z-property="fillStyle" z-colour></div>-->
-<!--                            Fill style-->
-<!--                        </div>-->
-<!--                        <div class="colour-picker" z-has="strokeStyle">-->
-<!--                            <div swatch z-property="strokeStyle" z-colour></div>-->
-<!--                            Outline-->
-<!--                        </div>-->
-<!--                        <div class="colour-picker" z-has="background">-->
-<!--                            <div swatch z-property="background" z-colour></div>-->
-<!--                            Background-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    <div z-has="arrowSize">-->
-<!--                        <h3>Arrows</h3>-->
-<!--                        <button class="option" z-property="arrowSize" z-value="0">None</button>-->
-<!--                        <button class="option" z-property="arrowSize" z-value="10">Small</button>-->
-<!--                        <button class="option" z-property="arrowSize" z-value="15">Large</button>-->
-<!--                        <hr>-->
-<!--                        <button class="option" z-property="arrowStyle" z-value="solid">Solid</button>-->
-<!--                        <button class="option" z-property="arrowStyle" z-value="open">Open</button>-->
-<!--                    </div>-->
-<!--                    <div z-has="lineWidth">-->
-<!--                        <h3>Line width</h3>-->
-<!--                        <select z-property="lineWidth">-->
-<!--                            <option value="0">None</option>-->
-<!--                            <option>1</option>-->
-<!--                            <option>2</option>-->
-<!--                            <option>4</option>-->
-<!--                            <option>8</option>-->
-<!--                        </select>-->
-<!--                    </div>-->
-<!---->
-<!--                </div>-->
-<!--                <div z-canvas style="height:400px">-->
-<!--            </zwibbler>-->
-<!--        </div>-->
+
 
         <div class="mb-3">
             <br>
             <h4><strong style="font-size: 1.5em"><?php echo "(" . $tmp++ . ". Uloha\t): "?>  Párovacie otázky</strong></h4>
             <div class="m-3" style="float: left">
-                <strong style="font-size: 1.5em;"><?php echo  $pairQuestion[1]->question ?></strong><br>
-                <strong style="font-size: 1.5em;"><?php echo  $pairQuestion[0]->question ?></strong><br>
-                <strong style="font-size: 1.5em;"><?php echo  $pairQuestion[3]->question ?></strong><br>
-                <strong style="font-size: 1.5em;"><?php echo  $pairQuestion[2]->question ?></strong><br>
+                <strong style="font-size: 1.5em; display: block">A) - <?php echo  $pairQuestion[1]->question ?></strong>
+
+                <strong style="font-size: 1.5em; display: block ">B) - <?php echo  $pairQuestion[3]->question ?></strong>
+
+                <strong style="font-size: 1.5em;display: block">C) - <?php echo  $pairQuestion[0]->question ?></strong>
+
+                <strong style="font-size: 1.5em;display: block">D) - <?php echo  $pairQuestion[2]->question ?></strong>
+
             </div>
 
             <div class="m-3" style="float: right">
-                <strong style="font-size: 1.5em;"><?php echo  $firstPairAnswer[0]->answer ?></strong><br>
-                <strong style="font-size: 1.5em;"><?php echo  $secondPairAnswer[0]->answer ?></strong><br>
-                <strong style="font-size: 1.5em;"><?php echo  $thirdPairAnswer[0]->answer ?></strong><br>
-                <strong style="font-size: 1.5em;"><?php echo  $fourPairAnswer[0]->answer ?></strong><br>
+                <input type="text" style ="width:3em"> <strong style="font-size: 1.5em;"><?php echo  $firstPairAnswer[0]->answer ?></strong><br>
+                <input type="text" style ="width:3em"> <strong style="font-size: 1.5em;"><?php echo  $secondPairAnswer[0]->answer ?></strong><br>
+                <input type="text" style ="width:3em"> <strong style="font-size: 1.5em;"><?php echo  $thirdPairAnswer[0]->answer ?></strong><br>
+                <input type="text" style ="width:3em"><strong style="font-size: 1.5em;"><?php echo  $fourPairAnswer[0]->answer ?></strong><br>
             </div>
         </div>
 
@@ -401,32 +329,7 @@ function getJsonDecode($res)
         virtualKeyboardToggleGlyph: `<span style="width: 21px;"><svg style="width: 21px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M192 288H32c-18 0-32 14-32 32v160c0 18 14 32 32 32h160c18 0 32-14 32-32V320c0-18-14-32-32-32zm-29 140c3 3 3 8 0 12l-11 11c-4 3-9 3-12 0l-28-28-28 28c-3 3-8 3-12 0l-11-11c-3-4-3-9 0-12l28-28-28-28c-3-3-3-8 0-12l11-11c4-3 9-3 12 0l28 28 28-28c3-3 8-3 12 0l11 11c3 4 3 9 0 12l-28 28 28 28zM480 0H320c-18 0-32 14-32 32v160c0 18 14 32 32 32h160c18 0 32-14 32-32V32c0-18-14-32-32-32zm-16 120c0 4-4 8-8 8h-40v40c0 4-4 8-8 8h-16c-4 0-8-4-8-8v-40h-40c-4 0-8-4-8-8v-16c0-4 4-8 8-8h40V56c0-4 4-8 8-8h16c4 0 8 4 8 8v40h40c4 0 8 4 8 8v16zm16 168H320c-18 0-32 14-32 32v160c0 18 14 32 32 32h160c18 0 32-14 32-32V320c0-18-14-32-32-32zm-16 152c0 4-4 8-8 8H344c-4 0-8-4-8-8v-16c0-4 4-8 8-8h112c4 0 8 4 8 8v16zm0-64c0 4-4 8-8 8H344c-4 0-8-4-8-8v-16c0-4 4-8 8-8h112c4 0 8 4 8 8v16zM192 0H32C14 0 0 14 0 32v160c0 18 14 32 32 32h160c18 0 32-14 32-32V32c0-18-14-32-32-32zm-16 120c0 4-4 8-8 8H56c-4 0-8-4-8-8v-16c0-4 4-8 8-8h112c4 0 8 4 8 8v16z"/></svg></span>`
     });
 </script>
-<!--<script src="http://zwibbler.com/zwibbler-demo.js"></script>-->
-<!---->
-<!--<script>-->
-<!--    Zwibbler.controller("mycontroller", (scope) => {-->
-<!--        let saved = "";-->
-<!--        const ctx = scope.ctx;-->
-<!--        ctx.setDocumentSize(200, 150);-->
-<!---->
-<!--        scope.mySave = () => {-->
-<!--            saved = ctx.save();-->
-<!--            alert("Saved: " + saved);-->
-<!--            console.log(saved)-->
-<!---->
-<!--        }-->
-<!---->
-<!--        scope.myOpen = () => {-->
-<!--            if (!saved) {-->
-<!--                alert("Please save first.");-->
-<!--                return;-->
-<!--            }-->
-<!---->
-<!--            ctx.load(saved);-->
-<!--        }-->
-<!---->
-<!--    })-->
-<!--</script>-->
+
 
 </body>
 </html>
