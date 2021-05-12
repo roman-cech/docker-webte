@@ -198,10 +198,10 @@ function getJsonDecode($res)
             </div>
 
             <div class="m-3" style="float: right">
-                <input type="text" style ="width:3em"> <strong style="font-size: 1.5em;"><?php echo  $firstPairAnswer[0]->answer ?></strong><br>
-                <input type="text" style ="width:3em"> <strong style="font-size: 1.5em;"><?php echo  $secondPairAnswer[0]->answer ?></strong><br>
-                <input type="text" style ="width:3em"> <strong style="font-size: 1.5em;"><?php echo  $thirdPairAnswer[0]->answer ?></strong><br>
-                <input type="text" style ="width:3em"><strong style="font-size: 1.5em;"><?php echo  $fourPairAnswer[0]->answer ?></strong><br>
+                <input type="text" id="first-pair-input" style ="width:3em"> <strong style="font-size: 1.5em;"><?php echo  $fourPairAnswer[0]->answer ?></strong><br>
+                <input type="text" id="second-pair-input" style ="width:3em"> <strong style="font-size: 1.5em;"><?php echo  $secondPairAnswer[0]->answer ?></strong><br>
+                <input type="text" id="third-pair-input"style ="width:3em"> <strong style="font-size: 1.5em;"><?php echo  $thirdPairAnswer[0]->answer ?></strong><br>
+                <input type="text" id="four-pair-input" style ="width:3em"><strong style="font-size: 1.5em;"><?php echo  $firstPairAnswer[0]->answer ?></strong><br>
             </div>
         </div>
 
