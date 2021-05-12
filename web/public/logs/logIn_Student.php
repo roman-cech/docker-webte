@@ -15,17 +15,19 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"]){
 
 if (isset($_POST['code'] ) && isset($_POST['aisId']) && isset($_POST['name'] ) && isset($_POST['surname'] ) )
 {
-    $arr = $contr->getExamsCode($_POST['code']);
+    $logArr = $contr->getExamsCode($_POST['code']);
     if (!empty($contr->getExamsCode($_POST['code'])))
     {
-        $contr->insertStudent($_POST['name'],$_POST['surname'],$_POST['aisId']);
-        $studentInfo= $contr->selectStudent($_POST['aisId']);
+        if ($logArr[0]['is_active'] === '1')
+        {
+            $contr->insertStudent($_POST['name'],$_POST['surname'],$_POST['aisId']);
+            $studentInfo= $contr->selectStudent($_POST['aisId']);
 
-        $_SESSION["loggedin"] = true;
-        $_SESSION['examCode'] = $_POST['code'];
-        $_SESSION['name'] = $studentInfo[0]['name'];
-        header("Location: ../student/student.php");
-
+            $_SESSION["loggedin"] = true;
+            $_SESSION['examCode'] = $_POST['code'];
+            $_SESSION['name'] = $studentInfo[0]['name'];
+            header("Location: ../student/student.php");
+        }
     }
 }
 

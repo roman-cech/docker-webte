@@ -51,7 +51,7 @@ class LogsModel{
     }
     public function getExamsCode($exam_code){
 
-        $stmt = $this->conn->prepare("SELECT exams.exam_code from test.Exams where exam_code = :exam_code");
+        $stmt = $this->conn->prepare("SELECT exams.exam_code, exams.is_active from test.Exams where exam_code = :exam_code");
         $stmt->bindParam(":exam_code",$exam_code);
         $stmt->execute();
         $studentArr = $stmt->fetchAll();
