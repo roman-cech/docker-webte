@@ -28,6 +28,8 @@ if (isset($_POST['code'] ) && isset($_POST['aisId']) && isset($_POST['name'] ) &
             $_SESSION['name'] = $studentInfo[0]['name'];
             header("Location: ../student/student.php");
         }
+
+
     }
 }
 
