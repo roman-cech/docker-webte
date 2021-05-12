@@ -32,10 +32,39 @@ function getJsonDecode($res){
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <!-- --------------------- -->
+    <!-- UIkit CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.6.21/dist/css/uikit.min.css" />
+
+    <!-- UIkit JS -->
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.6.21/dist/js/uikit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.6.21/dist/js/uikit-icons.min.js"></script>
+
+
+    <link href="../assets/css/style.css">
+    <script src="https://zwibbler.com/zwibbler-demo.js"></script>
+
 </head>
 
 <body>
+<div uk-sticky="animation: uk-animation-slide-top; sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky; cls-inactive: uk-navbar-transparent uk-light; top: 200" >
+    <nav class="uk-navbar-container" uk-navbar="dropbar: true;" style="position: relative; z-index: 980;">
+        <div class="uk-navbar-center">
 
+            <ul class="uk-navbar-nav">
+                <li><a href="#" class="uk-button">CLOCKS</a></li>
+            </ul>
+
+        </div>
+        <div class="uk-navbar-right">
+
+            <ul class="uk-navbar-nav">
+                <li><a href="#" type="button" class="uk-button" >Send Test</a></li>
+            </ul>
+
+        </div>
+    </nav>
+</div>
 <div class="container">
     <div class="exam-paper" style="width: 60em; border: 2px solid #444; box-shadow: 5px 5px 5px #555; margin: 2em auto; text-align: center">
         <h2>Exam 1</h2>
@@ -115,6 +144,18 @@ function getJsonDecode($res){
                 <br>
             </div>
 
+            <div>
+
+                <zwibbler z-controller="mycontroller">
+                    <button z-click="ctx.newDocument()">New</button>
+                    <button z-click="mySave()">Save</button>
+                    <button z-click="myOpen()">Open</button>
+                    <div z-canvas style="height:300px"></div>
+                </zwibbler>
+
+
+            </div>
+
             <button type="submit" class="btn btn-success m-3">Odoslať</button>
 
         </form>
@@ -123,6 +164,30 @@ function getJsonDecode($res){
 
     </div>
 </div>
+
+<script>
+
+
+    Zwibbler.controller("mycontroller", (scope) => {
+        let saved = "";
+        const ctx = scope.ctx;
+        scope.mySave = () => {
+            saved = ctx.save("svg");
+            alert("Saved: " + saved);
+            console.log(saved);
+        }
+
+        scope.myOpen = () => {
+            if (!saved) {
+                alert("Please save first.");
+                return;
+            }
+
+            ctx.load(saved);
+        }
+    })
+
+</script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
 <script src="../assets/js/Jquery.js"></script>
