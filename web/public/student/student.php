@@ -46,7 +46,7 @@ function getJsonDecode($res)
     <link href="../assets/css/style.css">
     <script src="https://zwibbler.com/zwibbler-demo.js"></script>
 
-    <link rel="stylesheet" href="../assets/css">
+
 
     <script src='https://unpkg.com/mathlive/dist/mathlive.min.js'></script>
 </head>
@@ -209,17 +209,7 @@ function getJsonDecode($res)
     </div>
 <!--akceptni to-->
 
-    <div>
 
-        <zwibbler z-controller="mycontroller">
-            <button z-click="ctx.newDocument()">New</button>
-            <button z-click="mySave()">Save</button>
-            <button z-click="myOpen()">Open</button>
-            <div z-canvas style="height:300px"></div>
-        </zwibbler>
-
-
-    </div>
 
     <button type="submit" class="btn btn-success m-3">Odoslať</button>
     <div class="mb-3">
@@ -242,10 +232,20 @@ function getJsonDecode($res)
                 <input type="text" id="third-pair-input"style ="width:3em"> <strong style="font-size: 1.5em;"><?php echo  $thirdPairAnswer[0]->answer ?></strong><br>
                 <input type="text" id="four-pair-input" style ="width:3em"><strong style="font-size: 1.5em;"><?php echo  $firstPairAnswer[0]->answer ?></strong><br>
             </div>
-        </div>
+    </div>
 
 
-
+<!---->
+<!--        <div>-->
+<!---->
+<!--            <zwibbler z-controller="mycontroller">-->
+<!--                <button z-click="ctx.newDocument()">New</button>-->
+<!--                <button z-click="mySave()">Save</button>-->
+<!--                <button z-click="myOpen()">Open</button>-->
+<!--                <div z-canvas style="height:300px"></div>-->
+<!--            </zwibbler>-->
+<!---->
+<!--        </div>-->
     </div>
 
     <button name="logout"><a href="../logs/Logout.php">Logout</a></button>
