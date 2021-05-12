@@ -9,7 +9,9 @@ include "../../app/vendor/autoload.php";
 
 use App\Controller\Controller;
 use App\Model\Model;
+use App\Classes\ShowTest;
 
+$class = new ShowTest();
 $model = new Model();
 
 $url = $_GET['token'];
@@ -178,6 +180,52 @@ if (isset($_POST['first-short-q'])) {
 <?php include "nav_Teacher.php"?>
 
 <div class="container">
+
+    <!-- Modal -->
+    <div id="myModal3" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content" style="width: auto">
+                <div class="modal-header">
+                    <h4 class="modal-title">Vytvorenie nového Testu</h4>
+                </div>
+                <div class="modal-body" style="width: auto">
+
+                        <table class="table table-striped table-light text-dark">
+                            <thead>
+                            <tr>
+                                <th>Kod Testu</th>
+                                <th>Test</th>
+                                <th>Časový limit testu</th>
+                                <th>Počet bodov za test</th>
+                                <th>Aktivovať / Deaktivovať</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <?php
+                            $model = new Model();
+                            $result = $model->getAllExams();
+
+                            foreach ($result as $value){
+                                echo $value->showTable();
+                            }
+                            ?>
+                            </tbody>
+                        </table>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+
 
     <!-- Modal -->
     <div id="myModal2" class="modal fade" role="dialog">
@@ -374,7 +422,12 @@ if (isset($_POST['first-short-q'])) {
         crossorigin="anonymous"></script>
 <script src="../assets/js/Jquery.js"></script>
 
+<script>
+    function changeValueTest(){
+        console.log($('#flexSwitchCheckChecked').prop("checked"))
+    }
 
+</script>
 
 </body>
 </html>

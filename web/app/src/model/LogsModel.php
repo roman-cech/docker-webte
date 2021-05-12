@@ -29,9 +29,9 @@ class LogsModel{
         $stmt = $this->conn->prepare("SELECT users.* from test.Users where email = :email");
         $stmt->bindParam(":email",$email);
         $stmt->execute();
-        $teacherArr = $stmt->fetchAll();
+        return $stmt->fetchAll();
 
-        return $teacherArr;
+
     }
 
     /*
