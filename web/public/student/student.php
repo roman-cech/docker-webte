@@ -35,11 +35,21 @@ function getJsonDecode($res)
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <script src='https://unpkg.com/mathlive/dist/mathlive.min.js'></script>
+    <!-- --------------------- -->
+    <!-- UIkit CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.6.21/dist/css/uikit.min.css"/>
+
+    <!-- UIkit JS -->
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.6.21/dist/js/uikit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.6.21/dist/js/uikit-icons.min.js"></script>
+
+
+    <script src="https://zwibbler.com/zwibbler-demo.js"></script>
+
     <link rel="stylesheet" href="../assets/css">
 
+    <script src='https://unpkg.com/mathlive/dist/mathlive.min.js'></script>
 </head>
-
 <style>
     label {
         font-size: 1.5em;
@@ -47,7 +57,24 @@ function getJsonDecode($res)
 </style>
 
 <body>
+<div uk-sticky="animation: uk-animation-slide-top; sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky; cls-inactive: uk-navbar-transparent uk-light; top: 200">
+    <nav class="uk-navbar-container" uk-navbar="dropbar: true;" style="position: relative; z-index: 980;">
+        <div class="uk-navbar-center">
 
+            <ul class="uk-navbar-nav">
+                <li><a href="#" class="uk-button">CLOCKS</a></li>
+            </ul>
+
+        </div>
+        <div class="uk-navbar-right">
+
+            <ul class="uk-navbar-nav">
+                <li><a href="#" type="button" class="uk-button">Send Test</a></li>
+            </ul>
+
+        </div>
+    </nav>
+</div>
 <div class="container">
     <div class="exam-paper"
          style="width: 60em; height: 120em;border: 2px solid #444; box-shadow: 5px 5px 5px #555; margin: 2em auto; text-align: center;background-color: #fff">
@@ -166,11 +193,11 @@ function getJsonDecode($res)
                             box-shadow: 0 0 8px rgba(0, 0, 0, .2);
                         ">f(x)
             </div>
-        </div>
+    </div>
 
-        <div class="mb-4">
-            <strong style="font-size: 1.5em;"><?php echo "(" . $tmp++ . ". Uloha\t):\t" . $mathQuestion[1]->question ?></strong>
-            <div id="second-mathfield" style="
+    <div class="mb-4">
+        <strong style="font-size: 1.5em;"><?php echo "(" . $tmp++ . ". Uloha\t):\t" . $mathQuestion[1]->question ?></strong>
+        <div id="second-mathfield" style="
                             font-size: 32px;
                             margin: 3em;
                             padding: 8px;
@@ -178,16 +205,28 @@ function getJsonDecode($res)
                             border: 1px solid rgba(0, 0, 0, .3);
                             box-shadow: 0 0 8px rgba(0, 0, 0, .2);
                         ">x=\frac{-b\pm \sqrt{b^2-4ac}}{2a}
-            </div>
         </div>
+    </div>
 
 
+    <div>
 
-        <div class="mb-3">
-            <br>
-            <h4><strong style="font-size: 1.5em"><?php echo "(" . $tmp++ . ". Uloha\t): "?>  Párovacie otázky</strong></h4>
-            <div class="m-3" style="float: left">
-                <strong style="font-size: 1.5em; display: block">A) - <?php echo  $pairQuestion[1]->question ?></strong>
+        <zwibbler z-controller="mycontroller">
+            <button z-click="ctx.newDocument()">New</button>
+            <button z-click="mySave()">Save</button>
+            <button z-click="myOpen()">Open</button>
+            <div z-canvas style="height:300px"></div>
+        </zwibbler>
+
+
+    </div>
+
+    <button type="submit" class="btn btn-success m-3">Odoslať</button>
+    <div class="mb-3">
+        <br>
+        <h4><strong style="font-size: 1.5em"><?php echo "(" . $tmp++ . ". Uloha\t): " ?> Párovacie otázky</strong></h4>
+        <div class="m-3" style="float: left">
+            <strong style="font-size: 1.5em; display: block">A) - <?php echo $pairQuestion[1]->question ?></strong>
 
                 <strong style="font-size: 1.5em; display: block ">B) - <?php echo  $pairQuestion[3]->question ?></strong>
 
@@ -216,7 +255,32 @@ function getJsonDecode($res)
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
         crossorigin="anonymous"></script>
-<script src="../assets/js/Jquery.js"></script>
+<script>
+
+
+    Zwibbler.controller("mycontroller", (scope) => {
+        let saved = "";
+        const ctx = scope.ctx;
+        scope.mySave = () => {
+            saved = ctx.save("svg");
+            alert("Saved: " + saved);
+            console.log(saved);
+        }
+
+        scope.myOpen = () => {
+            if (!saved) {
+                alert("Please save first.");
+                return;
+            }
+
+            ctx.load(saved);
+        }
+    })
+
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+    <script src="../assets/js/Jquery.js"></script>
 <script>
 
 
