@@ -2,7 +2,7 @@ html {
     margin: 0;
     padding: 0;
 }
-body {
+html,body {
     background-image: url('https://getwallpapers.com/wallpaper/full/c/e/f/61064.jpg');
     background-size: cover;
     background-repeat: no-repeat;
@@ -38,7 +38,7 @@ body {
 }
 /*background-color: #4e466f;*/
 .uk-button:hover{
-    background: #0c8409;
+    background: #0c8409 !important;
     color: white !important;
 }
 /*zwibbler board*/
