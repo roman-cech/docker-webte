@@ -423,10 +423,20 @@ if (isset($_POST['first-short-q'])) {
 <script src="../assets/js/Jquery.js"></script>
 
 <script>
-    function changeValueTest(){
+    function changeValueTest(id){
+        var checkbox = document.getElementById(id);
+        console.log("id"+checkbox.checked);
+
+        if (checkbox.checked === true) {
+            console.log("som dnu");
+            $.post("/teacher/is_active.php", {zapisovanie: '1', id: id});
+
+        } else {
+            $.post("/teacher/is_active.php", {zapisovanie: '0', id: id});
+
+        }
 
     }
-
 </script>
 
 </body>
