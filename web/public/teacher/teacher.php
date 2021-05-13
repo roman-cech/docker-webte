@@ -387,7 +387,7 @@ if (isset($_POST['first-short-q'])) {
                                 <input type="text"  name="four-pair-answer" id="four-pair-answer">
                             </div>
 
-                            <h4>odpoveď vyžaduje napísanie matematického výrazu</h4>
+                            <h4>odpoveď vyžaduje  nakreslenie obrázka</h4>
 
                             <div class="mb-3">
                                 <label for="draw-q"><strong>Nakresli</strong></label>
