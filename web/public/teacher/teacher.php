@@ -1,8 +1,6 @@
 <?php
 
-//ini_set('display_errors', 1);
-//ini_set('display_startup_errors', 1);
-//error_reporting(E_ALL);
+
 session_start();
 
 include "../../app/vendor/autoload.php";
@@ -14,7 +12,7 @@ use App\Classes\ShowTest;
 $class = new ShowTest();
 $model = new Model();
 
-$url = $_GET['token'];
+
 
 function timeToMinutes($time)
 {
@@ -28,7 +26,7 @@ function getJsonDecode($res){
 }
 
 
-if (isset($_POST['title-test'])) {
+if (isset($_POST['exam-code'])) {
 
     $examCode = $_POST['exam-code'];
 
@@ -38,14 +36,15 @@ if (isset($_POST['title-test'])) {
 
     $titleTest = $_POST['title-test'];
     $timeLimit = $_POST['time-limit'];
-    $time = timeToMinutes(time() + (1 * 1 * $timeLimit * 1));
+    $timeInMilliseconds =  $timeLimit * 60000;
     $isActive = $_POST['is-active'];
     $examPoints = $_POST['points'];
 
-    $model->insertExam($examCode, $userID, $titleTest, $time, $isActive, $examPoints);
-
+    $model->insertExam($examCode, $userID, $titleTest, $timeInMilliseconds, $isActive, $examPoints);
 
 }
+
+
 
 
 //check if form with short questions was submitted
@@ -246,8 +245,8 @@ if (isset($_POST['first-short-q'])) {
                             </div>
 
                             <div class="mb-3">
-                                <label for="time-limit"><strong>Časový limit</strong></label>
-                                <input type="text" name="time-limit" id="time-limit"">
+                                <label for="time-limit"><strong>Časový limit v minutách</strong></label>
+                                <input type="number" name="time-limit" id="time-limit">
                             </div>
 
                             <div class="mb-3">
