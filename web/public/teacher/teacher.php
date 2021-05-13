@@ -188,7 +188,6 @@ if (isset($_POST['first-short-q'])) {
                             <tr>
                                 <th>Kod Testu</th>
                                 <th>Test</th>
-                                <th>Časový limit testu</th>
                                 <th>Počet bodov za test</th>
                                 <th>Aktivovať / Deaktivovať</th>
                             </tr>
