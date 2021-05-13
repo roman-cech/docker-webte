@@ -16,7 +16,6 @@ $user = $contr->selectTeacher($_SESSION['email']);
         <div class="uk-navbar-left">
 
             <ul class="uk-navbar-nav">
-                <li><a href="?token=" class="uk-button">Generate Exam Code</a></li>
                 <li><a type="button" class="uk-button" data-toggle="modal" data-target="#myModal2">Create Test</a></li>
                 <li><a type="button" class="uk-button" data-toggle="modal" data-target="#myModal">Create Question</a></li>
                 <li><a type="button" class="uk-button" data-toggle="modal" data-target="#myModal3">Tests</a></li>
