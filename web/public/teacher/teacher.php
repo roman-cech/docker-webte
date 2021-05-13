@@ -27,21 +27,14 @@ function getJsonDecode($res){
     return json_decode($tmp);
 }
 
-//
-//$model->insertExam("QW30",1,"zapocet",true,25);
-
-if (isset($_GET['token'])) {
-    $tokenString = bin2hex(random_bytes(3));
-    $_SESSION['newToken'] = $tokenString;
-}
-
-echo $_SESSION['newToken'];
 
 if (isset($_POST['title-test'])) {
 
-    $examCode = $_SESSION['newToken'];
+    $examCode = $_POST['exam-code'];
 
-    //TODO $userId
+    $resultUserId = $model->getUserId($_SESSION['email']);
+    $tmpUserId = getJsonDecode($resultUserId);
+    $userID = $tmpUserId[0]->id;
 
     $titleTest = $_POST['title-test'];
     $timeLimit = $_POST['time-limit'];
@@ -49,17 +42,14 @@ if (isset($_POST['title-test'])) {
     $isActive = $_POST['is-active'];
     $examPoints = $_POST['points'];
 
-    $model->insertExam($examCode, 1, $titleTest, $time, $isActive, $examPoints);
+    $model->insertExam($examCode, $userID, $titleTest, $time, $isActive, $examPoints);
 
-    echo "insert successfully";
+
 }
 
 
 //check if form with short questions was submitted
 if (isset($_POST['first-short-q'])) {
-
-
-  //  echo $_SESSION['newToken'];
 
 
     //create controller for inserting values
@@ -74,7 +64,7 @@ if (isset($_POST['first-short-q'])) {
 
     $examId = $model->getExamId();
 
-    //TODO: toto sa bude priradovat z loginu, treba do teacherModel spravit funkciu pre ziskanie userID
+
     $resultUserId = $model->getUserId($_SESSION['email']);
     $tmpUserId = getJsonDecode($resultUserId);
     $userID = $tmpUserId[0]->id;
@@ -243,6 +233,12 @@ if (isset($_POST['first-short-q'])) {
                         <form action="teacher.php" method="post">
 
                             <h4>Vytvoriť nový Test</h4>
+
+                            <div class="mb-3">
+                                <label for="exam-code"><strong>Exam Kod</strong></label>
+                                <input type="text" name="exam-code" id="exam-code" value="<?php echo bin2hex(random_bytes(3));?>">
+                            </div>
+
 
                             <div class="mb-3">
                                 <label for="title-test"><strong>Názov testu</strong></label>
