@@ -13,16 +13,7 @@ if($_SERVER['REQUEST_METHOD']==='POST')
 {
     if (isset($_POST['zapisovanie']) && isset($_POST['id'])) {
         $model->updateIs_Active_Buttons($_POST['zapisovanie'], $_POST['id']);
-        echo $_POST['id'];
     }
-//    else {
-//        if (isset($_POST['id'])) {
-//            $val = '0';
-//            $model->updateIs_Active_Buttons($val, $_POST['id']);
-//        echo 0;
-//        }
-//
-//    }
 
 }
 

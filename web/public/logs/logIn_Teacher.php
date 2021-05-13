@@ -66,13 +66,13 @@ if (isset($_POST['email'] )&& isset($_POST['password']))
                         <div  class="uk-margin">
                             <div id="down_line" class="uk-inline">
                                 <span class="uk-form-icon" uk-icon="icon: mail"></span>
-                                <input class="uk-input" type="email" name="email" placeholder="E-mail">
+                                <input class="uk-input" type="email" name="email" placeholder="E-mail" id="email">
                             </div>
                         </div>
                         <div  class="uk-margin">
                             <div id="down_line" class="uk-inline">
                                 <span class="uk-form-icon" uk-icon="icon: unlock"></span>
-                                <input  class="uk-input"  type="password" name="password" placeholder="Password">
+                                <input  class="uk-input"  type="password" name="password" placeholder="Password" id="password">
                             </div>
                         </div>
 

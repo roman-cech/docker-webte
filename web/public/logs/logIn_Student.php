@@ -76,25 +76,25 @@ if (isset($_POST['code'] ) && isset($_POST['aisId']) && isset($_POST['name'] ) &
                         <div  class="uk-margin">
                             <div id="down_line" class="uk-inline">
                                 <span class="uk-form-icon" uk-icon="icon: hashtag"></span>
-                                <input class="uk-input" type="text" name="code">
+                                <input class="uk-input" type="text" name="code" id="code">
                             </div>
                         </div>
                         <div  class="uk-margin">
                             <div id="down_line" class="uk-inline">
                                 <span class="uk-form-icon" uk-icon="icon: key">ID</span>
-                                <input  class="uk-input"  type="text" name="aisId">
+                                <input  class="uk-input"  type="text" name="aisId" id="aisId">
                             </div>
                         </div>
                         <div  class="uk-margin">
                             <div id="down_line" class="uk-inline">
                                 <span class="uk-form-icon" uk-icon="icon: user"></span>
-                                <input class="uk-input" type="text" name="name" placeholder="Name">
+                                <input class="uk-input" type="text" name="name" placeholder="Name" id="name">
                             </div>
                         </div>
                         <div  class="uk-margin">
                             <div id="down_line" class="uk-inline">
                                 <span class="uk-form-icon" uk-icon="icon: user"></span>
-                                <input class="uk-input" type="text" name="surname" placeholder="Surname">
+                                <input class="uk-input" type="text" name="surname" placeholder="Surname" id="surname">
                             </div>
                         </div>
 
