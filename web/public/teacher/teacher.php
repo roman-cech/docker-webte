@@ -317,11 +317,14 @@ if (isset($_POST['first-short-q'])) {
                             </div>
 
                             <div class="mb-3">
-                                <label for="first-more-answer"><strong>odpovede</strong></label>
+                                <label for="first-more-answer"><strong>možnosť</strong></label>
                                 <input type="text" name="first-more-answer" id="first-more-answer"> <br>
+                                <label for="first-more-answer2"><strong>možnosť</strong></label>
                                 <input type="text" name="first-more-answer2" id="first-more-answer2"><br>
+                                <label for="first-more-answer3"><strong>možnosť</strong></label>
                                 <input type="text" name="first-more-answer3" id="first-more-answer3"><br>
-                                <label for="correct-answer"><strong>správna odpoveď</strong></label>
+                                <br>
+                                <label for="correct-answer"><strong>správna odpoveď</strong></label><br>
                                 <input type="text" name="correct-answer" id="correct-answer"> <br>
                             </div>
 
@@ -331,11 +334,14 @@ if (isset($_POST['first-short-q'])) {
                             </div>
 
                             <div class="mb-3">
-                                <label for="second-more-answer"><strong>odpovede</strong></label>
+                                <label for="second-more-answer"><strong>možnosť</strong></label>
                                 <input type="text" name="second-more-answer" id="second-more-answer"><br>
+                                <label for="second-more-answer2"><strong>možnosť</strong></label>
                                 <input type="text" name="second-more-answer2" id="second-more-answer2"><br>
+                                <label for="second-more-answer3"><strong>možnosť</strong></label>
                                 <input type="text" name="second-more-answer3" id="second-more-answer3"><br>
-                                <label for="correct-answer2"><strong>správna odpoveď</strong></label>
+                                <br>
+                                <label for="correct-answer2"><strong>správna odpoveď</strong></label><br>
                                 <input type="text" name="correct-answer2" id="correct-answer2"> <br>
                             </div>
 
