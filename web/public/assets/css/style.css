@@ -194,4 +194,20 @@ zwibbler {
     background-color: green;
     border-color: green;
 }
+.uk-background-secondary{
+    background-color: #0c8409 !important;
+}
+.thumbnail {
+/*max-width: 100%;*/
+width: 12.5em;
+/*max-height: 100%;*/
+cursor: pointer;
+    height: 12.5em;
+    object-fit: cover;
+    border: 1px solid #ABABAB;
+    border-radius: 0.5em;
+    padding: 3px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,4);
 
+    margin: .85em auto;
+}

@@ -1,50 +1,74 @@
-function isValid(){
-    var userName = document.getElementById('name').value
-    var surName = document.getElementById('surname').value
-    var userDOB = document.getElementById('dateId').value
-    var userAge = document.getElementById('age').value
-    var userEmail = document.getElementById('email').value
-    var re = /^([A-Za-z0-9_\-\.]){3,}\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+function validate()
+{
+    var name = document.getElementById('name').value
+    var surname = document.getElementById('surname').value
 
-    var yearPart = userDOB.split('.')
-    var birthYear = parseInt(yearPart[0])
-    var yearNow = new Date().getFullYear()
-
-    var ageResult = yearNow - birthYear
-
-    var messages = []
-    if(userName === '' || userName == null){
-        messages.push('ProsĂ­m vyplĹte poloĹľku s menom !')
-        document.getElementById('error').innerText = messages.join(',')
+    if(name === '' || name == null){
+        document.getElementById('name').className = 'uk-input uk-form-danger';
         return false
     }
-    if(userName !== ''){
-        document.getElementById('error').innerText = null
-        document.getElementById('name').style.backgroundColor = "lightgreen";
-        document.getElementById('name').style.border = "3px solid green";
-        document.getElementById('name').style.opacity = "0.9";
+    if(name !== ''){
+        document.getElementById('name').className = 'uk-input uk-form-success';
     }
-    if(surName === '' ||surName == null){
-        messages.push('ProsĂ­m vyplĹte poloĹľku s priezviskom !')
-        document.getElementById('error2').innerText = messages.join(',')
+    if(surname === '' ||surname == null){
+        document.getElementById('surname').className= 'uk-input uk-form-danger';
         return false
     }
-    if(surName !== ''){
-        document.getElementById('error2').innerText = null
-        document.getElementById('surname').style.backgroundColor = 'lightgreen';
-        document.getElementById('surname').style.border = "3px solid green";
-        document.getElementById('surname').style.opacity = "0.9";
+    if(surname !== ''){
+        document.getElementById('surname').className= 'uk-input uk-form-success';
     }
+}
 
-    if(!re.test(userEmail)){
-        messages.push('Zadajte validnĂ˝ email !')
-        document.getElementById('error5').innerText = messages.join(',')
+function studentValidate()
+{
+    var code = document.getElementById('code').value
+    var aisId = document.getElementById('aisId').value
+    validate();
+
+
+    if(code === '' || code == null){
+        document.getElementById('code').className = 'uk-input uk-form-danger';
         return false
     }
-    if(re.test(userEmail) === true){
-        document.getElementById('error5').innerText = null
-        document.getElementById('email').style.border = "3px solid green";
-        document.getElementById('email').style.opacity = "0.9"
+    if(code !== ''){
+        document.getElementById('code').className = 'uk-input uk-form-success';
+    }
+    if(aisId === '' ||aisId == null){
+        document.getElementById('aisId').className= 'uk-input uk-form-danger';
+        return false
+    }
+    if(aisId !== ''){
+        document.getElementById('aisId').className= 'uk-input uk-form-success';
     }
 
 }
+function teacherValidate(){
+
+    var email = document.getElementById('email').value;
+    var password = document.getElementById('password').value;
+    var re = /^([A-Za-z0-9_\-\.]){3,}\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+
+
+    if(!re.test(email)){
+        document.getElementById('email').className='uk-input uk-form-danger';
+        return false
+    }
+    if(re.test(email) === true){
+        document.getElementById('email').className='uk-input uk-form-success';
+    }
+    if(password === '' ||password == null){
+        document.getElementById('password').className= 'uk-input uk-form-danger';
+        return false
+    }
+    if(password !== ''){
+        document.getElementById('password').className= 'uk-input uk-form-success';
+    }
+}
+function teacherLogInValidate(){
+    teacherValidate();
+}
+function teacherRegistrationValidate(){
+    validate();
+    teacherValidate();
+}
+

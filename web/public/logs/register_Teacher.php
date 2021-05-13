@@ -53,25 +53,25 @@ if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['password'
                         <div  class="uk-margin">
                             <div id="down_line" class="uk-inline">
                                 <span class="uk-form-icon" uk-icon="icon: user"></span>
-                                <input class="uk-input" type="text" name="name" placeholder="Name">
+                                <input class="uk-input" type="text" name="name" placeholder="Name" id="name" onclick="teacherRegistrationValidate()">
                             </div>
                         </div>
                         <div  class="uk-margin">
                             <div id="down_line" class="uk-inline">
                                 <span class="uk-form-icon" uk-icon="icon: user"></span>
-                                <input  class="uk-input"  type="text" name="surname" placeholder="Surname">
+                                <input  class="uk-input"  type="text" name="surname" placeholder="Surname" id="surname" onclick="teacherRegistrationValidate()">
                             </div>
                         </div>
                         <div  class="uk-margin">
                             <div id="down_line" class="uk-inline">
                                 <span class="uk-form-icon" uk-icon="icon: lock"></span>
-                                <input  class="uk-input"  type="password" name="password" placeholder="Password">
+                                <input  class="uk-input"  type="password" name="password" placeholder="Password" id="password" onclick="teacherRegistrationValidate()">
                             </div>
                         </div>
                         <div  class="uk-margin">
                             <div id="down_line" class="uk-inline">
                                 <span class="uk-form-icon" uk-icon="icon: mail"></span>
-                                <input  class="uk-input"  type="email" name="email" placeholder="E-mail">
+                                <input  class="uk-input"  type="email" name="email" placeholder="E-mail" id="email" onclick="teacherRegistrationValidate()">
                             </div>
                         </div>
 
@@ -90,4 +90,5 @@ if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['password'
 </main>
 
 </body>
+<script src="../assets/js/script.js"></script>
 </html>

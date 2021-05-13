@@ -71,34 +71,36 @@ if (isset($_POST['code'] ) && isset($_POST['aisId']) && isset($_POST['name'] ) &
             <div id="box" class="uk-margin-large-top uk-card uk-card-default uk-card-body ">
                 <div >
                     <?php include "nav_LogIn.php";?>
-                    <form class="uk-margin-medium" action="logIn_Student.php" method="post">
+                    <form class="uk-margin-medium" action="logIn_Student.php" method="post" >
 
                         <div  class="uk-margin">
                             <div id="down_line" class="uk-inline">
                                 <span class="uk-form-icon" uk-icon="icon: hashtag"></span>
-                                <input class="uk-input" type="text" name="code" id="code">
+                                <input class="uk-input" type="text" name="code" id="code" onclick="studentValidate()">
                             </div>
                         </div>
                         <div  class="uk-margin">
                             <div id="down_line" class="uk-inline">
                                 <span class="uk-form-icon" uk-icon="icon: key">ID</span>
-                                <input  class="uk-input"  type="text" name="aisId" id="aisId">
+                                <input  class="uk-input"  type="text" name="aisId" id="aisId" onclick="studentValidate()">
                             </div>
                         </div>
                         <div  class="uk-margin">
                             <div id="down_line" class="uk-inline">
                                 <span class="uk-form-icon" uk-icon="icon: user"></span>
-                                <input class="uk-input" type="text" name="name" placeholder="Name" id="name">
+                                <input class="uk-input" type="text" name="name" placeholder="Name" id="name" onclick="studentValidate()">
                             </div>
                         </div>
                         <div  class="uk-margin">
                             <div id="down_line" class="uk-inline">
                                 <span class="uk-form-icon" uk-icon="icon: user"></span>
-                                <input class="uk-input" type="text" name="surname" placeholder="Surname" id="surname">
+                                <input class="uk-input" type="text" name="surname" placeholder="Surname" id="surname" onclick="studentValidate()">
                             </div>
                         </div>
 
                         <input class="uk-button uk-button-default" type="submit" value="Sing In">
+                        <br>
+                        <a href="../index.php" ><button class="uk-button uk-button-default" type="button"  >Documentation</button></a>
                     </form>
                 </div>
             </div>
@@ -109,6 +111,6 @@ if (isset($_POST['code'] ) && isset($_POST['aisId']) && isset($_POST['name'] ) &
     </div>
 
 </main>
-
+<script src="../assets/js/script.js"></script>
 </body>
 </html>
