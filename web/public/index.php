@@ -201,7 +201,7 @@ $controller = new Controller();
                     </tbody>
                 </table>
                 <hr>
-                <a href="logs/logIn_Student.php" type="button" class="uk-button">Back to Web aplication</a>
+                <a href="logs/logIn_Student.php" type="button" class="uk-button uk-margin-small-top">Back to Web aplication</a>
             </div>
         </div>
         <div class="uk-width-auto@m">
