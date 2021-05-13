@@ -46,17 +46,18 @@ class Model
     }
 
 
-    public function insertAnswers($userId, $questionId, $type, $answer)
+    public function insertAnswers($userId, $questionId, $type, $answer,$correct_answer)
     {
         try {
             $conn = new Database();
             $conn->getConnection()->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $stmt = $conn->getConnection()->prepare("insert into  test.answers (user_id, question_id, type, answer) 
-                                            VALUE (:user_id,:question_id,:type,:answer)");
+            $stmt = $conn->getConnection()->prepare("insert into  test.answers (user_id, question_id, type, answer,correct_answer) 
+                                            VALUE (:user_id,:question_id,:type,:answer,:correct_answer)");
             $stmt->bindParam(':user_id', $userId);
             $stmt->bindParam(':question_id', $questionId);
             $stmt->bindParam(':type', $type);
             $stmt->bindParam(':answer', $answer);
+            $stmt->bindParam(':correct_answer', $correct_answer);
             return $stmt->execute();
 
         } catch (PDOException $exception) {
@@ -171,15 +172,17 @@ class Model
         try {
             $conn = new Database();
             $conn->getConnection()->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $stmt = $conn->getConnection()->prepare("select id from test.Exams;");
+            $stmt = $conn->getConnection()->prepare("select * from test.Exams;");
 
             $stmt->execute();
-            return $stmt->rowCount();
+
+            return   $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         } catch (PDOException $exception) {
             return "Failed: " . $exception->getMessage();
         }
     }
+
 
 
 
