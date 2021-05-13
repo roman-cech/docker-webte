@@ -1,8 +1,6 @@
 <?php
 
-//ini_set('display_errors', 1);
-//ini_set('display_startup_errors', 1);
-//error_reporting(E_ALL);
+
 session_start();
 
 include "../../app/vendor/autoload.php";
@@ -14,7 +12,7 @@ use App\Classes\ShowTest;
 $class = new ShowTest();
 $model = new Model();
 
-$url = $_GET['token'];
+
 
 function timeToMinutes($time)
 {
@@ -28,7 +26,7 @@ function getJsonDecode($res){
 }
 
 
-if (isset($_POST['title-test'])) {
+if (isset($_POST['exam-code'])) {
 
     $examCode = $_POST['exam-code'];
 
@@ -38,14 +36,15 @@ if (isset($_POST['title-test'])) {
 
     $titleTest = $_POST['title-test'];
     $timeLimit = $_POST['time-limit'];
-    $time = timeToMinutes(time() + (1 * 1 * $timeLimit * 1));
+    $timeInMilliseconds =  $timeLimit * 60000;
     $isActive = $_POST['is-active'];
     $examPoints = $_POST['points'];
 
-    $model->insertExam($examCode, $userID, $titleTest, $time, $isActive, $examPoints);
-
+    $model->insertExam($examCode, $userID, $titleTest, $timeInMilliseconds, $isActive, $examPoints);
 
 }
+
+
 
 
 //check if form with short questions was submitted
@@ -189,7 +188,7 @@ if (isset($_POST['first-short-q'])) {
                             <tr>
                                 <th>Kod Testu</th>
                                 <th>Test</th>
-                                <th>Časový limit testu</th>
+                                <th>Časový limit v minútach</th>
                                 <th>Počet bodov za test</th>
                                 <th>Aktivovať / Deaktivovať</th>
                             </tr>
@@ -246,8 +245,8 @@ if (isset($_POST['first-short-q'])) {
                             </div>
 
                             <div class="mb-3">
-                                <label for="time-limit"><strong>Časový limit</strong></label>
-                                <input type="text" name="time-limit" id="time-limit"">
+                                <label for="time-limit"><strong>Časový limit v minutách</strong></label>
+                                <input type="number" name="time-limit" id="time-limit">
                             </div>
 
                             <div class="mb-3">
@@ -318,11 +317,14 @@ if (isset($_POST['first-short-q'])) {
                             </div>
 
                             <div class="mb-3">
-                                <label for="first-more-answer"><strong>odpovede</strong></label>
+                                <label for="first-more-answer"><strong>možnosť</strong></label>
                                 <input type="text" name="first-more-answer" id="first-more-answer"> <br>
+                                <label for="first-more-answer2"><strong>možnosť</strong></label>
                                 <input type="text" name="first-more-answer2" id="first-more-answer2"><br>
+                                <label for="first-more-answer3"><strong>možnosť</strong></label>
                                 <input type="text" name="first-more-answer3" id="first-more-answer3"><br>
-                                <label for="correct-answer"><strong>správna odpoveď</strong></label>
+                                <br>
+                                <label for="correct-answer"><strong>správna odpoveď</strong></label><br>
                                 <input type="text" name="correct-answer" id="correct-answer"> <br>
                             </div>
 
@@ -332,11 +334,14 @@ if (isset($_POST['first-short-q'])) {
                             </div>
 
                             <div class="mb-3">
-                                <label for="second-more-answer"><strong>odpovede</strong></label>
+                                <label for="second-more-answer"><strong>možnosť</strong></label>
                                 <input type="text" name="second-more-answer" id="second-more-answer"><br>
+                                <label for="second-more-answer2"><strong>možnosť</strong></label>
                                 <input type="text" name="second-more-answer2" id="second-more-answer2"><br>
+                                <label for="second-more-answer3"><strong>možnosť</strong></label>
                                 <input type="text" name="second-more-answer3" id="second-more-answer3"><br>
-                                <label for="correct-answer2"><strong>správna odpoveď</strong></label>
+                                <br>
+                                <label for="correct-answer2"><strong>správna odpoveď</strong></label><br>
                                 <input type="text" name="correct-answer2" id="correct-answer2"> <br>
                             </div>
 
@@ -382,7 +387,7 @@ if (isset($_POST['first-short-q'])) {
                                 <input type="text"  name="four-pair-answer" id="four-pair-answer">
                             </div>
 
-                            <h4>odpoveď vyžaduje napísanie matematického výrazu</h4>
+                            <h4>odpoveď vyžaduje  nakreslenie obrázka</h4>
 
                             <div class="mb-3">
                                 <label for="draw-q"><strong>Nakresli</strong></label>

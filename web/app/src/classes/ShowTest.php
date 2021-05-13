@@ -123,7 +123,7 @@ class ShowTest {
             <tr>
                 <td>'.$this->exam_code.'</td>
                 <td>'.$this->title.'</td>
-                <td>'.$this->time_limit.'</td>
+                <td>'.($this->time_limit / 60000).'</td>
                 <td>'.$this->exam_points.'</td>
                 <td><div class="form-check form-switch">
                   <input class="form-check-input" type="checkbox" id="'.$this->exam_code.'" '. ($this->is_active ? 'checked' : "") .' onclick="changeValueTest(\''.$this->getExamCode().'\')">
