@@ -4,7 +4,7 @@ session_start();
 
 include "../../app/vendor/autoload.php";
 
-use App\Controller\GetQuestionController;
+
 use App\Model\GetQuestionModel;
 
 ini_set('display_errors', 1);
@@ -88,7 +88,7 @@ function getJsonDecode($res)
                 <?php
 
                 $model = new GetQuestionModel();
-                $controller = new GetQuestionController();
+
 
                 $resultExamID = $model->getExamId($_SESSION['examCode']);
                 $examID = getJsonDecode($resultExamID);

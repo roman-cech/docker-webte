@@ -15,12 +15,12 @@ class Controller
     }
 
 
-    public function insertAnswers($user_id,$questionId,$type,$answer){
+    public function insertAnswers($user_id,$questionId,$type,$answer,$correct_answer){
         $model = new Model();
 
         //get questionId
 
-        $model->insertAnswers($user_id,$questionId,$type,$answer);
+        $model->insertAnswers($user_id,$questionId,$type,$answer,$correct_answer);
     }
 
 

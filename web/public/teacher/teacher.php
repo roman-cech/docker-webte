@@ -87,13 +87,13 @@ if (isset($_POST['first-short-q'])) {
     $controller->insertQuestion($examId, $firstQuestion, $answerId++, "Krátka odpoveď", 1);
 
     $firstShortAnswer = $_POST['first-short-answer'];
-    $controller->insertAnswers($userID, $questionId++, "Krátka odpoveď", $firstShortAnswer);
+    $controller->insertAnswers($userID, $questionId++, "Krátka odpoveď", $firstShortAnswer,$firstShortAnswer);
 
     $secondQuestion = $_POST['second-short-q'];
     $controller->insertQuestion($examId, $secondQuestion, $answerId++, "Krátka odpoveď", 1);
 
     $secondShortAnswer = $_POST['second-short-answer'];
-    $controller->insertAnswers($userID, $questionId++, "Krátka odpoveď", $secondShortAnswer);
+    $controller->insertAnswers($userID, $questionId++, "Krátka odpoveď", $secondShortAnswer,$secondShortAnswer);
 
 
     //questions  with right answer
@@ -105,8 +105,9 @@ if (isset($_POST['first-short-q'])) {
     array_push($firstMoreAnswer, $_POST['first-more-answer']);
     array_push($firstMoreAnswer, $_POST['first-more-answer2']);
     array_push($firstMoreAnswer, $_POST['first-more-answer3']);
+    $correctAnswer = $_POST['correct-answer'];
 
-    $controller->insertAnswers($userID, $questionId++, "Výber správnej odpovede", implode(",", $firstMoreAnswer));
+    $controller->insertAnswers($userID, $questionId++, "Výber správnej odpovede", implode(",", $firstMoreAnswer),$correctAnswer);
 
     $fourQuestion = $_POST['second-more-q'];
     $controller->insertQuestion($examId, $fourQuestion, $answerId++, "Výber správnej odpovede", 1);
@@ -115,7 +116,8 @@ if (isset($_POST['first-short-q'])) {
     array_push($secondMoreAnswer, $_POST['second-more-answer']);
     array_push($secondMoreAnswer, $_POST['second-more-answer2']);
     array_push($secondMoreAnswer, $_POST['second-more-answer3']);
-    $controller->insertAnswers($userID, $questionId++, "Výber správnej odpovede", implode(",", $secondMoreAnswer));
+    $correctAnswer2 = $_POST['correct-answer2'];
+    $controller->insertAnswers($userID, $questionId++, "Výber správnej odpovede", implode(",", $secondMoreAnswer),$correctAnswer2);
 
 
     //pair questions
@@ -123,13 +125,13 @@ if (isset($_POST['first-short-q'])) {
     $controller->insertQuestion($examId, $fifthQuestion, $answerId++, "Párovanie odpovedí", 1);
 
     $firstPairAnswer = $_POST['first-pair-answer'];
-    $controller->insertAnswers($userID, $questionId++, "Párovanie odpovedí", $firstPairAnswer);
+    $controller->insertAnswers($userID, $questionId++, "Párovanie odpovedí", $firstPairAnswer,$firstPairAnswer);
 
     $sixQuestion = $_POST['second-pair-q'];
     $controller->insertQuestion($examId, $sixQuestion, $answerId++, "Párovanie odpovedí", 1);
 
     $secondPairAnswer = $_POST['second-pair-answer'];
-    $controller->insertAnswers($userID, $questionId++, "Párovanie odpovedí", $secondPairAnswer);
+    $controller->insertAnswers($userID, $questionId++, "Párovanie odpovedí", $secondPairAnswer,$secondPairAnswer);
 
 
     //draw questions and where answer from teacher is not present then put 0 into DB
@@ -324,7 +326,8 @@ if (isset($_POST['first-short-q'])) {
                                 <input type="text" name="first-more-answer" id="first-more-answer"> <br>
                                 <input type="text" name="first-more-answer2" id="first-more-answer2"><br>
                                 <input type="text" name="first-more-answer3" id="first-more-answer3"><br>
-
+                                <label for="correct-answer"><strong>správna odpoveď</strong></label>
+                                <input type="text" name="correct-answer" id="correct-answer"> <br>
                             </div>
 
                             <div class="mb-3">
@@ -337,7 +340,8 @@ if (isset($_POST['first-short-q'])) {
                                 <input type="text" name="second-more-answer" id="second-more-answer"><br>
                                 <input type="text" name="second-more-answer2" id="second-more-answer2"><br>
                                 <input type="text" name="second-more-answer3" id="second-more-answer3"><br>
-
+                                <label for="correct-answer2"><strong>správna odpoveď</strong></label>
+                                <input type="text" name="correct-answer2" id="correct-answer2"> <br>
                             </div>
 
                             <h4>párovacie otázky</h4>
