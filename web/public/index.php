@@ -49,9 +49,9 @@ $controller = new Controller();
                             <h4>Contact us:</h4>
                             <div class="uk-column-1-3@m">
                                 <ul class="uk-list uk-list-divider">
-                                    <li><a href="https://github.com/michalcik10" type="uk-button uk-button-default"><i uk-icon="icon: github"></i></a></li>
-                                    <li><a href="mailto:xkaminsky@stuba.sk" type="uk-button uk-button-default"><i uk-icon="icon: mail"></i></a></li>
-                                    <li><a href="https://www.facebook.com/michal.kaminsky.71" type="uk-button uk-button-default"><i uk-icon="icon: facebook"></i></a></li>
+                                    <li><a href="https://github.com/michalcik10" type="button" class="uk-button uk-button-default"><i uk-icon="icon: github"></i></a></li>
+                                    <li><a href="mailto:xkaminsky@stuba.sk" type="button" class="uk-button uk-button-default"><i uk-icon="icon: mail"></i></a></li>
+                                    <li><a href="https://www.facebook.com/michal.kaminsky.71" type="button" class="uk-button uk-button-default"><i uk-icon="icon: facebook"></i></a></li>
                                     <li></li>
                                 </ul>
                             </div>
@@ -67,9 +67,9 @@ $controller = new Controller();
                             <h4>Contact us:</h4>
                             <div class="uk-column-1-3@m">
                                 <ul class="uk-list uk-list-divider">
-                                    <li><a href="https://github.com/luxao" type="uk-button uk-button-default" ><i uk-icon="icon: github"></i></a></li>
-                                    <li><a href="mailto:xlobl@stuba.sk" type="uk-button uk-button-default"><i uk-icon="icon: mail"></i></a></li>
-                                    <li><a href="https://www.facebook.com/Luxao.10/" type="uk-button uk-button-default"><i uk-icon="icon: facebook"></i></a></li>
+                                    <li><a href="https://github.com/luxao" type="button" class="uk-button uk-button-default" ><i uk-icon="icon: github"></i></a></li>
+                                    <li><a href="mailto:xlobl@stuba.sk" type="button" class="uk-button uk-button-default"><i uk-icon="icon: mail"></i></a></li>
+                                    <li><a href="https://www.facebook.com/Luxao.10/" type="button" class="uk-button uk-button-default"><i uk-icon="icon: facebook"></i></a></li>
                                     <li></li>
                                 </ul>
                             </div>
@@ -87,9 +87,9 @@ $controller = new Controller();
                             <h4>Contact us:</h4>
                             <div class="uk-column-1-3@m">
                                 <ul class="uk-list uk-list-divider">
-                                    <li><a href="https://github.com/RomanCech" type="uk-button uk-button-default"><i uk-icon="icon: github"></i></a></li>
-                                    <li><a href="mailto:xcech@stuba.sk" type="uk-button uk-button-default" ><i uk-icon="icon: mail"></i></a></li>
-                                    <li><a href="https://www.facebook.com/roman.cech.587" type="uk-button uk-button-default"><i uk-icon="icon: facebook"></i></a></li>
+                                    <li><a href="https://github.com/RomanCech" type="button" class="uk-button uk-button-default"><i uk-icon="icon: github"></i></a></li>
+                                    <li><a href="mailto:xcech@stuba.sk" type="button" class="uk-button uk-button-default" ><i uk-icon="icon: mail"></i></a></li>
+                                    <li><a href="https://www.facebook.com/roman.cech.587" type="button" class="uk-button uk-button-default"><i uk-icon="icon: facebook"></i></a></li>
                                     <li></li>
                                 </ul>
                             </div>
@@ -105,9 +105,9 @@ $controller = new Controller();
                             <h4>Contact us:</h4>
                             <div class=" uk-column-1-3@m ">
                                 <ul class="uk-list uk-list-divider">
-                                    <li><a href="#" type="uk-button uk-button-default"><i  uk-icon="icon: github"></i></a></li>
-                                    <li><a href="mailto:xivans@stuba.sk"  type="uk-button uk-button-default"><i uk-icon="icon: mail"></i></a></li>
-                                    <li><a href="https://www.facebook.com/sebastian.ivan.798" type="uk-button uk-button-default"><i uk-icon="icon: facebook"></i></a></li>
+                                    <li><a href="#" type="button" class="uk-button uk-button-default"><i  uk-icon="icon: github"></i></a></li>
+                                    <li><a href="mailto:xivans@stuba.sk"  type="button" class="uk-button uk-button-default"><i uk-icon="icon: mail"></i></a></li>
+                                    <li><a href="https://www.facebook.com/sebastian.ivan.798" type="button" class="uk-button uk-button-default"><i uk-icon="icon: facebook"></i></a></li>
                                     <li></li>
                                 </ul>
                             </div>
@@ -201,6 +201,23 @@ $controller = new Controller();
                     </tbody>
                 </table>
                 <hr>
+                <h3>API</h3>
+                <div class=" uk-column-1-3@m ">
+                    <ul class="uk-list uk-list-divider">
+                        <li><a href="https://mathlive.io/" type="button" class="uk-button uk-button-default">MathLive</a></li>
+                        <li><a href="https://getbootstrap.com/"  type="button" class="uk-button uk-button-default">Bootstrap</a></li>
+                        <li><a href="https://getuikit.com/" type="button" class="uk-button uk-button-default">Uikit</a></li>
+                        <li></li>
+                    </ul>
+                </div>
+                <div class=" uk-column-1-3@m ">
+                    <ul class="uk-list uk-list-divider">
+                        <li><a href="https://mathlive.io/" type="button" class="uk-button uk-button-default">?</a></li>
+                        <li><a href="https://zwibbler.com/"  type="button" class="uk-button uk-button-default">Zwibbler</a></li>
+                        <li><a href="https://getuikit.com/" type="button" class="uk-button uk-button-default">?</a></li>
+                        <li></li>
+                    </ul>
+                </div>
                 <a href="logs/logIn_Student.php" type="button" class="uk-button uk-margin-small-top">Back to Web aplication</a>
             </div>
         </div>
