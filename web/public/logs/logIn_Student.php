@@ -26,6 +26,8 @@ if (isset($_POST['code'] ) && isset($_POST['aisId']) && isset($_POST['name'] ) &
             $_SESSION["loggedin"] = true;
             $_SESSION['examCode'] = $_POST['code'];
             $_SESSION['name'] = $studentInfo[0]['name'];
+            $_SESSION['aisId'] = $_POST['aisId'];
+            $_SESSION['studentId'] = $studentInfo[0]['id'];
             header("Location: ../student/student.php");
         }
 

@@ -19,7 +19,8 @@ $user = $contr->selectTeacher($_SESSION['email']);
                 <li><a type="button" class="uk-button" data-toggle="modal" data-target="#myModal2">Create Test</a></li>
                 <li><a type="button" class="uk-button" data-toggle="modal" data-target="#myModal">Create Question</a></li>
                 <li><a type="button" class="uk-button" data-toggle="modal" data-target="#myModal3">Tests</a></li>
-                <li><a href="#" type="button" class="uk-button" >Students</a></li>
+                <li><a type="button" class="uk-button" data-toggle="modal" data-target="#myModal4">Students exams</a></li>
+                <li><a type="button" class="uk-button" data-toggle="modal" data-target="#myModal5">Running exam</a></li>
             </ul>
 
         </div>

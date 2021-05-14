@@ -99,4 +99,9 @@ class LogsModel{
     }
 
 
+    public function getHeader($filename) {
+        header('Content-Type: application/csv;charset=UTF-8');
+        header('Content-Disposition: attachment; filename="'.$filename.'";');
+    }
+
 }
