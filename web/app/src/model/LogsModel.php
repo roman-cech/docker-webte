@@ -88,7 +88,7 @@ class LogsModel{
     public function updateIs_Active_Buttons($is_active,$exam_code)
     {
         try {
-            $stmt = $this->conn->prepare("UPDATE `Exams` SET `is_active`= :is_active WHERE `exam_code` = :exam_code");
+            $stmt = $this->conn->prepare("UPDATE test.Exams SET is_active= :is_active WHERE exam_code = :exam_code");
             $stmt->bindParam(":is_active",$is_active);
             $stmt->bindParam(":exam_code",$exam_code);
             $stmt->execute();
@@ -98,5 +98,10 @@ class LogsModel{
         }
     }
 
+
+    public function getHeader($filename) {
+        header('Content-Type: application/csv;charset=UTF-8');
+        header('Content-Disposition: attachment; filename="'.$filename.'";');
+    }
 
 }

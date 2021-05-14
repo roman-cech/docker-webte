@@ -4,13 +4,8 @@ session_start();
 
 include "../../app/vendor/autoload.php";
 
-
 use App\Model\GetQuestionModel;
-
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
+use App\Model\ExamsLoginModel;
 
 function getJsonDecode($res)
 {
@@ -50,6 +45,8 @@ function getJsonDecode($res)
     <link rel="stylesheet" href="../assets/css/style.css">
 
     <script src='https://unpkg.com/mathlive/dist/mathlive.min.js'></script>
+
+    <script src='../assets/js/script.js'></script>
 </head>
 <style>
     label {
@@ -63,14 +60,14 @@ function getJsonDecode($res)
         <div class="uk-navbar-center">
 
             <ul class="uk-navbar-nav">
-                <li><a href="#" class="uk-button">CLOCKS</a></li>
+                <p id="clocks">TIMER</p>
             </ul>
 
         </div>
         <div class="uk-navbar-right">
 
             <ul class="uk-navbar-nav">
-                <li><a href="#" type="button" class="uk-button">Send Test</a></li>
+                <li><a href="#" type="button" class="uk-button" onclick="kokos()" id="send-test-link">Send Test</a></li>
                 <li><a type="button" class="uk-button" name="logout" href="../logs/Logout.php">Logout</a></li>
             </ul>
 
@@ -89,9 +86,13 @@ function getJsonDecode($res)
 
                 $model = new GetQuestionModel();
 
-
                 $resultExamID = $model->getExamId($_SESSION['examCode']);
                 $examID = getJsonDecode($resultExamID);
+
+                $examLoginModel = new ExamsLoginModel();
+                $examLoginModel->insertStudentWritingExam($examID[0]->id, $_SESSION["studentId"]);
+
+                echo '<input type="number" value="' . $examID[0]->time_limit . '" name="exam-miliseconds" id="exam-miliseconds" hidden>';
 
                 echo "<h2> Exam :  " . $examID[0]->title . "</h2>";
 
@@ -128,6 +129,10 @@ function getJsonDecode($res)
                 $tmpPairQuestion = $model->getPairQuestions($exam_id);
                 $pairQuestion = getJsonDecode($tmpPairQuestion);
 
+                //get DrawWuestion
+                $tmpDrawQuestion = $model->getDrawThing($exam_id);
+                $drawQuestion = getJsonDecode($tmpDrawQuestion);
+
 
                 $tmpFirstPairAnswer = $model->getPairAnswers($pairQuestion[0]->answer_id);
                 $firstPairAnswer = getJsonDecode($tmpFirstPairAnswer);
@@ -140,6 +145,13 @@ function getJsonDecode($res)
 
                 $tmpFourPairAnswer = $model->getPairAnswers($pairQuestion[3]->answer_id);
                 $fourPairAnswer = getJsonDecode($tmpFourPairAnswer);
+
+
+
+                //TODO: vytvorit funkcionality pre matematické vzorce, kontrolovanie správnosti odpovedi,
+                //TODO: vytvorit funkcionalitu pre párovacie otázky
+                //TODO: kreslenie pre kresliacu otázku
+
 
 
                 ?>
@@ -160,27 +172,28 @@ function getJsonDecode($res)
                 <div class="mb-3">
                     <label for="choose-first"><?php echo "(" . $tmp++ . ". Uloha\t):\t" . $chooseQ[0]->question ?></label>
                     <br>
-                    <label for="first-choose-answer"><?php echo $arrFirstAnswers[0] ?></label>
-                    <input type="checkbox" name="first-choose-answer" id="first-choose-answer">
+                    <label for="first-multi-first-checkbox" name="first-multi-first-answer" id="first-multi-first-answer"><?php echo $arrFirstAnswers[0] ?></label>
+                    <input type="checkbox" name="first-multi-first-checkbox" id="first-multi-first-checkbox">
                     <br>
-                    <label for="second-choose-answer"><?php echo $arrFirstAnswers[1] ?></label>
-                    <input type="checkbox" name="second-choose-answer" id="second-choose-answer">
+                    <label for="first-multi-second-checkbox" name="first-multi-second-answer" id="first-multi-second-answer"><?php echo $arrFirstAnswers[1] ?></label>
+                    <input type="checkbox" name="first-multi-second-checkbox" id="first-multi-second-checkbox">
                     <br>
-                    <label for="third-choose-answer"><?php echo $arrFirstAnswers[2] ?></label>
-                    <input type="checkbox" name="third-choose-answer" id="third-choose-answer">
+                    <label for="first-multi-third-checkbox" name="first-multi-third-answer" id="first-multi-third-answer"><?php echo $arrFirstAnswers[2] ?></label>
+                    <input type="checkbox" name="first-multi-third-checkbox" id="first-multi-third-checkbox">
                     <br>
                 </div>
+
                 <div class="mb-3">
                     <label for="choose-first"><?php echo "(" . $tmp++ . ". Uloha\t):\t" . $chooseQ[1]->question ?></label>
                     <br>
-                    <label for="first-choose-answer"><?php echo $arrSecondAnswers[0] ?></label>
-                    <input type="checkbox" name="first-choose-answer" id="first-choose-answer">
+                    <label for="second-multi-first-checkbox" name="second-multi-first-answer" id="second-multi-first-answer"><?php echo $arrSecondAnswers[0] ?></label>
+                    <input type="checkbox" name="second-multi-first-checkbox" id="second-multi-first-checkbox">
                     <br>
-                    <label for="second-choose-answer"><?php echo $arrSecondAnswers[1] ?></label>
-                    <input type="checkbox" name="second-choose-answer" id="second-choose-answer">
+                    <label for="second-multi-second-checkbox" name="second-multi-second-answer" id="second-multi-second-answer"><?php echo $arrSecondAnswers[1] ?></label>
+                    <input type="checkbox" name="second-multi-second-checkbox" id="second-multi-second-checkbox">
                     <br>
-                    <label for="third-choose-answer"><?php echo $arrSecondAnswers[2] ?></label>
-                    <input type="checkbox" name="third-choose-answer" id="third-choose-answer">
+                    <label for="second-multi-third-checkbox" name="second-multi-third-answer" id="second-multi-third-answer"><?php echo $arrSecondAnswers[2] ?></label>
+                    <input type="checkbox" name="second-multi-third-checkbox" id="second-multi-third-checkbox">
                     <br>
                 </div>
 
@@ -212,17 +225,19 @@ function getJsonDecode($res)
                     </div>
                 </div>
 
+                <strong style="font-size: 1.5em;"><?php echo "(" . $tmp++ . ". Uloha\t):\t" . $drawQuestion[0]->question ?></strong>
+
                 <div style="margin: 0 auto">
 
                     <zwibbler z-controller="mycontroller">
                         <button z-click="ctx.newDocument()">New</button>
-                        <button z-click="mySave()">Save</button>
-                        <button z-click="myOpen()">Open</button>
+                        <button z-click="mySave()" name="draw-save-button" id="draw-save-button">Save</button>
                         <div z-canvas style="height:300px"></div>
                     </zwibbler>
 
                 </div>
 
+                <input type="text" name="draw-input" id="draw-input" hidden>
 
                 <div class="mb-3">
                     <br>
@@ -231,67 +246,51 @@ function getJsonDecode($res)
                     </h4>
                     <div class="m-3" style="float: left">
                         <strong style="font-size: 1.5em; display: block">1)
-                            - <?php echo $pairQuestion[1]->question ?></strong>
+                            -<?php echo $pairQuestion[1]->question ?></strong>
 
                         <strong style="font-size: 1.5em; display: block ">2)
-                            - <?php echo $pairQuestion[3]->question ?></strong>
+                            -<?php echo $pairQuestion[3]->question ?></strong>
 
                         <strong style="font-size: 1.5em;display: block">3)
-                            - <?php echo $pairQuestion[0]->question ?></strong>
+                            -<?php echo $pairQuestion[0]->question ?></strong>
 
                         <strong style="font-size: 1.5em;display: block">4)
-                            - <?php echo $pairQuestion[2]->question ?></strong>
+                            -<?php echo $pairQuestion[2]->question ?></strong>
 
                     </div>
 
                     <div class="m-3" style="float: right">
                         <input type="number" id="first-pair-input" name="first-pair-input" style="width:3em"> <strong
-                                style="font-size: 1.5em;"><?php echo $fourPairAnswer[0]->answer ?></strong><br>
+                                style="font-size: 1.5em;" id="first-pair"><?php echo $fourPairAnswer[0]->answer ?></strong><br>
                         <input type="number" id="second-pair-input" name="second-pair-input" style="width:3em"> <strong
-                                style="font-size: 1.5em;"><?php echo $secondPairAnswer[0]->answer ?></strong><br>
+                                style="font-size: 1.5em;" id="second-pair"><?php echo $secondPairAnswer[0]->answer ?></strong><br>
                         <input type="number" id="third-pair-input" name="third-pair-input" style="width:3em"> <strong
-                                style="font-size: 1.5em;"><?php echo $thirdPairAnswer[0]->answer ?></strong><br>
+                                style="font-size: 1.5em;"  id="third-pair"><?php echo $thirdPairAnswer[0]->answer ?></strong><br>
                         <input type="number" id="four-pair-input" name="four-pair-input" style="width:3em"><strong
-                                style="font-size: 1.5em;"><?php echo $firstPairAnswer[0]->answer ?></strong><br>
+                                style="font-size: 1.5em;" id="fourth-pair"><?php echo $firstPairAnswer[0]->answer ?></strong><br>
                     </div>
-                </div>
 
+                </div>
 
             </div>
 
         </div>
+
         <div class="uk-width-auto@m">
             <div class="uk-card uk-card-default "></div>
         </div>
     </div>
-
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
         crossorigin="anonymous"></script>
+
 <script>
-
-    Zwibbler.controller("mycontroller", (scope) => {
-        let saved = "";
-        const ctx = scope.ctx;
-        scope.mySave = () => {
-            saved = ctx.save("svg");
-            alert("Saved: " + saved);
-            //TODO: V premennej saved sa nachadza link tohoto obrazku to treba ulozit do atributu aby to vedel potom ucitel nacitat
-            console.log(saved);
-        }
-
-        scope.myOpen = () => {
-            if (!saved) {
-                alert("Please save first.");
-                return;
-            }
-
-            ctx.load(saved);
-        }
-    })
-
+    //can be selected only one checkbox in div XD
+    $('input[type="checkbox"]').on('change', function() {
+        $(this).siblings('input[type="checkbox"]').prop('checked', false);
+    });
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"

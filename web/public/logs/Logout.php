@@ -4,5 +4,6 @@ session_start();
 unset($_SESSION['loggedin']);
 
 header("Location: logIn_Student.php");
+exit;
 
 ?>

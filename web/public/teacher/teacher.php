@@ -1,6 +1,5 @@
 <?php
 
-
 session_start();
 
 include "../../app/vendor/autoload.php";
@@ -8,9 +7,11 @@ include "../../app/vendor/autoload.php";
 use App\Controller\Controller;
 use App\Model\Model;
 use App\Classes\ShowTest;
+use App\Model\ExamsLoginModel;
 
 $class = new ShowTest();
 $model = new Model();
+$examLoginModel = new ExamsLoginModel();
 
 
 
@@ -162,6 +163,10 @@ if (isset($_POST['first-short-q'])) {
     <!-- UIkit JS -->
     <script src="https://cdn.jsdelivr.net/npm/uikit@3.6.21/dist/js/uikit.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/uikit@3.6.21/dist/js/uikit-icons.min.js"></script>
+
+
+    <link rel="stylesheet" href="//cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css">
+
     <link rel="stylesheet" href="../assets/css/style.css">
 
 </head>
@@ -171,6 +176,106 @@ if (isset($_POST['first-short-q'])) {
 <?php include "nav_Teacher.php"?>
 
 <div class="container">
+
+    <!-- Modal -->
+    <div id="myModal5" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <div class="modal-content" style="width: 1000px;">
+                <div class="modal-header">
+                    <h4 class="modal-title">Prebiehajuci test</h4>
+                </div>
+
+                <div class="mainElement">
+                    <table id="running_exams_info" class="row-border stripe order-column table_style">
+                        <?php
+                        $examData = $examLoginModel->getActiveExam();
+                        foreach($examData as $examRow) {
+                            echo '<h4>Prebiehajúci test : ' . $examRow["title"] . ' - ' . $examRow["exam_code"] . '</h4>';
+
+                           echo '<thead>
+                                <th>Meno</th>
+                                <th>Priezvisko</th>
+                                <th>Status</th>
+                                <th>Opustil tab</th>
+                            </thead>';
+
+                           $studentsWritingTest = $examLoginModel->getStudentWritingExam($examRow["id"]);
+                           foreach ($studentsWritingTest as $student) {
+                               echo '<tr>';
+                               echo '<td>' . $student["name"] . '</td>';
+                               echo '<td>' . $student["surname"] . '</td>';
+                               if(!strcmp( $student["finished"],"0")) {
+                                   echo '<td>' . 'Este pise' . '</td>';
+                               } else {
+                                   echo '<td>' . 'Skoncil' . '</td>';
+                               }
+
+                               if(!strcmp($student["leave_tab"],"0")) {
+                                   echo '<td>' . 'Neopustil okno' . '</td>';
+                               } else {
+                                   echo '<td>' . 'Opustil okno' . '</td>';
+                               }
+                           }
+                        }
+                        ?>
+                    </table>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div
+
+    <!-- Modal -->
+    <div id="myModal4" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <div class="modal-content" style="width: 1000px;">
+                <div class="modal-header">
+                    <h4 class="modal-title">Výsledky testov</h4>
+                </div>
+
+                <div class="mainElement">
+                    <table id="student_test_info" class="row-border stripe order-column table_style">
+                        <thead>
+                            <th>Meno</th>
+                            <th>Priezvisko</th>
+                            <th>Ais ID</th>
+                            <th>Nazov testu</th>
+                            <th>Kód testu</th>
+                            <th>Počet bodov</th>
+                            <th>Export testu do CSV</th>
+                            <th>Export testu do PDF</th>
+                        </thead>
+
+                        <?php
+                            $data = $model->getStudentsTestInfo();
+                            foreach($data as $row) {
+                                echo '<tr>';
+                                echo '<td>' . $row["name"] . '</td>';
+                                echo '<td>' . $row["surname"] . '</td>';
+                                echo '<td>' . $row["ais_id"] . '</td>';
+                                echo '<td>' . $row["title"] . '</td>';
+                                echo '<td>' . $row["exam_code"] . '</td>';
+                                echo '<td>' . $row["all_points"] . '</td>';
+                                $examID = $row["examID"];
+                                $studentID = $row["userID"];
+                                echo '<td> <a class="btn btn-primary" href="getCsv.php?examId=' . $examID . '&studentId=' . $studentID . '">CSV export</a> </td>';
+                                echo '<td> <button type="button" class="btn btn-success">PDF export</button> </td>';
+                            }
+                        ?>
+                    </table>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Modal -->
     <div id="myModal3" class="modal fade" role="dialog">

@@ -144,7 +144,7 @@ $controller = new Controller();
                         <td>10</td>
                     </tr>
                     <tr>
-                        <td>Roman Čech</td>
+                        <td>Roman Čech,Lukáš Lobl</td>
                         <td>realizácia párovacích otázok (zadávanie, zobrazovanie, vyhodnotenie)</td>
                         <td>12</td>
                     </tr>
@@ -164,7 +164,12 @@ $controller = new Controller();
                         <td>8</td>
                     </tr>
                     <tr>
-                        <td>Lukáš Löbl</td>
+                        <td>Sebastián Ivan</td>
+                        <td>vyhodnotenie testu, kontrola správnosti odpovedí</td>
+
+                    </tr>
+                    <tr>
+                        <td>Lukáš Löbl,Michal Kaminský</td>
                         <td>možnosť zadefinovania viacerých testov, ich aktivácia a deaktivácia</td>
                         <td>8</td>
                     </tr>
