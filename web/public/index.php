@@ -37,16 +37,16 @@ $controller = new Controller();
         </div>
         <div class="uk-width-expand@m">
             <div id="test" class="uk-card uk-card-default uk-card-body">
-                <h1 ><i>Documentation</i></h1><br>
-                <h3 >The last task</h3>
+                <h1 ><i>Dokumentácia</i></h1><br>
+                <h3 >Skuškové zadanie</h3>
                 <hr class="uk-divider-icon ">
-                <h3 >Members in Team</h3>
+                <h3 >Členovia Tímu</h3>
                 <div class="uk-child-width-1-2@s" uk-grid>
                     <div uk-scrollspy="cls: uk-animation-slide-left; repeat: true">
                         <div class="uk-light uk-background-secondary uk-padding">
                             <h3>Michal Kaminský</h3>
                             <img class="thumbnail" src="img/miso.jpeg"  alt="Kaminský" />
-                            <h4>Contact us:</h4>
+                            <h4>Kontaktujte nás:</h4>
                             <div class="uk-column-1-3@m">
                                 <ul class="uk-list uk-list-divider">
                                     <li><a href="https://github.com/michalcik10" type="button" class="uk-button uk-button-default"><i uk-icon="icon: github"></i></a></li>
@@ -64,7 +64,7 @@ $controller = new Controller();
                         <div class="uk-dark uk-background-muted uk-padding">
                             <h3>Lukáš Löbl</h3>
                             <img src="img/lukas.jpg" class="thumbnail" alt="Löbl" />
-                            <h4>Contact us:</h4>
+                            <h4>Kontaktujte nás:</h4>
                             <div class="uk-column-1-3@m">
                                 <ul class="uk-list uk-list-divider">
                                     <li><a href="https://github.com/luxao" type="button" class="uk-button uk-button-default" ><i uk-icon="icon: github"></i></a></li>
@@ -84,7 +84,7 @@ $controller = new Controller();
                         <div class="uk-dark uk-background-muted uk-padding">
                             <h3>Roman Čech</h3>
                             <img src="img/ROMAN2.jpg" class="thumbnail" alt="Čech" />
-                            <h4>Contact us:</h4>
+                            <h4>Kontaktujte nás:</h4>
                             <div class="uk-column-1-3@m">
                                 <ul class="uk-list uk-list-divider">
                                     <li><a href="https://github.com/RomanCech" type="button" class="uk-button uk-button-default"><i uk-icon="icon: github"></i></a></li>
@@ -102,7 +102,7 @@ $controller = new Controller();
                         <div class="uk-light uk-background-secondary uk-padding">
                             <h3>Sebastián Ivan</h3>
                             <img src="img/sebastian.png" class="thumbnail" alt="Ivan" />
-                            <h4>Contact us:</h4>
+                            <h4>Kontaktujte nás:</h4>
                             <div class=" uk-column-1-3@m ">
                                 <ul class="uk-list uk-list-divider">
                                     <li><a href="#" type="button" class="uk-button uk-button-default"><i  uk-icon="icon: github"></i></a></li>
@@ -118,13 +118,13 @@ $controller = new Controller();
                     </div>
                 </div>
                 <hr class="uk-divider-icon ">
-                <h3>Division of task</h3>
+                <h3>Rozdelenie úloh a vypracovanie úloh</h3>
                 <table class="uk-table uk-table-divider">
                     <thead>
                     <tr>
-                        <th class="uk-table-shrink">Name & Surname</th>
-                        <th class="uk-table-expand">Task</th>
-                        <th class="uk-width-small">Points</th>
+                        <th class="uk-table-shrink">Meno & Priezvisko</th>
+                        <th class="uk-table-expand">Uloha</th>
+                        <th class="uk-width-small">Body</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -222,7 +222,7 @@ $controller = new Controller();
                         <li></li>
                     </ul>
                 </div>
-                <a href="logs/logIn_Student.php" type="button" class="uk-button uk-margin-small-top">Back to Web aplication</a>
+                <a href="logs/logIn_Student.php" type="button" class="uk-button uk-margin-small-top">Späť do aplikácie</a>
             </div>
         </div>
         <div class="uk-width-auto@m">

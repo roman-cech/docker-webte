@@ -90,19 +90,19 @@ if (isset($_POST['code'] ) && isset($_POST['aisId']) && isset($_POST['name'] ) &
                         <div  class="uk-margin">
                             <div id="down_line" class="uk-inline">
                                 <span class="uk-form-icon" uk-icon="icon: user"></span>
-                                <input class="uk-input" type="text" name="name" placeholder="Name" id="name" onclick="studentValidate()">
+                                <input class="uk-input" type="text" name="name" placeholder="Meno" id="name" onclick="studentValidate()">
                             </div>
                         </div>
                         <div  class="uk-margin">
                             <div id="down_line" class="uk-inline">
                                 <span class="uk-form-icon" uk-icon="icon: user"></span>
-                                <input class="uk-input" type="text" name="surname" placeholder="Surname" id="surname" onclick="studentValidate()">
+                                <input class="uk-input" type="text" name="surname" placeholder="Priezvisko" id="surname" onclick="studentValidate()">
                             </div>
                         </div>
 
-                        <input class="uk-button uk-button-default" type="submit" value="Sing In">
+                        <input class="uk-button uk-button-default" type="submit" value="Prihlásiť sa">
                         <br>
-                        <a href="../index.php" ><button class="uk-button uk-button-default" type="button"  >Documentation</button></a>
+                        <a href="../index.php" ><button class="uk-button uk-button-default" type="button"  >Dokumentácia</button></a>
                     </form>
                 </div>
             </div>

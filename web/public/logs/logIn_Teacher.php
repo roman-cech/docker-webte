@@ -72,13 +72,13 @@ if (isset($_POST['email'] )&& isset($_POST['password']))
                         <div  class="uk-margin">
                             <div id="down_line" class="uk-inline">
                                 <span class="uk-form-icon" uk-icon="icon: unlock"></span>
-                                <input  class="uk-input"  type="password" name="password" placeholder="Password" id="password" onclick="teacherLogInValidate()">
+                                <input  class="uk-input"  type="password" name="password" placeholder="Heslo" id="password" onclick="teacherLogInValidate()">
                             </div>
                         </div>
 
-                        <input class="uk-button uk-button-default" type="submit" value="Sing In">
+                        <input class="uk-button uk-button-default" type="submit" value="Prihlásiť sa">
 
-                        <a href="register_Teacher.php"><input class="uk-button uk-button-default" type="button" value="Register"></a>
+                        <a href="register_Teacher.php"><input class="uk-button uk-button-default" type="button" value="Registrovať"></a>
                     </form>
                 </div>
             </div>

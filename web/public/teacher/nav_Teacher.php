@@ -16,11 +16,11 @@ $user = $contr->selectTeacher($_SESSION['email']);
         <div class="uk-navbar-left">
 
             <ul class="uk-navbar-nav">
-                <li><a type="button" class="uk-button" data-toggle="modal" data-target="#myModal2">Create Test</a></li>
-                <li><a type="button" class="uk-button" data-toggle="modal" data-target="#myModal">Create Question</a></li>
-                <li><a type="button" class="uk-button" data-toggle="modal" data-target="#myModal3">Tests</a></li>
-                <li><a type="button" class="uk-button" data-toggle="modal" data-target="#myModal4">Students exams</a></li>
-                <li><a type="button" class="uk-button" data-toggle="modal" data-target="#myModal5">Running exam</a></li>
+                <li><a type="button" class="uk-button" data-toggle="modal" data-target="#myModal2">Vytvoriť Test</a></li>
+                <li><a type="button" class="uk-button" data-toggle="modal" data-target="#myModal">Vytvoriť Otázky k Testu</a></li>
+                <li><a type="button" class="uk-button" data-toggle="modal" data-target="#myModal3">Testy</a></li>
+                <li><a type="button" class="uk-button" data-toggle="modal" data-target="#myModal4">Testy Študentov</a></li>
+                <li><a type="button" class="uk-button" data-toggle="modal" data-target="#myModal5">Sledovanie Testov</a></li>
             </ul>
 
         </div>
@@ -29,7 +29,7 @@ $user = $contr->selectTeacher($_SESSION['email']);
             <ul class="uk-navbar-nav">
                 <li><a><i uk-icon="users"></i></a></li>
                 <li><a><p><?php echo "<i>".$user[0]['name']." ".$user[0]['surname']."</i>";?><br><?php echo $user[0]['email'];?></p></a></li>
-                <li><a href="../logs/Logout.php" type="button" class="uk-button" >Logout</a></li>
+                <li><a href="../logs/Logout.php" type="button" class="uk-button" >Odhlásiť sa</a></li>
             </ul>
 
         </div>

@@ -60,15 +60,14 @@ function getJsonDecode($res)
         <div class="uk-navbar-center">
 
             <ul class="uk-navbar-nav">
-                <p id="clocks">TIMER</p>
+                <p id="clocks">Čas</p>
             </ul>
 
         </div>
         <div class="uk-navbar-right">
 
             <ul class="uk-navbar-nav">
-                <li><a href="#" type="button" class="uk-button" onclick="kokos()" id="send-test-link">Send Test</a></li>
-                <li><a type="button" class="uk-button" name="logout" href="../logs/Logout.php">Logout</a></li>
+                <li><a href="#" type="button" class="uk-button" onclick="kokos()" id="send-test-link">Odoslať Test</a></li>
             </ul>
 
         </div>
