@@ -2,7 +2,7 @@
 
 Docker running Nginx, PHP-FPM, Composer, MySQL and PHPMyAdmin.
 
-##How to run project locally:
+## How to run project locally:
 ```
 Start docker desktop!
 ```
