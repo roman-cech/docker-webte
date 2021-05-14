@@ -181,7 +181,7 @@ if (isset($_POST['first-short-q'])) {
     <div id="myModal5" class="modal fade" role="dialog">
         <div class="modal-dialog">
 
-            <div class="modal-content" style="width: 1000px;">
+            <div class="modal-content" style="width: auto;">
                 <div class="modal-header">
                     <h4 class="modal-title">Prebiehajuci test</h4>
                 </div>
@@ -233,7 +233,7 @@ if (isset($_POST['first-short-q'])) {
     <div id="myModal4" class="modal fade" role="dialog">
         <div class="modal-dialog">
 
-            <div class="modal-content" style="width: 1000px;">
+            <div class="modal-content" style="width: 1000px; display: table-cell">
                 <div class="modal-header">
                     <h4 class="modal-title">Výsledky testov</h4>
                 </div>
