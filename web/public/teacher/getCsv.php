@@ -40,6 +40,6 @@ if(isset($_GET["examId"]) && isset($_GET["studentId"])) {
     array_to_csv_download(array(
         array(1,2,3,4), // this array is going to be the first row
         array(1,2,3,4)), // this array is going to be the second row
-        "numbers.csv"
+        "exam.csv"
     );
 }
