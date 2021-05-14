@@ -55,7 +55,7 @@ $controller = new Controller();
                                     <li></li>
                                 </ul>
                             </div>
-                            <h3>Description of Work</h3>
+
                             <hr class="uk-divider-icon ">
                             <p></p>
                         </div>
@@ -73,7 +73,7 @@ $controller = new Controller();
                                     <li></li>
                                 </ul>
                             </div>
-                            <h3>Description of Work</h3>
+
                             <hr class="uk-divider-icon ">
                             <p></p>
                         </div>
@@ -93,7 +93,7 @@ $controller = new Controller();
                                     <li></li>
                                 </ul>
                             </div>
-                            <h3>Description of Work</h3>
+
                             <hr class="uk-divider-icon ">
                             <p></p>
                         </div>
@@ -111,7 +111,7 @@ $controller = new Controller();
                                     <li></li>
                                 </ul>
                             </div>
-                            <h3>Description of Work</h3>
+
                             <hr class="uk-divider-icon ">
                             <p></p>
                         </div>
@@ -179,7 +179,7 @@ $controller = new Controller();
                         <td>10</td>
                     </tr>
                     <tr>
-                        <td>Sebastián Ivan</td>
+                        <td>Lukáš Lobl, Michal Kaminský</td>
                         <td>export do pdf</td>
                         <td>10</td>
                     </tr>
@@ -215,11 +215,10 @@ $controller = new Controller();
                         <li></li>
                     </ul>
                 </div>
-                <div class=" uk-column-1-3@m ">
+                <div class=" uk-column-1-2@m ">
                     <ul class="uk-list uk-list-divider">
-                        <li><a href="https://mathlive.io/" type="button" class="uk-button uk-button-default">?</a></li>
+                        <li><a href="https://github.com/dompdf/dompdf" type="button" class="uk-button uk-button-default">Dompdf</a></li>
                         <li><a href="https://zwibbler.com/"  type="button" class="uk-button uk-button-default">Zwibbler</a></li>
-                        <li><a href="https://getuikit.com/" type="button" class="uk-button uk-button-default">?</a></li>
                         <li></li>
                     </ul>
                 </div>
