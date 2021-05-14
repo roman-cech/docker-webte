@@ -187,7 +187,7 @@ if (isset($_POST['first-short-q'])) {
                 </div>
 
                 <div class="mainElement">
-                    <table id="running_exams_info" class="row-border stripe order-column table_style">
+                    <table id="running_exams_info"  class="uk-table uk-table-hover uk-table-divider">
                         <?php
                         $examData = $examLoginModel->getActiveExam();
                         foreach($examData as $examRow) {
@@ -239,7 +239,7 @@ if (isset($_POST['first-short-q'])) {
                 </div>
 
                 <div class="mainElement">
-                    <table id="student_test_info" class="row-border stripe order-column table_style">
+                    <table id="student_test_info" class="uk-table uk-table-hover uk-table-divider">
                         <thead>
                             <th>Meno</th>
                             <th>Priezvisko</th>
