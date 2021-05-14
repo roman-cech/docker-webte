@@ -1,9 +1,5 @@
 <?php
 
-<<<<<<< HEAD
-
-=======
->>>>>>> cd750f588da8390959ca2fa599cf3f9f0059dc24
 session_start();
 
 include "../../app/vendor/autoload.php";
@@ -167,11 +163,10 @@ if (isset($_POST['first-short-q'])) {
     <!-- UIkit JS -->
     <script src="https://cdn.jsdelivr.net/npm/uikit@3.6.21/dist/js/uikit.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/uikit@3.6.21/dist/js/uikit-icons.min.js"></script>
-<<<<<<< HEAD
-=======
+
 
     <link rel="stylesheet" href="//cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css">
->>>>>>> cd750f588da8390959ca2fa599cf3f9f0059dc24
+
     <link rel="stylesheet" href="../assets/css/style.css">
 
 </head>

@@ -146,12 +146,13 @@ function getJsonDecode($res)
                 $tmpFourPairAnswer = $model->getPairAnswers($pairQuestion[3]->answer_id);
                 $fourPairAnswer = getJsonDecode($tmpFourPairAnswer);
 
-<<<<<<< HEAD
-=======
+
+
                 //TODO: vytvorit funkcionality pre matematické vzorce, kontrolovanie správnosti odpovedi,
                 //TODO: vytvorit funkcionalitu pre párovacie otázky
                 //TODO: kreslenie pre kresliacu otázku
->>>>>>> cd750f588da8390959ca2fa599cf3f9f0059dc24
+
+
 
                 ?>
 

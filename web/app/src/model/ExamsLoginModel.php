@@ -75,7 +75,7 @@ class ExamsLoginModel {
         try {
             $conn = new Database();
             $conn->getConnection()->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $stmt = $conn->getConnection()->prepare("SELECT ExamsLogin.exam_id, ExamsLogin.finished, ExamsLogin.leave_tab, Users.name, Users.surname FROM test.ExamsLogin JOIN Users ON ExamsLogin.user_id = Users.id WHERE ExamsLogin.exam_id=" . $examId);
+            $stmt = $conn->getConnection()->prepare("SELECT ExamsLogin.exam_id, ExamsLogin.finished, ExamsLogin.leave_tab, test.Users.name, test.Users.surname FROM test.ExamsLogin JOIN test.Users ON ExamsLogin.user_id = Users.id WHERE ExamsLogin.exam_id=" . $examId);
 
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_ASSOC);

@@ -220,7 +220,7 @@ class Model
         try {
             $conn = new Database();
             $conn->getConnection()->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $stmt = $conn->getConnection()->prepare("SELECT question, Answers.type, Answers.answer, Answers.correct_answer FROM Questions JOIN Answers ON Answers.question_id = Questions.id WHERE Answers.user_id = :student_id AND Questions.exam_id = :exam_id");
+            $stmt = $conn->getConnection()->prepare("SELECT question, test.Answers.type, test.Answers.answer, test.Answers.correct_answer FROM test.Questions JOIN test.Answers ON test.Answers.question_id = Questions.id WHERE Answers.user_id = :student_id AND Questions.exam_id = :exam_id");
 
             $stmt->bindParam(':student_id', $studentId);
             $stmt->bindParam(':exam_id', $examId);
