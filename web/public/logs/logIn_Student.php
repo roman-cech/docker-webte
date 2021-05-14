@@ -113,6 +113,6 @@ if (isset($_POST['code'] ) && isset($_POST['aisId']) && isset($_POST['name'] ) &
     </div>
 
 </main>
-<script src="../assets/js/script.js"></script>
+<script src="../assets/js/studentScript.js"></script>
 </body>
 </html>

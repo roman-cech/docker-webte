@@ -27,7 +27,7 @@ $controller = new Controller();
     <script src="https://cdn.jsdelivr.net/npm/uikit@3.6.21/dist/js/uikit-icons.min.js"></script>
 
 
-    <script defer src="assets/js/script.js"></script>
+    <script defer src="assets/js/studentScript.js"></script>
 </head>
 <body>
 <main class="container">
