@@ -5,7 +5,6 @@ include "../../app/vendor/autoload.php";
 
 include "../../app/vendor/dompdf/autoload.inc.php";
 use App\Model\Model;
-use App\Controller\Controller;
 
 use Dompdf\Dompdf;
 
@@ -13,7 +12,7 @@ if(isset($_GET["examId"]) && isset($_GET["studentId"])) {
 
     function getPdfStudentTest(){
         $model = new Model();
-        $controller = new Controller();
+
         $data = $model->getStudentTestAnswers($_GET["examId"],$_GET["studentId"]);
 
         $testTitle = $model->getTitleExam($_GET['examId']);
@@ -32,6 +31,12 @@ if(isset($_GET["examId"]) && isset($_GET["studentId"])) {
 
         $tableValeus = "";
         foreach ($json_decoded as $value) {
+            if($value->type === "Nakreslenie obrázka"){
+                $tableValeus.= "<tr><td>$value->question</td>
+                                <td>$value->type</td>
+               <td><img src= '$value->answer.png' width='300' height='150'></td></tr>
+             " ;
+            }
             $tableValeus .=
             '<tr>
             <td>'.$value->question.'</td>
@@ -59,7 +64,7 @@ if(isset($_GET["examId"]) && isset($_GET["studentId"])) {
                   <tr>
                       <th>Otázka</th>
                       <th>Typ otázky</th>
-                      <th>Odpoveď</th>
+                      <th>Odpoveď              
                   </tr>
                   <tbody>'.$tableValeus.'       
                 </tbody>

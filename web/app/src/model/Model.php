@@ -112,6 +112,45 @@ class Model
         }
     }
 
+
+    public function updatePoints($examId,$studentId,$questionPoints5,$questionPoints6,$questionPoints7,$allPoints)
+    {
+        try {
+            $conn = new Database();
+            $conn->getConnection()->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $stmt = $conn->getConnection()->prepare("UPDATE test.Points SET question5_points= :question5_points,question6_points=:question6_points,question7_points=:question7_points, all_points = :all_points
+                                        WHERE exam_id = :exam_id and student_id = :student_id");
+            $stmt->bindParam(":exam_id",$examId);
+            $stmt->bindParam(":student_id",$studentId);
+            $stmt->bindParam(":question5_points",$questionPoints5);
+            $stmt->bindParam(":question6_points",$questionPoints6);
+            $stmt->bindParam(":question7_points",$questionPoints7);
+            $stmt->bindParam(":all_points",$allPoints);
+            $stmt->execute();
+
+        } catch (PDOException $exception) {
+            return "Failed: " . $exception->getMessage();
+        }
+    }
+
+    public function getAllPoints($examId,$studentId)
+    {
+        try {
+            $conn = new Database();
+            $conn->getConnection()->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $stmt = $conn->getConnection()->prepare("select all_points from test.Points where id = :id and
+                                                student_id = :student_id");
+            $stmt->bindParam(":id",$examId);
+            $stmt->bindParam(":student_id",$studentId);
+
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        } catch (PDOException $exception) {
+            return "Failed: " . $exception->getMessage();
+        }
+    }
+
     public function getUserId($email)
     {
         try {

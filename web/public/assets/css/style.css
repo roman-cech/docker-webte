@@ -188,6 +188,10 @@ zwibbler {
     border-radius: 10px;
 }
 
+#points-for-draw:focus {
+    outline: none;
+}
+
 
 
 .form-check-input:checked {
