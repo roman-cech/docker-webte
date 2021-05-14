@@ -1,0 +1,202 @@
+html {
+    margin: 0;
+    padding: 0;
+}
+html,body {
+    background-image: url('https://getwallpapers.com/wallpaper/full/c/e/f/61064.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    height: auto;
+}
+
+#down_line{
+    border: solid;
+    border-width: 0px 0px 4px 0px;
+    border-color: #0c8409;
+}
+
+#box{
+    border: solid;
+    border-width: 4px 4px 4px 4px;
+    border-color: #0c8409;
+    box-shadow: 0px 0px 20px 5px black;
+}
+
+.student_button,.teacher_button{
+    border: solid;
+    border-width: 0px 0px 3px 0px;
+    border-color: #0c8409;
+}
+.student_button:hover,.teacher_button:hover {
+    border: solid;
+    border-width: 0px 0px 3px 0px;
+    border-color: #0c8409;
+    background: #cbcbcb;
+    color: white !important;
+    transition-duration: 0.24s;
+}
+/*background-color: #4e466f;*/
+.uk-button:hover{
+    background: #0c8409 !important;
+    color: white !important;
+}
+/*zwibbler board*/
+zwibbler {
+    background: white;
+    display: grid;
+    flex-flow: row nowrap;
+}
+
+.tools {
+    background: #f5f5f5;
+    flex: 0 0 200px;
+    display:flex;
+    flex-flow: column nowrap;
+    overflow-y: scroll;
+    padding: 10px;
+    font-family: Ubuntu;
+}
+
+[z-canvas] {
+    flex: 1 1 auto;
+}
+
+.tools button {
+    font-family: inherit;
+    font-size: 100%;
+    padding: 5px;
+    display: block;
+    background-color: white;
+    border: none;
+    border-radius: 2px;
+    border-bottom: 2px solid #ddd;
+    width: 500px;
+}
+
+.tools button[tool] {
+    display: inline-block;
+    width: 60px;
+    height: 60px;
+    font-size: 30px;
+}
+
+.tools button.option {
+    border: 0;
+    padding: 10px;
+    border-radius: 3px;
+    background: transparent;
+    text-align: left;
+}
+
+.tools button.selected {
+    background: #dbe6d7;
+}
+
+.tools button.hover {
+    background: #ddd;
+}
+
+.tools hr {
+    border: none;
+    border-top: 1px solid #ccc;
+}
+
+.tools select {
+    width: 100%;
+}
+
+[swatch] {
+    border: 1px solid black;
+    display: inline-block;
+    height: 2em;
+    width: 4em;
+    vertical-align:middle;
+    margin-right: 10px;
+}
+
+.colour-picker {
+    padding: 10px 0;
+}
+
+.pages {
+    flex: 0 0 100px;
+    background: #ccc;
+    display: flex;
+    flex-flow: row nowrap;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    align-items: center;
+}
+
+.page {
+    border: 3px solid transparent;
+    margin: 5px;
+    display: inline-block;
+    box-shadow: 2px 2px 2px rgba(0,0,0,0.2);
+}
+
+.page.selected {
+    border: 3px solid orange;
+}
+
+[z-popup] {
+    background: #ccc;
+    padding: 10px;
+    box-shadow: 2px 2px 2px rgba(0,0,0.2,0.5);
+}
+
+
+.ML__keystroke-caption {
+    visibility: hidden;
+
+    text-align: center;
+    border-radius: 6px;
+    padding: 16px;
+    /* position: absolute; */
+    z-index: 1;
+    /* display: flex; */
+    flex-direction: row;
+    justify-content: center;
+    --keystroke: #fff;
+    --on-keystroke: #555;
+    --keystroke-border: #f7f7f7;
+}
+#test{
+    border: solid;
+    border-width: 4px 4px 4px 4px;
+    border-color: #0c8409;
+    box-shadow: 0px 0px 20px 5px black;
+    margin-bottom: 10em;
+}
+
+
+/* width */
+::-webkit-scrollbar {
+    width: 15px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px #0c8409;
+    border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #0c8409;
+    border-radius: 10px;
+}
+
+.form-check-input:checked {
+    background-color: green;
+    border-color: green;
+}
+
+.mainElement {
+    margin: 20px;
+    padding: 20px;
+    background-color: lightblue;
+    border-radius: 20px;
+}
+
