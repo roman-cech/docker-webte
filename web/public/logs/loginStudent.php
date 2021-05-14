@@ -15,16 +15,22 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"]){
 
 if (isset($_POST['code'] ) && isset($_POST['aisId']) && isset($_POST['name'] ) && isset($_POST['surname'] ) )
 {
-    $arr = $contr->getExamsCode($_POST['code']);
+    $logArr = $contr->getExamsCode($_POST['code']);
     if (!empty($contr->getExamsCode($_POST['code'])))
     {
-        $contr->insertStudent($_POST['name'],$_POST['surname'],$_POST['aisId']);
-        $studentInfo= $contr->selectStudent($_POST['aisId']);
+        if ($logArr[0]['is_active'] === '1')
+        {
+            $contr->insertStudent($_POST['name'],$_POST['surname'],$_POST['aisId']);
+            $studentInfo= $contr->selectStudent($_POST['aisId']);
 
-        $_SESSION["loggedin"] = true;
-        $_SESSION['examCode'] = $_POST['code'];
-        $_SESSION['name'] = $studentInfo[0]['name'];
-        header("Location: ../student/student.php");
+            $_SESSION["loggedin"] = true;
+            $_SESSION['examCode'] = $_POST['code'];
+            $_SESSION['name'] = $studentInfo[0]['name'];
+            $_SESSION['aisId'] = $_POST['aisId'];
+            $_SESSION['studentId'] = $studentInfo[0]['id'];
+            header("Location: ../student/student.php");
+        }
+
 
     }
 }
@@ -66,35 +72,37 @@ if (isset($_POST['code'] ) && isset($_POST['aisId']) && isset($_POST['name'] ) &
         <div>
             <div id="box" class="uk-margin-large-top uk-card uk-card-default uk-card-body ">
                 <div >
-                    <?php include "nav_LogIn.php";?>
-                    <form class="uk-margin-medium" action="logIn_Student.php" method="post">
+                    <?php include "navLogin.php";?>
+                    <form class="uk-margin-medium" action="loginStudent.php" method="post" >
 
                         <div  class="uk-margin">
                             <div id="down_line" class="uk-inline">
                                 <span class="uk-form-icon" uk-icon="icon: hashtag"></span>
-                                <input class="uk-input" type="text" name="code">
+                                <input class="uk-input" type="text" name="code" id="code" onclick="studentValidate()">
                             </div>
                         </div>
                         <div  class="uk-margin">
                             <div id="down_line" class="uk-inline">
                                 <span class="uk-form-icon" uk-icon="icon: key">ID</span>
-                                <input  class="uk-input"  type="text" name="aisId">
+                                <input  class="uk-input"  type="text" name="aisId" id="aisId" onclick="studentValidate()">
                             </div>
                         </div>
                         <div  class="uk-margin">
                             <div id="down_line" class="uk-inline">
                                 <span class="uk-form-icon" uk-icon="icon: user"></span>
-                                <input class="uk-input" type="text" name="name" placeholder="Name">
+                                <input class="uk-input" type="text" name="name" placeholder="Meno" id="name" onclick="studentValidate()">
                             </div>
                         </div>
                         <div  class="uk-margin">
                             <div id="down_line" class="uk-inline">
                                 <span class="uk-form-icon" uk-icon="icon: user"></span>
-                                <input class="uk-input" type="text" name="surname" placeholder="Surname">
+                                <input class="uk-input" type="text" name="surname" placeholder="Priezvisko" id="surname" onclick="studentValidate()">
                             </div>
                         </div>
 
-                        <input class="uk-button uk-button-default" type="submit" value="Sing In">
+                        <input class="uk-button uk-button-default" type="submit" value="Prihlásiť sa">
+                        <br>
+                        <a href="../index.php" ><button class="uk-button uk-button-default" type="button"  >Dokumentácia</button></a>
                     </form>
                 </div>
             </div>
@@ -105,6 +113,6 @@ if (isset($_POST['code'] ) && isset($_POST['aisId']) && isset($_POST['name'] ) &
     </div>
 
 </main>
-
+<script src="../assets/js/studentScript.js"></script>
 </body>
 </html>

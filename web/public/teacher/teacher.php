@@ -1,23 +1,19 @@
 <?php
 
-//ini_set('display_errors', 1);
-//ini_set('display_startup_errors', 1);
-//error_reporting(E_ALL);
 session_start();
 
 include "../../app/vendor/autoload.php";
 
 use App\Controller\Controller;
 use App\Model\Model;
+use App\Classes\ShowTest;
+use App\Model\ExamsLoginModel;
 
+$class = new ShowTest();
 $model = new Model();
+$examLoginModel = new ExamsLoginModel();
 
-$url = $_GET['token'];
 
-function timeToMinutes($time)
-{
-    return $time - strtotime("now");
-}
 
 
 function getJsonDecode($res){
@@ -25,65 +21,30 @@ function getJsonDecode($res){
     return json_decode($tmp);
 }
 
-//
-//$model->insertExam("QW30",1,"zapocet",true,25);
 
-if (isset($_GET['token'])) {
-    $tokenString = bin2hex(random_bytes(3));
-    $_SESSION['newToken'] = $tokenString;
-}
+if (isset($_POST['exam-code'])) {
 
-echo $_SESSION['newToken'];
+    $examCode = $_POST['exam-code'];
 
-if (isset($_POST['title-test'])) {
-
-    $examCode = $_SESSION['newToken'];
-
-    //TODO $userId
+    $resultUserId = $model->getUserId($_SESSION['email']);
+    $tmpUserId = getJsonDecode($resultUserId);
+    $userID = $tmpUserId[0]->id;
 
     $titleTest = $_POST['title-test'];
     $timeLimit = $_POST['time-limit'];
-    $time = timeToMinutes(time() + (1 * 1 * $timeLimit * 1));
+    $timeInMilliseconds =  $timeLimit * 60000;
     $isActive = $_POST['is-active'];
     $examPoints = $_POST['points'];
 
-    $model->insertExam($examCode, 1, $titleTest, $time, $isActive, $examPoints);
+    $model->insertExam($examCode, $userID, $titleTest, $timeInMilliseconds, $isActive, $examPoints);
 
-    echo "insert successfully";
 }
+
+
 
 
 //check if form with short questions was submitted
 if (isset($_POST['first-short-q'])) {
-
-//    //  checking for values
-//    echo "<h4>typ 1</h4>";
-//
-//    echo $_POST['first-short-q'] . "<br>";
-//    echo $_POST['first-short-answer'] . "<br>";
-//    echo $_POST['second-short-q'] . "<br>";
-//    echo $_POST['second-short-answer'] . "<br>";
-//    echo "<h4>typ 2</h4>";
-//    echo $_POST['first-more-q'] . "<br>";
-//    echo $_POST['first-more-answer'] . "<br>";
-//    echo $_POST['second-more-q'] . "<br>";
-//    echo $_POST['second-more-answer'] . "<br>";
-//    echo "<h4>typ 3</h4>";
-//
-//    echo $_POST['first-pair-q'] . "<br>";
-//    echo $_POST['first-pair-answer'] . "<br>";
-//    echo $_POST['second-pair-q'] . "<br>";
-//    echo $_POST['second-pair-answer'] . "<br>";
-//    echo "<h4>typ 4</h4>";
-//
-//    echo $_POST['draw-q'] . "<br>";
-//    echo "<h4>typ 5</h4>";
-//
-//    echo $_POST['first-math-q'] . "<br>";
-//    echo $_POST['second-math-q'] . "<br>";
-
-
-  //  echo $_SESSION['newToken'];
 
 
     //create controller for inserting values
@@ -98,75 +59,89 @@ if (isset($_POST['first-short-q'])) {
 
     $examId = $model->getExamId();
 
-    //TODO: toto sa bude priradovat z loginu, treba do teacherModel spravit funkciu pre ziskanie userID
+
     $resultUserId = $model->getUserId($_SESSION['email']);
     $tmpUserId = getJsonDecode($resultUserId);
     $userID = $tmpUserId[0]->id;
 
     //create a variables for questions,answers && insert values
 
-
     //short questions
     $firstQuestion = $_POST['first-short-q'];
-    $controller->insertQuestion($examId, $firstQuestion, $answerId++, "Krátka odpoveď", 1);
+    $controller->insertQuestion($examId, $firstQuestion, $answerId++, "Krátka odpoveď", $_POST['first-short-points']);
 
     $firstShortAnswer = $_POST['first-short-answer'];
-    $controller->insertAnswers($userID, $questionId++, "Krátka odpoveď", $firstShortAnswer);
+    $controller->insertAnswers($userID, $questionId++, "Krátka odpoveď", $firstShortAnswer,$firstShortAnswer);
 
     $secondQuestion = $_POST['second-short-q'];
-    $controller->insertQuestion($examId, $secondQuestion, $answerId++, "Krátka odpoveď", 1);
+    $controller->insertQuestion($examId, $secondQuestion, $answerId++, "Krátka odpoveď", $_POST['second-short-points']);
 
     $secondShortAnswer = $_POST['second-short-answer'];
-    $controller->insertAnswers($userID, $questionId++, "Krátka odpoveď", $secondShortAnswer);
+    $controller->insertAnswers($userID, $questionId++, "Krátka odpoveď", $secondShortAnswer,$secondShortAnswer);
 
 
     //questions  with right answer
 
     $thirdQuestion = $_POST['first-more-q'];
-    $controller->insertQuestion($examId, $thirdQuestion, $answerId++, "Výber správnej odpovede", 1);
+    $controller->insertQuestion($examId, $thirdQuestion, $answerId++, "Výber správnej odpovede", $_POST['first-more-points']);
 
     $firstMoreAnswer = [];
     array_push($firstMoreAnswer, $_POST['first-more-answer']);
     array_push($firstMoreAnswer, $_POST['first-more-answer2']);
     array_push($firstMoreAnswer, $_POST['first-more-answer3']);
+    $correctAnswer = $_POST['correct-answer'];
 
-    $controller->insertAnswers($userID, $questionId++, "Výber správnej odpovede", implode(",", $firstMoreAnswer));
+    $controller->insertAnswers($userID, $questionId++, "Výber správnej odpovede", implode(",", $firstMoreAnswer),$correctAnswer);
 
     $fourQuestion = $_POST['second-more-q'];
-    $controller->insertQuestion($examId, $fourQuestion, $answerId++, "Výber správnej odpovede", 1);
+    $controller->insertQuestion($examId, $fourQuestion, $answerId++, "Výber správnej odpovede", $_POST['second-more-points']);
 
     $secondMoreAnswer = [];
     array_push($secondMoreAnswer, $_POST['second-more-answer']);
     array_push($secondMoreAnswer, $_POST['second-more-answer2']);
     array_push($secondMoreAnswer, $_POST['second-more-answer3']);
-    $controller->insertAnswers($userID, $questionId++, "Výber správnej odpovede", implode(",", $secondMoreAnswer));
+    $correctAnswer2 = $_POST['correct-answer2'];
+    $controller->insertAnswers($userID, $questionId++, "Výber správnej odpovede", implode(",", $secondMoreAnswer),$correctAnswer2);
 
 
     //pair questions
     $fifthQuestion = $_POST['first-pair-q'];
-    $controller->insertQuestion($examId, $fifthQuestion, $answerId++, "Párovanie odpovedí", 1);
+    $controller->insertQuestion($examId, $fifthQuestion, $answerId++, "Párovanie odpovedí", $_POST['first-pair-points']);
 
     $firstPairAnswer = $_POST['first-pair-answer'];
-    $controller->insertAnswers($userID, $questionId++, "Párovanie odpovedí", $firstPairAnswer);
+    $controller->insertAnswers($userID, $questionId++, "Párovanie odpovedí", $firstPairAnswer,$firstPairAnswer);
 
     $sixQuestion = $_POST['second-pair-q'];
-    $controller->insertQuestion($examId, $sixQuestion, $answerId++, "Párovanie odpovedí", 1);
+    $controller->insertQuestion($examId, $sixQuestion, $answerId++, "Párovanie odpovedí", $_POST['second-pair-points']);
 
     $secondPairAnswer = $_POST['second-pair-answer'];
-    $controller->insertAnswers($userID, $questionId++, "Párovanie odpovedí", $secondPairAnswer);
+    $controller->insertAnswers($userID, $questionId++, "Párovanie odpovedí", $secondPairAnswer,$secondPairAnswer);
+
+    $sevenQuestion = $_POST['third-pair-q'];
+    $controller->insertQuestion($examId, $sevenQuestion, $answerId++, "Párovanie odpovedí", $_POST['third-pair-points']);
+
+    $thirdPairAnswer = $_POST['third-pair-answer'];
+    $controller->insertAnswers($userID, $questionId++, "Párovanie odpovedí", $thirdPairAnswer,$thirdPairAnswer);
+
+    $eightPairQuestion = $_POST['four-pair-q'];
+    $controller->insertQuestion($examId, $eightPairQuestion, $answerId++, "Párovanie odpovedí", $_POST['four-pair-points']);
+
+    $fourPairAnswer = $_POST['four-pair-answer'];
+    $controller->insertAnswers($userID, $questionId++, "Párovanie odpovedí", $fourPairAnswer,$fourPairAnswer);
+
 
 
     //draw questions and where answer from teacher is not present then put 0 into DB
     $drawQuestion = $_POST['draw-q'];
-    $controller->insertQuestion($examId, $drawQuestion, 0, "Nakreslenie obrázka", 1);
+    $controller->insertQuestion($examId, $drawQuestion, 0, "Nakreslenie obrázka", $_POST['draw-points']);
 
 
     //math questions and where answer from teacher is not present then put 0 into DB
     $firstMathQuestion = $_POST['first-math-q'];
-    $controller->insertQuestion($examId, $firstMathQuestion, 0, "Matematický výraz", 1);
+    $controller->insertQuestion($examId, $firstMathQuestion, 0, "Matematický výraz", $_POST['first-math-points']);
 
     $secondMathQuestion = $_POST['second-math-q'];
-    $controller->insertQuestion($examId, $secondMathQuestion, 0, "Matematický výraz", 1);
+    $controller->insertQuestion($examId, $secondMathQuestion, 0, "Matematický výraz", $_POST['second-math-points']);
 
 
     // refresh page
@@ -195,47 +170,167 @@ if (isset($_POST['first-short-q'])) {
     <!-- UIkit JS -->
     <script src="https://cdn.jsdelivr.net/npm/uikit@3.6.21/dist/js/uikit.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/uikit@3.6.21/dist/js/uikit-icons.min.js"></script>
+
+
+    <link rel="stylesheet" href="//cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css">
+
     <link rel="stylesheet" href="../assets/css/style.css">
 
 </head>
 
 <body>
 
-<div uk-sticky="animation: uk-animation-slide-top; sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky; cls-inactive: uk-navbar-transparent uk-light; top: 200">
-
-    <nav class="uk-navbar-container">
-        <div class="uk-container uk-container-expand">
-            <div uk-navbar>
-
-                <ul class="uk-navbar-nav">
-                    <li class="uk-active"><a href="#">Active</a></li>
-                    <li>
-                        <a href="#">Parent</a>
-                        <div class="uk-navbar-dropdown">
-                            <ul class="uk-nav uk-navbar-dropdown-nav">
-                                <li class="uk-active"><a href="#">Active</a></li>
-                                <li><a href="#">Item</a></li>
-                                <li><a href="#">Item</a></li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li><a href="#">Item</a></li>
-                </ul>
-
-            </div>
-        </div>
-    </nav>
-</div>
+<?php include "navTeacher.php" ?>
 
 <div class="container">
 
-    <a href="?token=" class="btn btn-success">vygeneruj exam kod</a>
-    <br>
-    <br>
+    <!-- Modal -->
+    <div id="myModal5" class="modal fade" role="dialog">
+        <div class="modal-dialog">
 
-    <!-- Trigger the modal with a button -->
-    <button type="button" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#myModal2">Vytvor Test</button>
-    <br>
+            <div class="modal-content" style="width: auto;">
+                <div class="modal-header">
+                    <h4 class="modal-title">Prebiehajuci test</h4>
+                </div>
+
+                <div class="mainElement">
+                    <table id="running_exams_info"  class="uk-table uk-table-hover uk-table-divider">
+                        <?php
+                        $examData = $examLoginModel->getActiveExam();
+                        foreach($examData as $examRow) {
+                            echo '<h4>Prebiehajúci test : ' . $examRow["title"] . ' - ' . $examRow["exam_code"] . '</h4>';
+
+                           echo '<thead>
+                                <th>Meno</th>
+                                <th>Priezvisko</th>
+                                <th>Status</th>
+                                <th>Opustil tab</th>
+                            </thead>';
+
+                           $studentsWritingTest = $examLoginModel->getStudentWritingExam($examRow["id"]);
+                           foreach ($studentsWritingTest as $student) {
+                               echo '<tr>';
+                               echo '<td>' . $student["name"] . '</td>';
+                               echo '<td>' . $student["surname"] . '</td>';
+                               if(!strcmp( $student["finished"],"0")) {
+                                   echo '<td>' . 'Este pise' . '</td>';
+                               } else {
+                                   echo '<td>' . 'Skoncil' . '</td>';
+                               }
+
+                               if(!strcmp($student["leave_tab"],"0")) {
+                                   echo '<td>' . 'Neopustil okno' . '</td>';
+                               } else {
+                                   echo '<td>' . 'Opustil okno' . '</td>';
+                               }
+                           }
+                        }
+                        ?>
+                    </table>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div
+
+    <!-- Modal -->
+    <div id="myModal4" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <div class="modal-content" style="width: 1000px; display: table-cell">
+                <div class="modal-header">
+                    <h4 class="modal-title">Výsledky testov</h4>
+                </div>
+
+                <div class="mainElement">
+                    <table id="student_test_info" class="uk-table uk-table-hover uk-table-divider">
+                        <thead>
+                            <th>Meno</th>
+                            <th>Priezvisko</th>
+                            <th>Ais ID</th>
+                            <th>Nazov testu</th>
+                            <th>Kód testu</th>
+                            <th>Počet bodov</th>
+                            <th>Export testu do CSV</th>
+                            <th>Export testu do PDF</th>
+                        </thead>
+
+                        <?php
+                            $data = $model->getStudentsTestInfo();
+                            foreach($data as $row) {
+                                echo '<tr>';
+                                echo '<td>' . $row["name"] . '</td>';
+                                echo '<td>' . $row["surname"] . '</td>';
+                                echo '<td>' . $row["ais_id"] . '</td>';
+                                echo '<td>' . $row["title"] . '</td>';
+                                echo '<td>' . $row["exam_code"] . '</td>';
+                                echo '<td>' . $row["all_points"] . '</td>';
+                                $examID = $row["examID"];
+                                $studentID = $row["userID"];
+                                echo '<td> <a class="btn btn-primary" href="getCsv.php?examId=' . $examID . '&studentId=' . $studentID . '">CSV export</a> </td>';
+                                echo '<td> <a  class="btn btn-success" href="getPdf.php?examId='.$examID . '&studentId=' . $studentID .'" >PDF export</a> </td>';
+                                echo '<td> <a  class="btn btn-warning" href="fixTest.php?examId='.$examID . '&studentId=' . $studentID .'" >Opraviť test</a> </td>';
+                            }
+                        ?>
+                    </table>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="myModal3" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content" style="width: auto">
+                <div class="modal-header">
+                    <h4 class="modal-title">Informácie o Testoch</h4>
+                </div>
+                <div class="modal-body" style="width: auto">
+
+                        <table class="table table-striped table-light text-dark">
+                            <thead>
+                            <tr>
+                                <th>Kod Testu</th>
+                                <th>Test</th>
+                                <th>Časový limit v minútach</th>
+                                <th>Počet bodov za test</th>
+                                <th>Aktivovať / Deaktivovať</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <?php
+                            $model = new Model();
+                            $result = $model->getAllExams();
+
+                            foreach ($result as $value){
+                                echo $value->showTable();
+                            }
+                            ?>
+                            </tbody>
+                        </table>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+
     <!-- Modal -->
     <div id="myModal2" class="modal fade" role="dialog">
         <div class="modal-dialog">
@@ -252,13 +347,19 @@ if (isset($_POST['first-short-q'])) {
                             <h4>Vytvoriť nový Test</h4>
 
                             <div class="mb-3">
+                                <label for="exam-code"><strong>Exam Kod</strong></label>
+                                <input type="text" name="exam-code" id="exam-code" value="<?php echo bin2hex(random_bytes(3));?>">
+                            </div>
+
+
+                            <div class="mb-3">
                                 <label for="title-test"><strong>Názov testu</strong></label>
                                 <input type="text" name="title-test" id="title-test">
                             </div>
 
                             <div class="mb-3">
-                                <label for="time-limit"><strong>Časový limit</strong></label>
-                                <input type="text" name="time-limit" id="time-limit"">
+                                <label for="time-limit"><strong>Časový limit v minutách</strong></label>
+                                <input type="number" name="time-limit" id="time-limit">
                             </div>
 
                             <div class="mb-3">
@@ -282,12 +383,6 @@ if (isset($_POST['first-short-q'])) {
 
         </div>
     </div>
-
-
-    <br>
-    <!-- Trigger the modal with a button -->
-    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Vytvor Otázky k testu
-    </button>
 
     <!-- Modal -->
     <div id="myModal" class="modal fade" role="dialog">
@@ -314,16 +409,25 @@ if (isset($_POST['first-short-q'])) {
                             <div class="mb-3">
                                 <label for="first-short-answer"><strong>odpoveď</strong></label>
                                 <input type="text" name="first-short-answer" id="first-short-answer">
+                                <br>
+                                <br>
+                                <label for="first-short-points"><strong>počet bodov</strong></label>
+                                <input type="number" name="first-short-points" id="first-short-points">
                             </div>
 
                             <div class="mb-3">
                                 <label for="second-short-q"><strong>2.otázka</strong></label>
                                 <input type="text" name="second-short-q" id="second-short-q">
+
                             </div>
 
                             <div class="mb-3">
                                 <label for="second-short-answer"><strong>odpoveď</strong></label>
                                 <input type="text" name="second-short-answer" id="second-short-answer">
+                                <br>
+                                <br>
+                                <label for="second-short-points"><strong>počet bodov</strong></label>
+                                <input type="number" name="second-short-points" id="second-short-points">
                             </div>
 
 
@@ -335,11 +439,19 @@ if (isset($_POST['first-short-q'])) {
                             </div>
 
                             <div class="mb-3">
-                                <label for="first-more-answer"><strong>odpovede</strong></label>
+                                <label for="first-more-answer"><strong>možnosť</strong></label>
                                 <input type="text" name="first-more-answer" id="first-more-answer"> <br>
+                                <label for="first-more-answer2"><strong>možnosť</strong></label>
                                 <input type="text" name="first-more-answer2" id="first-more-answer2"><br>
+                                <label for="first-more-answer3"><strong>možnosť</strong></label>
                                 <input type="text" name="first-more-answer3" id="first-more-answer3"><br>
+                                <br>
+                                <label for="correct-answer"><strong>správna odpoveď</strong></label><br>
+                                <input type="text" name="correct-answer" id="correct-answer"> <br>
+                                <br>
 
+                                <label for="first-more-points"><strong>počet bodov</strong></label>
+                                <input type="number" name="first-more-points" id="first-more-points">
                             </div>
 
                             <div class="mb-3">
@@ -348,11 +460,19 @@ if (isset($_POST['first-short-q'])) {
                             </div>
 
                             <div class="mb-3">
-                                <label for="second-more-answer"><strong>odpovede</strong></label>
+                                <label for="second-more-answer"><strong>možnosť</strong></label>
                                 <input type="text" name="second-more-answer" id="second-more-answer"><br>
+                                <label for="second-more-answer2"><strong>možnosť</strong></label>
                                 <input type="text" name="second-more-answer2" id="second-more-answer2"><br>
+                                <label for="second-more-answer3"><strong>možnosť</strong></label>
                                 <input type="text" name="second-more-answer3" id="second-more-answer3"><br>
+                                <br>
+                                <label for="correct-answer2"><strong>správna odpoveď</strong></label><br>
+                                <input type="text" name="correct-answer2" id="correct-answer2"> <br>
+                                <br>
 
+                                <label for="second-more-points"><strong>počet bodov</strong></label>
+                                <input type="number" name="second-more-points" id="second-more-points">
                             </div>
 
                             <h4>párovacie otázky</h4>
@@ -365,6 +485,10 @@ if (isset($_POST['first-short-q'])) {
                             <div class="mb-3">
                                 <label for="first-pair-answer"><strong>odpoveď</strong></label>
                                 <input type="text"  name="first-pair-answer" id="first-pair-answer">
+                                <br>
+                                <br>
+                                <label for="first-pair-points"><strong>počet bodov</strong></label>
+                                <input type="number" name="first-pair-points" id="first-pair-points">
                             </div>
 
                             <div class="mb-3">
@@ -375,6 +499,10 @@ if (isset($_POST['first-short-q'])) {
                             <div class="mb-3">
                                 <label for="second-pair-answer"><strong>odpoveď</strong></label>
                                 <input type="text"  name="second-pair-answer" id="second-pair-answer">
+                                <br>
+                                <br>
+                                <label for="second-pair-points"><strong>počet bodov</strong></label>
+                                <input type="number" name="second-pair-points" id="second-pair-points">
                             </div>
 
                             <div class="mb-3">
@@ -385,6 +513,10 @@ if (isset($_POST['first-short-q'])) {
                             <div class="mb-3">
                                 <label for="third-pair-answer"><strong>odpoveď</strong></label>
                                 <input type="text"  name="third-pair-answer" id="third-pair-answer">
+                                <br>
+                                <br>
+                                <label for="third-pair-points"><strong>počet bodov</strong></label>
+                                <input type="number" name="third-pair-points" id="third-pair-points">
                             </div>
 
                             <div class="mb-3">
@@ -395,25 +527,40 @@ if (isset($_POST['first-short-q'])) {
                             <div class="mb-3">
                                 <label for="four-pair-answer"><strong>odpoveď</strong></label>
                                 <input type="text"  name="four-pair-answer" id="four-pair-answer">
+                                <br>
+                                <label for="four-pair-points"><strong>počet bodov</strong></label>
+                                <input type="number" name="four-pair-points" id="four-pair-points">
                             </div>
 
-                            <h4>odpoveď vyžaduje napísanie matematického výrazu</h4>
+                            <h4>odpoveď vyžaduje  nakreslenie obrázka</h4>
 
                             <div class="mb-3">
                                 <label for="draw-q"><strong>Nakresli</strong></label>
                                 <input type="text" name="draw-q" id="draw-q">
+                                <br>
+                                <br>
+                                <label for="draw-points"><strong>počet bodov</strong></label>
+                                <input type="number" name="draw-points" id="draw-points">
                             </div>
 
                             <h4>odpoveď vyžaduje napísanie matematického výrazu</h4>
                             <div class="mb-3">
                                 <label for="first-math-q"><strong>9.otázka</strong></label>
                                 <input type="text"  name="first-math-q" id="first-math-q">
+                                <br>
+                                <br>
+                                <label for="first-math-points"><strong>počet bodov</strong></label>
+                                <input type="number" name="first-math-points" id="first-math-points">
                             </div>
 
 
                             <div class="mb-3">
                                 <label for="second-math-q"><strong>10.otázka</strong></label>
                                 <input type="text"  name="second-math-q" id="second-math-q">
+                                <br>
+                                <br>
+                                <label for="second-math-points"><strong>počet bodov</strong></label>
+                                <input type="number" name="second-math-points" id="second-math-points">
                             </div>
 
 
@@ -429,13 +576,30 @@ if (isset($_POST['first-short-q'])) {
         </div>
     </div>
 
-    <button name="logout"><a href="../logs/Logout.php">Logout</a></button>
-</div>
 
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
         crossorigin="anonymous"></script>
-<script src="../assets/js/Jquery.js"></script>
+<!--<script src="../assets/js/Jquery.js"></script>-->
+
+<script>
+    function changeValueTest(id){
+        var checkbox = document.getElementById(id);
+        console.log("id"+checkbox.checked);
+
+        if (checkbox.checked === true) {
+            console.log("som dnu");
+            $.post("/teacher/is_active.php", {zapisovanie: '1', id: id});
+
+        } else {
+            $.post("/teacher/is_active.php", {zapisovanie: '0', id: id});
+
+        }
+
+    }
+</script>
+
 </body>
 </html>

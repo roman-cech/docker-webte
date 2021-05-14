@@ -29,9 +29,9 @@ class LogsModel{
         $stmt = $this->conn->prepare("SELECT users.* from test.Users where email = :email");
         $stmt->bindParam(":email",$email);
         $stmt->execute();
-        $teacherArr = $stmt->fetchAll();
+        return $stmt->fetchAll();
 
-        return $teacherArr;
+
     }
 
     /*
@@ -51,7 +51,7 @@ class LogsModel{
     }
     public function getExamsCode($exam_code){
 
-        $stmt = $this->conn->prepare("SELECT exams.exam_code from test.Exams where exam_code = :exam_code");
+        $stmt = $this->conn->prepare("SELECT exams.exam_code, exams.is_active from test.Exams where exam_code = :exam_code");
         $stmt->bindParam(":exam_code",$exam_code);
         $stmt->execute();
         $studentArr = $stmt->fetchAll();
@@ -85,5 +85,25 @@ class LogsModel{
     }
 
 
+    public function updateIs_Active_Buttons($is_active,$exam_code)
+    {
+        try {
+            $stmt = $this->conn->prepare("UPDATE test.Exams SET is_active= :is_active WHERE exam_code = :exam_code");
+            $stmt->bindParam(":is_active",$is_active);
+            $stmt->bindParam(":exam_code",$exam_code);
+            $stmt->execute();
+
+        } catch (PDOException $exception) {
+            return "Failed: " . $exception->getMessage();
+        }
+    }
+
+
+    public function getHeader($filename) {
+        header('Content-Type: application/csv;charset=UTF-8');
+        header('Content-Encoding: UTF-8');
+        header('Content-type: text/csv; charset=UTF-8');
+        header('Content-Disposition: attachment; filename="'.$filename.'";');
+    }
 
 }

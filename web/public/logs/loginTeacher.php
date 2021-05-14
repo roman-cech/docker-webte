@@ -60,25 +60,25 @@ if (isset($_POST['email'] )&& isset($_POST['password']))
         <div>
             <div id="box" class="uk-margin-large-top uk-card uk-card-default uk-card-body ">
                 <div >
-                    <?php include "nav_LogIn.php";?>
-                    <form class="uk-margin-medium" action="logIn_Teacher.php" method="post">
+                    <?php include "navLogin.php";?>
+                    <form class="uk-margin-medium" action="loginTeacher.php" method="post">
 
                         <div  class="uk-margin">
                             <div id="down_line" class="uk-inline">
                                 <span class="uk-form-icon" uk-icon="icon: mail"></span>
-                                <input class="uk-input" type="email" name="email" placeholder="E-mail">
+                                <input class="uk-input" type="email" name="email" placeholder="E-mail" id="email" onclick="teacherLogInValidate()">
                             </div>
                         </div>
                         <div  class="uk-margin">
                             <div id="down_line" class="uk-inline">
                                 <span class="uk-form-icon" uk-icon="icon: unlock"></span>
-                                <input  class="uk-input"  type="password" name="password" placeholder="Password">
+                                <input  class="uk-input"  type="password" name="password" placeholder="Heslo" id="password" onclick="teacherLogInValidate()">
                             </div>
                         </div>
 
-                        <input class="uk-button uk-button-default" type="submit" value="Sing In">
+                        <input class="uk-button uk-button-default" type="submit" value="Prihlásiť sa">
 
-                        <a href="register_Teacher.php"><input class="uk-button uk-button-default" type="button" value="Register"></a>
+                        <a href="registerTeacher.php"><input class="uk-button uk-button-default" type="button" value="Registrovať"></a>
                     </form>
                 </div>
             </div>
@@ -92,4 +92,5 @@ if (isset($_POST['email'] )&& isset($_POST['password']))
 
 
 </body>
+<script src="../assets/js/studentScript.js"></script>
 </html>

@@ -13,7 +13,7 @@ if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['password'
     $controller = new LogsModel();
 
     $controller->insertTeacher($_POST['name'],$_POST['surname'],$_POST['email'],sha1($_POST['password']));
-    header("Location: logIn_Teacher.php");
+    header("Location: loginTeacher.php");
 }
 
 ?>
@@ -48,36 +48,36 @@ if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['password'
         <div>
             <div id="box" class="uk-margin-large-top uk-card uk-card-default uk-card-body ">
                 <div >
-                    <form class="uk-margin-medium" action="register_Teacher.php" method="post">
-                        <h3 class="uk-heading-line uk-text-center"><span>Registrate</span></h3>
+                    <form class="uk-margin-medium" action="registerTeacher.php" method="post">
+                        <h3 class="uk-heading-line uk-text-center"><span>Registrácia</span></h3>
                         <div  class="uk-margin">
                             <div id="down_line" class="uk-inline">
                                 <span class="uk-form-icon" uk-icon="icon: user"></span>
-                                <input class="uk-input" type="text" name="name" placeholder="Name">
+                                <input class="uk-input" type="text" name="name" placeholder="Meno" id="name" onclick="teacherRegistrationValidate()">
                             </div>
                         </div>
                         <div  class="uk-margin">
                             <div id="down_line" class="uk-inline">
                                 <span class="uk-form-icon" uk-icon="icon: user"></span>
-                                <input  class="uk-input"  type="text" name="surname" placeholder="Surname">
+                                <input  class="uk-input"  type="text" name="surname" placeholder="Priezvisko" id="surname" onclick="teacherRegistrationValidate()">
                             </div>
                         </div>
                         <div  class="uk-margin">
                             <div id="down_line" class="uk-inline">
                                 <span class="uk-form-icon" uk-icon="icon: lock"></span>
-                                <input  class="uk-input"  type="password" name="password" placeholder="Password">
+                                <input  class="uk-input"  type="password" name="password" placeholder="Heslo" id="password" onclick="teacherRegistrationValidate()">
                             </div>
                         </div>
                         <div  class="uk-margin">
                             <div id="down_line" class="uk-inline">
                                 <span class="uk-form-icon" uk-icon="icon: mail"></span>
-                                <input  class="uk-input"  type="email" name="email" placeholder="E-mail">
+                                <input  class="uk-input"  type="email" name="email" placeholder="E-mail" id="email" onclick="teacherRegistrationValidate()">
                             </div>
                         </div>
 
-                        <input class="uk-button uk-button-default" type="submit" value="Register">
+                        <input class="uk-button uk-button-default" type="submit" value="Registrovať">
 
-                        <a href="logIn_Teacher.php"><input class="uk-button uk-button-default" type="button" value="Log In"></a>
+                        <a href="loginTeacher.php"><input class="uk-button uk-button-default" type="button" value="Prihlásiť"></a>
                     </form>
                 </div>
             </div>
@@ -90,4 +90,5 @@ if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['password'
 </main>
 
 </body>
+<script src="../assets/js/studentScript.js"></script>
 </html>

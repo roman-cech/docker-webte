@@ -22,7 +22,7 @@ class GetQuestionModel {
         try {
             $conn = new Database();
             $conn->getConnection()->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $stmt = $conn->getConnection()->prepare("select id,title from test.Exams where  exam_code = '$exam_code' ");
+            $stmt = $conn->getConnection()->prepare("select id,title,time_limit from test.Exams where  exam_code = '$exam_code' ");
 
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -111,12 +111,12 @@ class GetQuestionModel {
         }
     }
 
-    public function getPairAnswers()
+    public function getPairAnswers($answer_id)
     {
         try {
             $conn = new Database();
             $conn->getConnection()->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $stmt = $conn->getConnection()->prepare("select * from test.answers where type = 'Párovanie odpovedí' ");
+            $stmt = $conn->getConnection()->prepare("select * from test.answers  where  id = $answer_id ");
 
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
