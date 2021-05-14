@@ -2,6 +2,24 @@
 
 Docker running Nginx, PHP-FPM, Composer, MySQL and PHPMyAdmin.
 
+##How to run project locally:
+```
+Start docker desktop!
+```
+Go to project directory and press:
+```
+docker-compose up --build -d
+```
+To insert database go to http://localhost:8080 and use:
+* "mysql" for Server
+* "dev" for user name
+* "dev" for password
+
+After login use database_ini.sql for import database.
+
+If everything goes well go here: http://localhost:8000
+
+
 
 ## Install prerequisites
 
@@ -12,17 +30,6 @@ All requisites should be available for your distribution. The most important are
 
 Go to composer.json and press install. You should see vendor folder.
 
-To run the docker container use commad bellow:
-
-```
-docker-compose up --build -d
-```
-
-To stop the docker container use commad bellow:
-
-```
-docker-compose down
-```
 
 This project use the following ports :
 
@@ -48,46 +55,6 @@ use App\ExampleClass\ExampleClass;
 $example = new ExampleClass();
 ```
 
-___
-### Project tree
-
-```sh
-.
-├── Makefile
-├── README.md
-├── data
-│   └── db
-│       └── mysql
-├── docker-compose.yml
-├── etc
-│   ├── nginx
-│   │   ├── default.conf
-│   │   └── default.template.conf
-│   ├── php
-│        └── php.ini
-└── web
-    ├── app
-    │   ├── composer.json
-    │   ├── composer.lock
-    │   ├── phpunit.xml.dist
-    │   ├── src
-    │   │   └── controller
-    │   │          └── Controller.php
-    │   │   └── model
-    │   │          └── Model.php
-    │   │   └── view
-    │   │        └── footer.blade.php
-    │   │        └── navigator.blade.php
-    │   ├── vendor
-    └── public
-        └── assets
-          └── css
-            └── style.php
-          └── image
-          └── js
-            └── script.php
-        └── index.php
-```
 ___
 
 ## Run the application
