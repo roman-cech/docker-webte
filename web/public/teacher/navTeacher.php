@@ -29,7 +29,7 @@ $user = $contr->selectTeacher($_SESSION['email']);
             <ul class="uk-navbar-nav">
                 <li><a><i uk-icon="users"></i></a></li>
                 <li><a><p><?php echo "<i>".$user[0]['name']." ".$user[0]['surname']."</i>";?><br><?php echo $user[0]['email'];?></p></a></li>
-                <li><a href="../logs/Logout.php" type="button" class="uk-button" >Odhlásiť sa</a></li>
+                <li><a href="../logs/logout.php" type="button" class="uk-button" >Odhlásiť sa</a></li>
             </ul>
 
         </div>

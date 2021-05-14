@@ -138,7 +138,7 @@ class Model
         try {
             $conn = new Database();
             $conn->getConnection()->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $stmt = $conn->getConnection()->prepare("select all_points from test.Points where id = :id and
+            $stmt = $conn->getConnection()->prepare("select all_points from test.Points where exam_id = :id and
                                                 student_id = :student_id");
             $stmt->bindParam(":id",$examId);
             $stmt->bindParam(":student_id",$studentId);

@@ -60,8 +60,8 @@ if (isset($_POST['email'] )&& isset($_POST['password']))
         <div>
             <div id="box" class="uk-margin-large-top uk-card uk-card-default uk-card-body ">
                 <div >
-                    <?php include "nav_LogIn.php";?>
-                    <form class="uk-margin-medium" action="logIn_Teacher.php" method="post">
+                    <?php include "navLogin.php";?>
+                    <form class="uk-margin-medium" action="loginTeacher.php" method="post">
 
                         <div  class="uk-margin">
                             <div id="down_line" class="uk-inline">
@@ -78,7 +78,7 @@ if (isset($_POST['email'] )&& isset($_POST['password']))
 
                         <input class="uk-button uk-button-default" type="submit" value="Prihlásiť sa">
 
-                        <a href="register_Teacher.php"><input class="uk-button uk-button-default" type="button" value="Registrovať"></a>
+                        <a href="registerTeacher.php"><input class="uk-button uk-button-default" type="button" value="Registrovať"></a>
                     </form>
                 </div>
             </div>

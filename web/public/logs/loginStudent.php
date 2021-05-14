@@ -72,8 +72,8 @@ if (isset($_POST['code'] ) && isset($_POST['aisId']) && isset($_POST['name'] ) &
         <div>
             <div id="box" class="uk-margin-large-top uk-card uk-card-default uk-card-body ">
                 <div >
-                    <?php include "nav_LogIn.php";?>
-                    <form class="uk-margin-medium" action="logIn_Student.php" method="post" >
+                    <?php include "navLogin.php";?>
+                    <form class="uk-margin-medium" action="loginStudent.php" method="post" >
 
                         <div  class="uk-margin">
                             <div id="down_line" class="uk-inline">

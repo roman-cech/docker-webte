@@ -180,7 +180,7 @@ if (isset($_POST['first-short-q'])) {
 
 <body>
 
-<?php include "nav_Teacher.php"?>
+<?php include "navTeacher.php" ?>
 
 <div class="container">
 

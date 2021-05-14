@@ -160,7 +160,7 @@ function kokos() {
         data : { json : json },
         success: function(res){
             if(res == "successfull") {
-                window.location="/logs/Logout.php";
+                window.location="/logs/logout.php";
             }
         }
     });

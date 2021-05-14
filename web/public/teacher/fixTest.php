@@ -15,7 +15,9 @@ if(isset($_POST['points-for-draw']) && isset($_POST['points-for-first-math']) &&
     $tmpAllPoints = $model->getAllPoints($examId,$studentId);
     $allPoints = json_decode(json_encode($tmpAllPoints));
 
-    $points =  $allPoints[0]->all_points;
+
+    $points = $allPoints[0]->all_points;
+
 
     $points += $_POST['points-for-draw'] + $_POST['points-for-first-math'] + $_POST['points-for-second-math'];
 

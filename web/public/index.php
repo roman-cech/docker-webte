@@ -222,7 +222,7 @@ $controller = new Controller();
                         <li></li>
                     </ul>
                 </div>
-                <a href="logs/logIn_Student.php" type="button" class="uk-button uk-margin-small-top">Späť do aplikácie</a>
+                <a href="logs/loginStudent.php" type="button" class="uk-button uk-margin-small-top">Späť do aplikácie</a>
             </div>
         </div>
         <div class="uk-width-auto@m">

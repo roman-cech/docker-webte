@@ -13,7 +13,7 @@ if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['password'
     $controller = new LogsModel();
 
     $controller->insertTeacher($_POST['name'],$_POST['surname'],$_POST['email'],sha1($_POST['password']));
-    header("Location: logIn_Teacher.php");
+    header("Location: loginTeacher.php");
 }
 
 ?>
@@ -48,7 +48,7 @@ if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['password'
         <div>
             <div id="box" class="uk-margin-large-top uk-card uk-card-default uk-card-body ">
                 <div >
-                    <form class="uk-margin-medium" action="register_Teacher.php" method="post">
+                    <form class="uk-margin-medium" action="registerTeacher.php" method="post">
                         <h3 class="uk-heading-line uk-text-center"><span>Registrácia</span></h3>
                         <div  class="uk-margin">
                             <div id="down_line" class="uk-inline">
@@ -77,7 +77,7 @@ if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['password'
 
                         <input class="uk-button uk-button-default" type="submit" value="Registrovať">
 
-                        <a href="logIn_Teacher.php"><input class="uk-button uk-button-default" type="button" value="Prihlásiť"></a>
+                        <a href="loginTeacher.php"><input class="uk-button uk-button-default" type="button" value="Prihlásiť"></a>
                     </form>
                 </div>
             </div>
