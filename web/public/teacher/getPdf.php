@@ -27,6 +27,12 @@ if(isset($_GET["examId"]) && isset($_GET["studentId"])) {
 
 
         $tmp = 1;
+        foreach ($json_decoded as $value){
+                $hot .= "<tr><td>".$value->question."</td><td>".$value->type."</td><td>".$value->answer."</td></tr>";
+
+        }
+
+        echo $hot;
 
 
             $html =  '
@@ -50,14 +56,7 @@ if(isset($_GET["examId"]) && isset($_GET["studentId"])) {
                       <th>Typ otázky</th>
                       <th>Odpoveď</th>
                   </tr>
-                   foreach ($json_decoded as $result) {
-                        echo "<tr>
-                                
-                                <td>'.$result->question.'</td>
-                                <td>'.$result->type.'</td>
-                                <td>'.$result->answer.'</td>
-                              </tr>";
-                    }
+                   '..'
         </table>
           </body>
            </html>';
@@ -67,18 +66,18 @@ if(isset($_GET["examId"]) && isset($_GET["studentId"])) {
 
 
 
-
-
-                $dompdf = new Dompdf();
-                $dompdf->loadHtml($html);
-
-                $dompdf->setPaper('A4', 'landscape');
-
-                $dompdf->render();
-
-                $dompdf->stream();
+//
+//
+//                $dompdf = new Dompdf();
+//                $dompdf->loadHtml($html);
+//
+//                $dompdf->setPaper('A4', 'landscape');
+//
+//                $dompdf->render();
+//
+//                $dompdf->stream();
 
     }
-
-    getPdfStudentTest();
+//
+//    getPdfStudentTest();
 }
