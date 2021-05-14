@@ -264,7 +264,7 @@ if (isset($_POST['first-short-q'])) {
                                 $examID = $row["examID"];
                                 $studentID = $row["userID"];
                                 echo '<td> <a class="btn btn-primary" href="getCsv.php?examId=' . $examID . '&studentId=' . $studentID . '">CSV export</a> </td>';
-                                echo '<td> <button type="button" class="btn btn-success">PDF export</button> </td>';
+                                echo '<td> <a  class="btn btn-success" href="getPdf.php?examId='.$examID . '&studentId=' . $studentID .'" >PDF export</a> </td>';
                             }
                         ?>
                     </table>
@@ -530,7 +530,7 @@ if (isset($_POST['first-short-q'])) {
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
         crossorigin="anonymous"></script>
-<script src="../assets/js/Jquery.js"></script>
+<!--<script src="../assets/js/Jquery.js"></script>-->
 
 <script>
     function changeValueTest(id){

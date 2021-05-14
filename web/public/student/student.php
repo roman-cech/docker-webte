@@ -148,12 +148,6 @@ function getJsonDecode($res)
 
 
 
-                //TODO: vytvorit funkcionality pre matematické vzorce, kontrolovanie správnosti odpovedi,
-                //TODO: vytvorit funkcionalitu pre párovacie otázky
-                //TODO: kreslenie pre kresliacu otázku
-
-
-
                 ?>
 
                 <div class="mb-3">
@@ -296,7 +290,7 @@ function getJsonDecode($res)
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
         crossorigin="anonymous"></script>
-<script src="../assets/js/Jquery.js"></script>
+<!--<script src="../assets/js/Jquery.js"></script>-->
 <script>
     const HIGH_SCHOOL_KEYBOARD_LAYER = {
         "high-school-layer": {

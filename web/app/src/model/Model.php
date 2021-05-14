@@ -202,6 +202,36 @@ class Model
         }
     }
 
+    public function getTitleExam($examId)
+    {
+        try {
+            $conn = new Database();
+            $conn->getConnection()->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $stmt = $conn->getConnection()->prepare("select title from test.Exams where id = :id;");
+            $stmt->bindParam(':id', $examId);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        } catch (PDOException $exception) {
+            return "Failed: " . $exception->getMessage();
+        }
+    }
+
+    public function getStudent($studentId)
+    {
+        try {
+            $conn = new Database();
+            $conn->getConnection()->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $stmt = $conn->getConnection()->prepare("select name,surname from test.Users where id = :id;");
+            $stmt->bindParam(':id', $studentId);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        } catch (PDOException $exception) {
+            return "Failed: " . $exception->getMessage();
+        }
+    }
+
     public function getStudentsTestInfo() {
         try {
             $conn = new Database();
