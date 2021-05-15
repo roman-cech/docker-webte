@@ -46,7 +46,7 @@ function getJsonDecode($res)
 
     <script src='https://unpkg.com/mathlive/dist/mathlive.min.js'></script>
 
-    <script src='../assets/js/studentScript.js'></script>
+    <script src='../assets/js/functionScript.js'></script>
 </head>
 <style>
     label {
