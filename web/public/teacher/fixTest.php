@@ -1,9 +1,8 @@
 <?php
+use App\Model\Model;
 
 include "../../app/vendor/autoload.php";
 
-
-use App\Model\Model;
 
 if(isset($_POST['points-for-draw']) && isset($_POST['points-for-first-math']) && isset($_POST['points-for-second-math'])){
 

@@ -1,11 +1,9 @@
 <?php
 
 //session_start();
+use App\Model\LogsModel;
 
 include "../../app/vendor/autoload.php";
-
-use App\Controller\Controller;
-use App\Model\LogsModel;
 
 $model = new LogsModel();
 

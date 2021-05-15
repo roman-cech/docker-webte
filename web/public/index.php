@@ -1,8 +1,7 @@
 <?php
 
-include "../app/vendor/autoload.php";
-
 use App\Controller\Controller;
+include "../app/vendor/autoload.php";
 
 $controller = new Controller();
 

@@ -1,8 +1,8 @@
 <?php
+use App\Model\LogsModel;
 
 include "../../app/vendor/autoload.php";
 
-use App\Model\LogsModel;
 
 //error_reporting(0);
 $contr = new LogsModel();

@@ -1,11 +1,8 @@
 <?php
+use App\Model\LogsModel;
 include "../../app/vendor/autoload.php";
 
-use App\Model\LogsModel;
-
 //error_reporting(0);
-
-
 
 
 if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['password']) && isset($_POST['email']))

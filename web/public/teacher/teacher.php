@@ -1,13 +1,12 @@
 <?php
 
 session_start();
-
-include "../../app/vendor/autoload.php";
-
 use App\Controller\Controller;
 use App\Model\Model;
 use App\Classes\ShowTest;
 use App\Model\ExamsLoginModel;
+
+include "../../app/vendor/autoload.php";
 
 $class = new ShowTest();
 $model = new Model();
@@ -591,10 +590,10 @@ if (isset($_POST['first-short-q'])) {
 
         if (checkbox.checked === true) {
             console.log("som dnu");
-            $.post("/teacher/is_active.php", {zapisovanie: '1', id: id});
+            $.post("/docker/teacher/isActive.php", {zapisovanie: '1', id: id});
 
         } else {
-            $.post("/teacher/is_active.php", {zapisovanie: '0', id: id});
+            $.post("/docker/teacher/isActive.php", {zapisovanie: '0', id: id});
 
         }
 

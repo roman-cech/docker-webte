@@ -1,9 +1,9 @@
 <?php
 
-include "../../app/vendor/autoload.php";
-
 use App\Model\Model;
 use App\Model\LogsModel;
+
+include "../../app/vendor/autoload.php";
 
 if(isset($_GET["examId"]) && isset($_GET["studentId"])) {
 

@@ -156,11 +156,11 @@ function kokos() {
 
     $.ajax({
         type : "POST",
-        url  : "/student/postTest.php",
+        url  : "/docker/student/postTest.php",
         data : { json : json },
         success: function(res){
             if(res == "successfull") {
-                window.location="/logs/logout.php";
+                window.location.href="/docker/logs/logout.php";
             }
         }
     });

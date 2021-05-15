@@ -10,8 +10,11 @@
   },
   "autoload": {
     "psr-4": {
-      "App\\": "src/",
-      "Dotenv\\": "vendor/vlucas/phpdotenv/src/"
+      "App\\Controller\\": "src/controller/",
+      "App\\Classes\\": "src/classes/",
+      "App\\Model\\Database\\": "src/model/database/",
+      "App\\Model\\": "src/model/",
+      "Dotenv\\": "vendor/vlucas/phpdotenv/src/",
     }
   },
   "minimum-stability": "stable",

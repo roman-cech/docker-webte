@@ -1,12 +1,12 @@
 <?php
 
+use App\Model\Model;
+
+use Dompdf\Dompdf;
 
 include "../../app/vendor/autoload.php";
 
 include "../../app/vendor/dompdf/autoload.inc.php";
-use App\Model\Model;
-
-use Dompdf\Dompdf;
 
 if(isset($_GET["examId"]) && isset($_GET["studentId"])) {
 
@@ -74,7 +74,7 @@ if(isset($_GET["examId"]) && isset($_GET["studentId"])) {
 
 
                 $dompdf = new Dompdf();
-                 $html = mb_convert_encoding($html, 'HTML-ENTITIES', 'UTF-8');
+                $html = mb_convert_encoding($html, 'HTML-ENTITIES', 'UTF-8');
                 $dompdf->loadHtml($html,'UTF-8');
                 $dompdf->setPaper('A4', 'landscape');
 

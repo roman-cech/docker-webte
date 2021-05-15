@@ -2,13 +2,13 @@
 
 session_start();
 
-include "../../app/vendor/autoload.php";
-
 use App\Model\GetQuestionModel;
 use App\Model\GetAnswerModel;
 use App\Model\LogsModel;
 use App\Model\Model;
 use App\Model\ExamsLoginModel;
+
+include "../../app/vendor/autoload.php";
 
 function getJsonDecode($res)
 {

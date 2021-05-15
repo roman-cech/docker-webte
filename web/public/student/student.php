@@ -2,10 +2,10 @@
 
 session_start();
 
-include "../../app/vendor/autoload.php";
-
 use App\Model\GetQuestionModel;
 use App\Model\ExamsLoginModel;
+
+include "../../app/vendor/autoload.php";
 
 function getJsonDecode($res)
 {
@@ -67,7 +67,7 @@ function getJsonDecode($res)
         <div class="uk-navbar-right">
 
             <ul class="uk-navbar-nav">
-                <li><a href="#" type="button" class="uk-button" onclick="kokos()" id="send-test-link">Odoslať Test</a></li>
+                <li><a type="button" class="uk-button" onclick="kokos()" id="send-test-link">Odoslať Test</a></li>
             </ul>
 
         </div>
