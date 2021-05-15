@@ -90,5 +90,5 @@ if (isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['password'
 </main>
 
 </body>
-<script src="../assets/js/studentScript.js"></script>
+<script src="../assets/js/generalScript.js"></script>
 </html>
