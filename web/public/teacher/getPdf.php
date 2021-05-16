@@ -6,8 +6,6 @@ use Dompdf\Dompdf;
 
 include "../../app/vendor/autoload.php";
 
-include "../../app/vendor/dompdf/autoload.inc.php";
-
 if(isset($_GET["examId"]) && isset($_GET["studentId"])) {
 
     function getPdfStudentTest(){
