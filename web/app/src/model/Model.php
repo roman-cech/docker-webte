@@ -51,7 +51,7 @@ class Model
         try {
             $conn = new Database();
             $conn->getConnection()->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $stmt = $conn->getConnection()->prepare("insert into  test.answers (user_id, question_id, type, answer, correct_answer) 
+            $stmt = $conn->getConnection()->prepare("insert into  test.Answers (user_id, question_id, type, answer, correct_answer) 
                                             VALUE (:user_id,:question_id,:type,:answer,:correct_answer)");
             $stmt->bindParam(':user_id', $userId);
             $stmt->bindParam(':question_id', $questionId);
@@ -201,7 +201,7 @@ class Model
         try {
             $conn = new Database();
             $conn->getConnection()->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $stmt = $conn->getConnection()->prepare("select id from test.answers");
+            $stmt = $conn->getConnection()->prepare("select id from test.Answers");
 
             $stmt->execute();
             return $stmt->rowCount();
