@@ -12,7 +12,8 @@ docker-compose up --build -d
 ```
 And install composer with command bellow:
 ```
-docker-compose run --rm composer install
+cd web/app/
+composer update
 ```
 To insert database go to http://localhost:8080 and use:
 * "mysql" for Server
