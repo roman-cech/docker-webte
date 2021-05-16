@@ -590,10 +590,10 @@ if (isset($_POST['first-short-q'])) {
 
         if (checkbox.checked === true) {
             console.log("som dnu");
-            $.post("/docker/teacher/isActive.php", {zapisovanie: '1', id: id});
+            $.post("/teacher/isActive.php", {zapisovanie: '1', id: id});
 
         } else {
-            $.post("/docker/teacher/isActive.php", {zapisovanie: '0', id: id});
+            $.post("/teacher/isActive.php", {zapisovanie: '0', id: id});
 
         }
 
