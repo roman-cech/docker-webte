@@ -26,7 +26,7 @@ class LogsModel{
 
     public function selectTeacher($email){
 
-        $stmt = $this->conn->prepare("SELECT users.* from test.Users where email = :email");
+        $stmt = $this->conn->prepare("SELECT Users.* from test.Users where email = :email");
         $stmt->bindParam(":email",$email);
         $stmt->execute();
         return $stmt->fetchAll();
@@ -42,7 +42,7 @@ class LogsModel{
 
     public function selectStudent($ais_id){
 
-        $stmt = $this->conn->prepare("SELECT users.* from test.Users where ais_id = :ais_id");
+        $stmt = $this->conn->prepare("SELECT Users.* from test.Users where ais_id = :ais_id");
         $stmt->bindParam(":ais_id",$ais_id);
         $stmt->execute();
         $studentArr = $stmt->fetchAll();
@@ -51,7 +51,7 @@ class LogsModel{
     }
     public function getExamsCode($exam_code){
 
-        $stmt = $this->conn->prepare("SELECT exams.exam_code, exams.is_active from test.Exams where exam_code = :exam_code");
+        $stmt = $this->conn->prepare("SELECT Exams.exam_code, Exams.is_active from test.Exams where exam_code = :exam_code");
         $stmt->bindParam(":exam_code",$exam_code);
         $stmt->execute();
         $studentArr = $stmt->fetchAll();
