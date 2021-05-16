@@ -10,6 +10,10 @@ Go to project directory and press:
 ```
 docker-compose up --build -d
 ```
+And install composer with command bellow:
+```
+docker-compose run --rm composer install
+```
 To insert database go to http://localhost:8080 and use:
 * "mysql" for Server
 * "dev" for user name
